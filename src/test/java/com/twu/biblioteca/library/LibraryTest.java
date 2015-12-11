@@ -41,6 +41,19 @@ public class LibraryTest {
 
     @Test
     public void testReturnBook() throws Exception {
+
+        //controller
+
+        when(libraryService.returnBook()).return(true);
+
+
+        library.returnBook(BOOK_1);
+
+        verify(libraryService, time(1)).returnBook();
+
+
+
+
         library.checkoutBook(library.getAvailableBooks().get(0));
         library.returnBook(library.getBorrowedBooks().get(0));
         assertTrue(library.getAvailableBooks().contains(BOOK_1));
