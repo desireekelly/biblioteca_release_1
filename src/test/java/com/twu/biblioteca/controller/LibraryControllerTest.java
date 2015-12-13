@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import static org.mockito.Mockito.*;
 import static org.mockito.Matchers.any;
+import static org.junit.Assert.*;
 
 /**
  * Created by desiree on 10/12/2015.
