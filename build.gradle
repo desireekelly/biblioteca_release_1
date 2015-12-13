@@ -11,7 +11,6 @@
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'application'
-apply plugin: 'idea'
 
 mainClassName = "com.twu.biblioteca.biblioteca.BibliotecaApp"
 
@@ -34,11 +33,4 @@ dependencies {
     // 'test.useTestNG()' to your build script.
     testCompile 'junit:junit:4.+'
     testCompile "org.mockito:mockito-core:1.+"
-}
-
-idea{
-    module{
-        jdkName = "1.8"
-        scopes.TEST.plus += [configurations.testCompile]
-    }
 }
