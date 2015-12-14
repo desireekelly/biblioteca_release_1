@@ -51,4 +51,9 @@ public class ReturnMenuImpl implements ReturnMenu {
     public void displayIncorrectReturnMessage() {
         outputStream.print(messages.incorrectReturnMessage());
     }
+
+    @Override
+    public void displayReturnExceptionMessage(String exception) {
+        outputStream.print("\n" + exception + "\n");
+    }
 }

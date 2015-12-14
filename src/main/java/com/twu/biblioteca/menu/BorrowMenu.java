@@ -19,4 +19,6 @@ public interface BorrowMenu {
     void displayBookToBorrow(String book);
 
     void displayIncorrectBorrowMessage();
+
+    void displayBorrowExceptionMessage(String exception);
 }

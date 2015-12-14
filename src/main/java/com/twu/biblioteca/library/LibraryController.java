@@ -9,7 +9,6 @@ import com.twu.biblioteca.menu.ReturnMenuImpl;
 import com.twu.biblioteca.utilities.Messages;
 import com.twu.biblioteca.utilities.MessagesImpl;
 
-import java.io.PrintStream;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +19,6 @@ public class LibraryController {
     private BorrowService borrowService;
     private ReturnService returnService;
     private Scanner input;
-    private PrintStream outputStream;
     private Messages messages;
     private BorrowMenuImpl borrowMenu;
     private ReturnMenuImpl returnMenu;
@@ -33,7 +31,6 @@ public class LibraryController {
         this.returnService = returnService;
         this.library = library;
         this.input = new Scanner(System.in);
-        this.outputStream = new PrintStream(System.out);
         this.messages = new MessagesImpl();
         this.borrowMenu = new BorrowMenuImpl(System.out, messages);
         this.returnMenu = new ReturnMenuImpl(System.out, messages);
@@ -62,7 +59,7 @@ public class LibraryController {
                     callMainMenuOptions(input.nextInt());
                 }
             } catch (InputMismatchException e) {
-                outputStream.print(messages.incorrectInputMessage());
+                mainMenu.displayIncorrectInputMessage();
                 input.nextLine();
             }
         }
@@ -108,7 +105,7 @@ public class LibraryController {
                     exit = true;
                 }
             } catch (InputMismatchException e) {
-                outputStream.print(messages.incorrectInputMessage());
+                borrowMenu.displayIncorrectInputMessage();
                 input.nextLine();
                 exit = true;
             }
@@ -128,7 +125,7 @@ public class LibraryController {
                 borrowMenu.displayBookToBorrow(bookToBorrow.getTitle().toString());
                 exit = true;
             } catch (BookNotBorrowable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                borrowMenu.displayBorrowExceptionMessage(e.getMessage());
             }
         } else {
             borrowMenu.displayIncorrectInputMessage();
@@ -147,7 +144,7 @@ public class LibraryController {
                     exit = true;
                 }
             } catch (InputMismatchException e) {
-                outputStream.print(messages.incorrectInputMessage());
+                returnMenu.displayIncorrectInputMessage();
                 input.nextLine();
                 exit = true;
             }
@@ -167,7 +164,7 @@ public class LibraryController {
                 returnMenu.displayBookToReturn(bookToReturn.getTitle().toString());
                 exit = true;
             } catch (BookNotReturnable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                returnMenu.displayReturnExceptionMessage(e.getMessage());
             }
         } else {
             returnMenu.displayIncorrectInputMessage();

@@ -19,4 +19,6 @@ public interface ReturnMenu {
     void displayBookToReturn(String book);
 
     void displayIncorrectReturnMessage();
+
+    void displayReturnExceptionMessage(String exception);
 }
