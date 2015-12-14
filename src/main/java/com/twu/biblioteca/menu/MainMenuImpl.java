@@ -45,6 +45,11 @@ public class MainMenuImpl implements MainMenu {
     public void displayIncorrectInputMessage() {
         outputStream.print(messages.incorrectInputMessage());
     }
+
+    @Override
+    public void displayInputMismatchExceptionMessage() {
+        displayIncorrectInputMessage();
+    }
 }
 
 

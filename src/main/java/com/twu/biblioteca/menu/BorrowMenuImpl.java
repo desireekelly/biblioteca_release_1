@@ -56,4 +56,9 @@ public class BorrowMenuImpl implements BorrowMenu {
     public void displayBorrowExceptionMessage(String exception) {
         outputStream.print("\n" + exception + "\n");
     }
+
+    @Override
+    public void displayInputMismatchExceptionMessage() {
+        displayIncorrectInputMessage();
+    }
 }

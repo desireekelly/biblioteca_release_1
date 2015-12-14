@@ -59,7 +59,7 @@ public class LibraryController {
                     callMainMenuOptions(input.nextInt());
                 }
             } catch (InputMismatchException e) {
-                mainMenu.displayIncorrectInputMessage();
+                mainMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
             }
         }
@@ -105,7 +105,7 @@ public class LibraryController {
                     exit = true;
                 }
             } catch (InputMismatchException e) {
-                borrowMenu.displayIncorrectInputMessage();
+                borrowMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
                 exit = true;
             }
@@ -144,7 +144,7 @@ public class LibraryController {
                     exit = true;
                 }
             } catch (InputMismatchException e) {
-                returnMenu.displayIncorrectInputMessage();
+                returnMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
                 exit = true;
             }

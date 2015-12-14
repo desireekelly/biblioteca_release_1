@@ -21,4 +21,6 @@ public interface ReturnMenu {
     void displayIncorrectReturnMessage();
 
     void displayReturnExceptionMessage(String exception);
+
+    void displayInputMismatchExceptionMessage();
 }

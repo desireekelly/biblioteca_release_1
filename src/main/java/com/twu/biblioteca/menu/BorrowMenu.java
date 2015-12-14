@@ -21,4 +21,6 @@ public interface BorrowMenu {
     void displayIncorrectBorrowMessage();
 
     void displayBorrowExceptionMessage(String exception);
+
+    void displayInputMismatchExceptionMessage();
 }
