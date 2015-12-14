@@ -14,17 +14,13 @@ import java.util.List;
 public class MainMenuImpl {
     private PrintStream outputStream;
     private Messages messages;
-    private BorrowMenuImpl borrowMenu;
-    private ReturnMenuImpl returnMenu;
 
     /**
      * Construct a main menu with access to the library, input streams, output streams, borrow menu and return menu.
      */
-    public MainMenuImpl(PrintStream outputStream, Messages messages, BorrowMenuImpl borrowMenu, ReturnMenuImpl returnMenu) {
+    public MainMenuImpl(PrintStream outputStream, Messages messages) {
         this.outputStream = outputStream;
         this.messages = messages;
-        this.borrowMenu = borrowMenu;
-        this.returnMenu = returnMenu;
     }
 
     /**
@@ -39,7 +35,7 @@ public class MainMenuImpl {
         outputStream.print(messages.optionMessage());
     }
 
-    public void displayBookListing(List<Book> books) {
+    public void displayAvailableBookListing(List<Book> books) {
         outputStream.print(messages.bookListingMessage());
         outputStream.print(Utilities.displayFormattedBookList(books));
     }
