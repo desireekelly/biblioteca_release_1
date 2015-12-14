@@ -18,7 +18,7 @@ public class LibraryControllerTest {
     private Book book;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
         book = mock(Book.class);
@@ -26,14 +26,14 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() {
+    public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() throws Exception {
         when(borrowService.borrowBook(book)).thenReturn(true);
         assertTrue(libraryController.borrowBook(book));
         verify(borrowService, times(1)).borrowBook(book);
     }
 
     @Test
-    public void libraryShouldDelegateToReturnServiceWhenBookReturned(){
+    public void libraryShouldDelegateToReturnServiceWhenBookReturned() throws Exception {
         when(returnService.returnBook(book)).thenReturn(true);
         assertTrue(libraryController.returnBook(book));
         verify(returnService, times(1)).returnBook(book);
