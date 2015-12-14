@@ -9,5 +9,6 @@ class BibliotecaApp {
      BorrowService borrowService = new BorrowService(library);
      ReturnService returnService = new ReturnService(library);
      LibraryController libraryController = new LibraryController(borrowService, returnService);
+     libraryController.launch();
  }
 }
