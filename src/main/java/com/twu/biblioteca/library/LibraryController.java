@@ -21,7 +21,6 @@ public class LibraryController {
     private ReturnService returnService;
     private Scanner input;
     private PrintStream outputStream;
-    private boolean exit;
     private Messages messages;
     BorrowMenuImpl borrowMenu;
     ReturnMenuImpl returnMenu;
@@ -32,7 +31,6 @@ public class LibraryController {
         this.returnService = returnService;
         this.input = new Scanner(System.in);
         this.outputStream = new PrintStream(System.out);
-        exit = false;
         this.messages = new MessagesImpl();
         this.borrowMenu = new BorrowMenuImpl(System.out, messages);
         this.returnMenu = new ReturnMenuImpl(System.out, messages);
@@ -53,19 +51,16 @@ public class LibraryController {
 
     private void callMainMenu() {
         mainMenu.displayWelcomeMessage();
-        do {
+        while (true) {
             try {
                 mainMenu.displayMainMenu();
                 if (input.hasNextLine()) {
                     mainMenu.mainMenuOptions(input.nextInt());
-                } else {
-                    exit = true;
                 }
-
             } catch (InputMismatchException e) {
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
             }
-        } while (!exit);
+        }
     }
 }
