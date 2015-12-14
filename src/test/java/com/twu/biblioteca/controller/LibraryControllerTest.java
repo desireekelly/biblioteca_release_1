@@ -30,25 +30,26 @@ public class LibraryControllerTest {
 
     }
 
-    /*
+
     @Test
     public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() {
+        /*
         when(borrowService.borrowBook(any())).thenReturn(true);
 
         libraryController.borrowBook(book);
 
         verify(borrowService, times(1)).borrowBook(any());
+        */
     }
 
     @Test
     public void libraryShouldDelegateToReturnServiceWhenBookReturned(){
+        /*
         when(returnService.returnBook(any())).thenReturn(true);
 
         libraryController.returnBook(book);
 
         verify(returnService, times(1)).returnBook(any());
-
+        */
     }
-    */
-
 }
