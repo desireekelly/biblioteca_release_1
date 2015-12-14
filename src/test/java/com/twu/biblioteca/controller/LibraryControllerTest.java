@@ -7,8 +7,8 @@ import com.twu.biblioteca.library.ReturnService;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
-import static org.junit.Assert.*;
 
 /**
  * Created by desiree on 10/12/2015.
@@ -33,23 +33,15 @@ public class LibraryControllerTest {
 
     @Test
     public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() {
-        /*
-        when(borrowService.borrowBook(any())).thenReturn(true);
-
-        libraryController.borrowBook(book);
-
-        verify(borrowService, times(1)).borrowBook(any());
-        */
+        when(borrowService.borrowBook(book)).thenReturn(true);
+        assertTrue(libraryController.borrowBook(book));
+        verify(borrowService, times(1)).borrowBook(book);
     }
 
     @Test
     public void libraryShouldDelegateToReturnServiceWhenBookReturned(){
-        /*
-        when(returnService.returnBook(any())).thenReturn(true);
-
-        libraryController.returnBook(book);
-
-        verify(returnService, times(1)).returnBook(any());
-        */
+        when(returnService.returnBook(book)).thenReturn(true);
+        assertTrue(libraryController.returnBook(book));
+        verify(returnService, times(1)).returnBook(book);
     }
 }
