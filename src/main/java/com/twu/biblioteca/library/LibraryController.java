@@ -8,7 +8,6 @@ import com.twu.biblioteca.menu.MainMenuImpl;
 import com.twu.biblioteca.menu.ReturnMenuImpl;
 import com.twu.biblioteca.utilities.Messages;
 import com.twu.biblioteca.utilities.MessagesImpl;
-import com.twu.biblioteca.utilities.Utilities;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;
@@ -71,7 +70,7 @@ public class LibraryController {
     private void callMainMenuOptions(int option) {
         switch (option) {
             case 1:
-                mainMenu.displayBookListing(Utilities.displayFormattedBookList(library.getAvailableBooks()));
+                mainMenu.displayBookListing(library.getAvailableBooks());
                 break;
             case 2:
                 if (library.getAvailableBooks().isEmpty()) {

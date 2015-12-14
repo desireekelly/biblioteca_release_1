@@ -1,9 +1,11 @@
 package com.twu.biblioteca.menu;
 
-
+import com.twu.biblioteca.book.Book;
 import com.twu.biblioteca.utilities.Messages;
+import com.twu.biblioteca.utilities.Utilities;
 
 import java.io.PrintStream;
+import java.util.List;
 
 
 /**
@@ -37,9 +39,9 @@ public class MainMenuImpl {
         outputStream.print(messages.optionMessage());
     }
 
-    public void displayBookListing(String books) {
+    public void displayBookListing(List<Book> books) {
         outputStream.print(messages.bookListingMessage());
-        outputStream.print(books);
+        outputStream.print(Utilities.displayFormattedBookList(books));
     }
 
     public void displayIncorrectBorrowMessage() {
