@@ -17,7 +17,7 @@ public class Utilities {
      *
      * @return Returns a formatted list of books in columns.
      */
-    public String displayFormattedBookList(List<Book> bookList) {
+    public static String displayFormattedBookList(List<Book> bookList) {
         String formattedBookList = "";
         int index = 0;
 

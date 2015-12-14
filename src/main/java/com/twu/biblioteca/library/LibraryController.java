@@ -8,6 +8,7 @@ import com.twu.biblioteca.menu.MainMenuImpl;
 import com.twu.biblioteca.menu.ReturnMenuImpl;
 import com.twu.biblioteca.utilities.Messages;
 import com.twu.biblioteca.utilities.MessagesImpl;
+import com.twu.biblioteca.utilities.Utilities;
 
 import java.io.PrintStream;
 import java.util.InputMismatchException;
@@ -22,13 +23,15 @@ public class LibraryController {
     private Scanner input;
     private PrintStream outputStream;
     private Messages messages;
-    BorrowMenuImpl borrowMenu;
-    ReturnMenuImpl returnMenu;
-    MainMenuImpl mainMenu;
+    private BorrowMenuImpl borrowMenu;
+    private ReturnMenuImpl returnMenu;
+    private MainMenuImpl mainMenu;
+    private Library library;
 
-    public LibraryController(BorrowService borrowService, ReturnService returnService) {
+    public LibraryController(Library library, BorrowService borrowService, ReturnService returnService) {
         this.borrowService = borrowService;
         this.returnService = returnService;
+        this.library = library;
         this.input = new Scanner(System.in);
         this.outputStream = new PrintStream(System.out);
         this.messages = new MessagesImpl();
@@ -68,21 +71,20 @@ public class LibraryController {
     private void callMainMenuOptions(int option) {
         switch (option) {
             case 1:
-                mainMenu.displayBookListing();
-                //outputStream.println(Utilities.displayFormattedBookList(library.getAvailableBooks()));
+                mainMenu.displayBookListing(Utilities.displayFormattedBookList(library.getAvailableBooks()));
                 break;
             case 2:
-                //if (library.getAvailableBooks().isEmpty()) {
+                if (library.getAvailableBooks().isEmpty()) {
                 mainMenu.displayIncorrectBorrowMessage();
                 break;
-            //}
+                }
             //borrowMenu.displayBorrowMenu();
             //break;
             case 3:
-                //if (library.getBorrowedBooks().isEmpty()) {
+                if (library.getBorrowedBooks().isEmpty()) {
                 mainMenu.displayIncorrectReturnMessage();
                 break;
-            //}
+                }
             //returnMenu.displayReturnMenu();
             //break;
             case 4:

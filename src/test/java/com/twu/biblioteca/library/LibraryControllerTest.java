@@ -16,13 +16,15 @@ public class LibraryControllerTest {
     private ReturnService returnService;
     private LibraryController libraryController;
     private Book book;
+    private Library library;
 
     @Before
     public void setUp() throws Exception {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
+        library = mock(Library.class);
         book = mock(Book.class);
-        libraryController = new LibraryController(borrowService, returnService);
+        libraryController = new LibraryController(library, borrowService, returnService);
     }
 
     @Test

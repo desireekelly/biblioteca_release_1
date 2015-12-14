@@ -11,13 +11,13 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String welcomeMessage() {
-        String welcomeMessage = "Welcome to the Bangalore Public library!\n\nWe know you'll find a book here that you love!\n\n";
+        String welcomeMessage = "Welcome to the Bangalore Public library!\n\nWe know you'll find a book here that you love!\n";
         return welcomeMessage;
     }
 
     @Override
     public String mainMenuMessage() {
-        String mainMenuMessage = "Enter one of the following options:\n" +
+        String mainMenuMessage = "\nEnter one of the following options:\n" +
                 "1 Display the list of available books to borrow\n" +
                 "2 Borrow a book\n" +
                 "3 Return a book\n" +
@@ -40,19 +40,19 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String incorrectInputMessage() {
-        String incorrectInputMessage = "\nIncorrect option, please try again.\n\n";
+        String incorrectInputMessage = "\nIncorrect option, please try again.\n";
         return incorrectInputMessage;
     }
 
     @Override
     public String incorrectReturnMessage() {
-        String incorrectReturnMessage = "\nSorry, there are no available books to return\n\n";
+        String incorrectReturnMessage = "\nSorry, there are no available books to return\n";
         return incorrectReturnMessage;
     }
 
     @Override
     public String incorrectBorrowMessage() {
-        String incorrectBorrowMessage = "\nSorry, there are no available books to borrow\n\n";
+        String incorrectBorrowMessage = "\nSorry, there are no available books to borrow\n";
         return incorrectBorrowMessage;
     }
 

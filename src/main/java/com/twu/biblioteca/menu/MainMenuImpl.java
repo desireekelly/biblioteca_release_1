@@ -1,8 +1,10 @@
 package com.twu.biblioteca.menu;
 
+
 import com.twu.biblioteca.utilities.Messages;
 
 import java.io.PrintStream;
+
 
 /**
  * Created by desiree on 10/12/2015.
@@ -35,8 +37,9 @@ public class MainMenuImpl {
         outputStream.print(messages.optionMessage());
     }
 
-    public void displayBookListing() {
+    public void displayBookListing(String books) {
         outputStream.print(messages.bookListingMessage());
+        outputStream.print(books);
     }
 
     public void displayIncorrectBorrowMessage() {
