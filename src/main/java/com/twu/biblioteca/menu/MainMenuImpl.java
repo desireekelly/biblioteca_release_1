@@ -40,13 +40,7 @@ public class MainMenuImpl {
         outputStream.print(Utilities.displayFormattedBookList(books));
     }
 
-    public void displayIncorrectBorrowMessage() {
-        outputStream.print(messages.incorrectBorrowMessage());
-    }
 
-    public void displayIncorrectReturnMessage() {
-        outputStream.print(messages.incorrectReturnMessage());
-    }
 
     public void displayExitMessage() {
         outputStream.print(messages.exitMessage());

@@ -41,4 +41,8 @@ public class ReturnMenuImpl {
     public void displayBookToReturn(String book) {
         outputStream.print(book + "!\n");
     }
+
+    public void displayIncorrectReturnMessage() {
+        outputStream.print(messages.incorrectReturnMessage());
+    }
 }

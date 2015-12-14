@@ -41,4 +41,10 @@ public class BorrowMenuImpl {
     public void displayBookToBorrow(String book) {
         outputStream.print(book + "!\n");
     }
+
+    public void displayIncorrectBorrowMessage() {
+        outputStream.print(messages.incorrectBorrowMessage());
+    }
+
+
 }

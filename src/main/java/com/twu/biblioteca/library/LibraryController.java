@@ -77,18 +77,18 @@ public class LibraryController {
                 break;
             case 2:
                 if (library.getAvailableBooks().isEmpty()) {
-                mainMenu.displayIncorrectBorrowMessage();
+                    borrowMenu.displayIncorrectBorrowMessage();
                 break;
                 }
                 callBorrowMenu();
                 break;
             case 3:
                 if (library.getBorrowedBooks().isEmpty()) {
-                mainMenu.displayIncorrectReturnMessage();
+                    returnMenu.displayIncorrectReturnMessage();
                 break;
                 }
-            //returnMenu.displayReturnMenu();
-            //break;
+                callReturnMenu();
+                break;
             case 4:
                 mainMenu.displayExitMessage();
                 System.exit(0);
@@ -112,7 +112,7 @@ public class LibraryController {
             } catch (InputMismatchException e) {
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
-
+                exit = true;
             }
         } while (!exit);
 
@@ -139,5 +139,46 @@ public class LibraryController {
             exit = true;
         }
 
+    }
+
+    private void callReturnMenu() {
+        returnMenu.displayReturnMenu();
+        returnMenu.displayBorrowedBookListing(library.getBorrowedBooks());
+        do {
+            try {
+                if (input.hasNextLine()) {
+                    callReturnMenuOptions(input.nextInt(10));
+                } else {
+                    exit = true;
+                }
+            } catch (InputMismatchException e) {
+                outputStream.print(messages.incorrectInputMessage());
+                input.nextLine();
+                exit = true;
+            }
+        } while (!exit);
+
+    }
+
+    private void callReturnMenuOptions(int option) {
+
+        if (option == 0) {
+            exit = true;
+            return;
+        }
+        if (option > 0 && option <= library.getBorrowedBooks().size()) {
+            try {
+                Book bookToReturn = library.getBorrowedBooks().get(option - 1);
+                library.returnBook(bookToReturn);
+                returnMenu.displayReturnThankYouMessage();
+                returnMenu.displayBookToReturn(bookToReturn.getTitle().toString());
+                exit = true;
+            } catch (BookNotReturnable e) {
+                outputStream.println("\n" + e.getMessage() + "\n");
+            }
+        } else {
+            returnMenu.displayIncorrectInputMessage();
+            exit = true;
+        }
     }
 }
