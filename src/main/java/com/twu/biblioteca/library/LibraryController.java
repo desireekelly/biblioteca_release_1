@@ -63,7 +63,6 @@ public class LibraryController {
                 }
 
             } catch (InputMismatchException e) {
-                //outputStream.print(messages.incorrectInputMessage());
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
             }
