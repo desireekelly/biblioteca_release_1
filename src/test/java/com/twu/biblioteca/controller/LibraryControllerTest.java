@@ -24,8 +24,8 @@ public class LibraryControllerTest {
     public void setUp() {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
+        book = mock(Book.class);
         libraryController = new LibraryController(borrowService, returnService);
-        book = new Book("Java 101", "Joe Bloggs", 1990);
     }
 
     @Test
