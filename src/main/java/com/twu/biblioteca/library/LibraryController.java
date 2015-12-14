@@ -55,12 +55,42 @@ public class LibraryController {
             try {
                 mainMenu.displayMainMenu();
                 if (input.hasNextLine()) {
-                    mainMenu.mainMenuOptions(input.nextInt());
+                    callMainMenuOptions(input.nextInt());
                 }
             } catch (InputMismatchException e) {
-                outputStream.print(messages.incorrectInputMessage());
+                //outputStream.print(messages.incorrectInputMessage());
+                mainMenu.displayIncorrectInputMessage();
                 input.nextLine();
             }
+        }
+    }
+
+    private void callMainMenuOptions(int option) {
+        switch (option) {
+            case 1:
+                mainMenu.displayBookListing();
+                //outputStream.println(Utilities.displayFormattedBookList(library.getAvailableBooks()));
+                break;
+            case 2:
+                //if (library.getAvailableBooks().isEmpty()) {
+                mainMenu.displayIncorrectBorrowMessage();
+                break;
+            //}
+            //borrowMenu.displayBorrowMenu();
+            //break;
+            case 3:
+                //if (library.getBorrowedBooks().isEmpty()) {
+                mainMenu.displayIncorrectReturnMessage();
+                break;
+            //}
+            //returnMenu.displayReturnMenu();
+            //break;
+            case 4:
+                mainMenu.displayExitMessage();
+                System.exit(0);
+            default:
+                mainMenu.displayIncorrectInputMessage();
+                break;
         }
     }
 }
