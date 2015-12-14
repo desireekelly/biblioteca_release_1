@@ -26,6 +26,7 @@ public class LibraryController {
     private ReturnMenuImpl returnMenu;
     private MainMenuImpl mainMenu;
     private Library library;
+    private boolean exit;
 
     public LibraryController(Library library, BorrowService borrowService, ReturnService returnService) {
         this.borrowService = borrowService;
@@ -37,6 +38,7 @@ public class LibraryController {
         this.borrowMenu = new BorrowMenuImpl(System.out, messages);
         this.returnMenu = new ReturnMenuImpl(System.out, messages);
         this.mainMenu = new MainMenuImpl(System.out, messages);
+        exit = false;
     }
 
     public boolean borrowBook(Book book) throws BookNotBorrowable {
@@ -59,12 +61,14 @@ public class LibraryController {
                 if (input.hasNextLine()) {
                     callMainMenuOptions(input.nextInt());
                 }
+
             } catch (InputMismatchException e) {
                 //outputStream.print(messages.incorrectInputMessage());
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
             }
         }
+
     }
 
     private void callMainMenuOptions(int option) {
@@ -89,6 +93,7 @@ public class LibraryController {
             case 4:
                 mainMenu.displayExitMessage();
                 System.exit(0);
+                break;
             default:
                 mainMenu.displayIncorrectInputMessage();
                 break;
@@ -98,23 +103,26 @@ public class LibraryController {
     private void callBorrowMenu() {
         borrowMenu.displayBorrowMenu();
         borrowMenu.displayAvailableBookListing(library.getAvailableBooks());
-        while (true) {
+        do {
             try {
                 if (input.hasNextLine()) {
                     callBorrowMenuOptions(input.nextInt(10));
+                } else {
+                    exit = true;
                 }
             } catch (InputMismatchException e) {
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
 
             }
-        }
+        } while (!exit);
 
     }
 
     private void callBorrowMenuOptions(int option) {
 
         if (option == 0) {
+            exit = true;
             return;
         }
         if (option > 0 && option <= library.getAvailableBooks().size()) {
@@ -123,13 +131,13 @@ public class LibraryController {
                 library.checkoutBook(bookToBorrow);
                 borrowMenu.displayBorrowThankYouMessage();
                 borrowMenu.displayBookToBorrow(bookToBorrow.getTitle().toString());
-                return;
+                exit = true;
             } catch (BookNotBorrowable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
             borrowMenu.displayIncorrectInputMessage();
-            return;
+            exit = true;
         }
 
     }
