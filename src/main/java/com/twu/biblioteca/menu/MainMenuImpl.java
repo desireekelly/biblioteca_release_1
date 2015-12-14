@@ -36,35 +36,34 @@ public class MainMenuImpl {
     }
 
     public void mainMenuOptions(int option) {
-        /*
+
         switch (option) {
             case 1:
                 outputStream.print(messages.bookListingMessage());
                 //outputStream.println(Utilities.displayFormattedBookList(library.getAvailableBooks()));
                 break;
             case 2:
-                if (library.getAvailableBooks().isEmpty()) {
+                //if (library.getAvailableBooks().isEmpty()) {
                     outputStream.print(messages.incorrectBorrowMessage());
                     break;
-                }
-                borrowMenu.displayBorrowMenu();
-                break;
+            //}
+            //borrowMenu.displayBorrowMenu();
+            //break;
             case 3:
-                if (library.getBorrowedBooks().isEmpty()) {
+                //if (library.getBorrowedBooks().isEmpty()) {
                     outputStream.print(messages.incorrectReturnMessage());
                     break;
-                }
-                returnMenu.displayReturnMenu();
-                break;
+            //}
+            //returnMenu.displayReturnMenu();
+            //break;
             case 4:
                 outputStream.print(messages.exitMessage());
-                exit = true;
-                break;
+                System.exit(0);
             default:
                 outputStream.print(messages.incorrectInputMessage());
                 break;
         }
-        */
+
     }
 }
 
