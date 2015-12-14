@@ -1,9 +1,6 @@
-package com.twu.biblioteca.controller;
+package com.twu.biblioteca.library;
 
 import com.twu.biblioteca.book.Book;
-import com.twu.biblioteca.library.BorrowService;
-import com.twu.biblioteca.library.LibraryController;
-import com.twu.biblioteca.library.ReturnService;
 import org.junit.Before;
 import org.junit.Test;
 
