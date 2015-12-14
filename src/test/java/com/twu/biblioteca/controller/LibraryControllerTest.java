@@ -20,16 +20,13 @@ public class LibraryControllerTest {
     private LibraryController libraryController;
     private Book book;
 
-
     @Before
     public void setUp() {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
         libraryController = new LibraryController(borrowService, returnService);
         book = new Book("Java 101", "Joe Bloggs", 1990);
-
     }
-
 
     @Test
     public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() {
