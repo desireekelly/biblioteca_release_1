@@ -52,17 +52,19 @@ public class LibraryController {
 
     private void callMainMenu() {
         mainMenu.displayWelcomeMessage();
-        while (true) {
+        do {
             try {
                 mainMenu.displayMainMenu();
                 if (input.hasNextLine()) {
                     callMainMenuOptions(input.nextInt());
+                } else {
+                    exit = true;
                 }
             } catch (InputMismatchException e) {
                 mainMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
             }
-        }
+        } while (!exit);
     }
 
     private void callMainMenuOptions(int option) {
@@ -86,7 +88,7 @@ public class LibraryController {
                 break;
             case 4:
                 mainMenu.displayExitMessage();
-                System.exit(0);
+                exit = true;
                 break;
             default:
                 mainMenu.displayIncorrectInputMessage();
@@ -97,24 +99,18 @@ public class LibraryController {
     private void callBorrowMenu() {
         borrowMenu.displayBorrowMenu();
         borrowMenu.displayAvailableBookListing(library.getAvailableBooks());
-        do {
             try {
                 if (input.hasNextLine()) {
                     callBorrowMenuOptions(input.nextInt(10));
-                } else {
-                    exit = true;
                 }
             } catch (InputMismatchException e) {
                 borrowMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit = true;
             }
-        } while (!exit);
     }
 
     private void callBorrowMenuOptions(int option) {
         if (option == 0) {
-            exit = true;
             return;
         }
         if (option > 0 && option <= library.getAvailableBooks().size()) {
@@ -123,37 +119,31 @@ public class LibraryController {
                 borrowBook(bookToBorrow);
                 borrowMenu.displayBorrowThankYouMessage();
                 borrowMenu.displayBookToBorrow(bookToBorrow.getTitle().toString());
-                exit = true;
+                return;
             } catch (BookNotBorrowable e) {
                 borrowMenu.displayBorrowExceptionMessage(e.getMessage());
             }
         } else {
             borrowMenu.displayIncorrectInputMessage();
-            exit = true;
+            return;
         }
     }
 
     private void callReturnMenu() {
         returnMenu.displayReturnMenu();
         returnMenu.displayBorrowedBookListing(library.getBorrowedBooks());
-        do {
             try {
                 if (input.hasNextLine()) {
                     callReturnMenuOptions(input.nextInt(10));
-                } else {
-                    exit = true;
                 }
             } catch (InputMismatchException e) {
                 returnMenu.displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit = true;
             }
-        } while (!exit);
     }
 
     private void callReturnMenuOptions(int option) {
         if (option == 0) {
-            exit = true;
             return;
         }
         if (option > 0 && option <= library.getBorrowedBooks().size()) {
@@ -162,13 +152,11 @@ public class LibraryController {
                 returnBook(bookToReturn);
                 returnMenu.displayReturnThankYouMessage();
                 returnMenu.displayBookToReturn(bookToReturn.getTitle().toString());
-                exit = true;
             } catch (BookNotReturnable e) {
                 returnMenu.displayReturnExceptionMessage(e.getMessage());
             }
         } else {
             returnMenu.displayIncorrectInputMessage();
-            exit = true;
         }
     }
 }
