@@ -45,6 +45,4 @@ public class BorrowMenuImpl {
     public void displayIncorrectBorrowMessage() {
         outputStream.print(messages.incorrectBorrowMessage());
     }
-
-
 }

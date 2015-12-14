@@ -61,13 +61,11 @@ public class LibraryController {
                 if (input.hasNextLine()) {
                     callMainMenuOptions(input.nextInt());
                 }
-
             } catch (InputMismatchException e) {
                 outputStream.print(messages.incorrectInputMessage());
                 input.nextLine();
             }
         }
-
     }
 
     private void callMainMenuOptions(int option) {
@@ -115,11 +113,9 @@ public class LibraryController {
                 exit = true;
             }
         } while (!exit);
-
     }
 
     private void callBorrowMenuOptions(int option) {
-
         if (option == 0) {
             exit = true;
             return;
@@ -138,7 +134,6 @@ public class LibraryController {
             borrowMenu.displayIncorrectInputMessage();
             exit = true;
         }
-
     }
 
     private void callReturnMenu() {
@@ -157,11 +152,9 @@ public class LibraryController {
                 exit = true;
             }
         } while (!exit);
-
     }
 
     private void callReturnMenuOptions(int option) {
-
         if (option == 0) {
             exit = true;
             return;

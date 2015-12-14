@@ -7,7 +7,6 @@ import com.twu.biblioteca.utilities.Utilities;
 import java.io.PrintStream;
 import java.util.List;
 
-
 /**
  * Created by desiree on 10/12/2015.
  */
@@ -15,17 +14,11 @@ public class MainMenuImpl {
     private PrintStream outputStream;
     private Messages messages;
 
-    /**
-     * Construct a main menu with access to the library, input streams, output streams, borrow menu and return menu.
-     */
     public MainMenuImpl(PrintStream outputStream, Messages messages) {
         this.outputStream = outputStream;
         this.messages = messages;
     }
 
-    /**
-     * Display the main menu options.
-     */
     public void displayWelcomeMessage() {
         outputStream.print(messages.welcomeMessage());
     }
@@ -39,8 +32,6 @@ public class MainMenuImpl {
         outputStream.print(messages.bookListingMessage());
         outputStream.print(Utilities.displayFormattedBookList(books));
     }
-
-
 
     public void displayExitMessage() {
         outputStream.print(messages.exitMessage());
