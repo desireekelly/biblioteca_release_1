@@ -127,7 +127,7 @@ public class LibraryController {
         if (option > 0 && option <= library.getAvailableBooks().size()) {
             try {
                 Book bookToBorrow = library.getAvailableBooks().get(option - 1);
-                library.checkoutBook(bookToBorrow);
+                borrowBook(bookToBorrow);
                 borrowMenu.displayBorrowThankYouMessage();
                 borrowMenu.displayBookToBorrow(bookToBorrow.getTitle().toString());
                 exit = true;
@@ -169,7 +169,7 @@ public class LibraryController {
         if (option > 0 && option <= library.getBorrowedBooks().size()) {
             try {
                 Book bookToReturn = library.getBorrowedBooks().get(option - 1);
-                library.returnBook(bookToReturn);
+                returnBook(bookToReturn);
                 returnMenu.displayReturnThankYouMessage();
                 returnMenu.displayBookToReturn(bookToReturn.getTitle().toString());
                 exit = true;
