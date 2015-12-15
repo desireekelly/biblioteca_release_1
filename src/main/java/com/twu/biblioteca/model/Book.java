@@ -1,4 +1,4 @@
-package com.twu.biblioteca.book;
+package com.twu.biblioteca.model;
 
 /**
  * book is responsible for holding all the information about a book.

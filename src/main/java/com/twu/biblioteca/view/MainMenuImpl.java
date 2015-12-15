@@ -1,6 +1,6 @@
 package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.library.LibraryController;
+import com.twu.biblioteca.controller.LibraryController;
 
 import java.io.InputStream;
 import java.io.PrintStream;

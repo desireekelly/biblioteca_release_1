@@ -1,7 +1,8 @@
-package com.twu.biblioteca.library;
+package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.book.Book;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
+import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Library;
 
 /**
  * Created by desiree on 13/12/2015.

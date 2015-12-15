@@ -1,6 +1,6 @@
-package com.twu.biblioteca.library;
+package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.book.Book;
+import com.twu.biblioteca.controller.LibraryController;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import org.junit.Before;

@@ -1,6 +1,10 @@
 package com.twu.biblioteca.biblioteca;
 
-import com.twu.biblioteca.library.*;
+import com.twu.biblioteca.controller.BorrowService;
+import com.twu.biblioteca.controller.LibraryController;
+import com.twu.biblioteca.controller.ReturnService;
+import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.LibraryImpl;
 import com.twu.biblioteca.view.*;
 
 class BibliotecaApp {
