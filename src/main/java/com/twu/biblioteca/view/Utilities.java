@@ -1,6 +1,7 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.List;
 
@@ -20,5 +21,16 @@ public class Utilities {
             formattedBookList += String.format("%-15d %-15s %-15s %-15d\n", index, book.getTitle(), book.getAuthor(), book.getYearPublished());
         }
         return formattedBookList;
+    }
+
+    public static String formatMovieList(List<Movie> movieList) {
+        String formattedMovieList = "";
+        int index = 0;
+
+        for (Movie movie : movieList) {
+            index++;
+            formattedMovieList += String.format("%-20d %-20s %-20d %-35s %-20s\n", index, movie.getName(), movie.getYear(), movie.getDirector(), movie.getMovieRating());
+        }
+        return formattedMovieList;
     }
 }

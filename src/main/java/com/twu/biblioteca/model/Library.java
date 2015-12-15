@@ -2,6 +2,7 @@ package com.twu.biblioteca.model;
 
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 
 import java.util.List;
 
@@ -23,4 +24,14 @@ public interface Library {
     void checkoutBook(Book book) throws BookNotBorrowable;
 
     void returnBook(Book book) throws BookNotReturnable;
+
+    List<Movie> getAvailableMovies();
+
+    List<Movie> getBorrowedMovies();
+
+    List<Movie> getMovieList();
+
+    void checkoutMovie(Movie movie) throws MovieNotBorrowable;
+
+    List<Customer> getCustomerList();
 }
