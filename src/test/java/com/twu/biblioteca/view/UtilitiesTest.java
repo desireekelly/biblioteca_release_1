@@ -11,7 +11,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by desiree on 15/12/2015.
+ * Tests for the Utilities class.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
+ * @see Utilities
  */
 public class UtilitiesTest {
 

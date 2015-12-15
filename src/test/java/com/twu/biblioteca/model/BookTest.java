@@ -5,7 +5,7 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests for the book class.
+ * Tests for the Book class.
  *
  * @author Desiree Kelly
  * @version 1.0

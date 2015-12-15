@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**
- * Tests for the library class.
+ * Tests for the Library class.
  *
  * @author Desiree Kelly
  * @version 1.0

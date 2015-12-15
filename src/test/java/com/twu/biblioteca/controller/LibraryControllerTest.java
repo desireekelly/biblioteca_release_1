@@ -9,7 +9,11 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
- * Created by desiree on 10/12/2015.
+ * Tests for the LibraryController class.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
+ * @see LibraryController
  */
 public class LibraryControllerTest {
 
