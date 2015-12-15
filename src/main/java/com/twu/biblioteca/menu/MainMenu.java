@@ -15,4 +15,9 @@ public interface MainMenu {
     void displayIncorrectInputMessage();
 
     void displayInputMismatchExceptionMessage();
+
+    void launch();
+
+    void callMainMenu();
+
 }

@@ -10,13 +10,11 @@ public interface BorrowMenu {
 
     void displayIncorrectInputMessage();
 
-    void displayBorrowThankYouMessage();
-
-    void displayBookToBorrow(String book);
+    String getBorrowThankYouMessage();
 
     void displayIncorrectBorrowMessage();
 
-    void displayBorrowExceptionMessage(String exception);
-
     void displayInputMismatchExceptionMessage();
+
+    void callBorrowMenu();
 }

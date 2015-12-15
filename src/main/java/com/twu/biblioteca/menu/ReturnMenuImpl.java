@@ -1,20 +1,27 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.library.LibraryController;
 import com.twu.biblioteca.messages.Messages;
 
+import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 /**
  * Created by desiree on 10/12/2015.
  */
 public class ReturnMenuImpl implements ReturnMenu {
 
+    private LibraryController libraryController;
     private PrintStream outputStream;
     private Messages messages;
+    private Scanner input;
 
-    public ReturnMenuImpl(PrintStream outputStream, Messages messages) {
+    public ReturnMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
+        this.libraryController = libraryController;
         this.outputStream = outputStream;
         this.messages = messages;
+        this.input = new Scanner(inputStream);
     }
 
     @Override
