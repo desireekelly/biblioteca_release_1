@@ -30,7 +30,6 @@ public class LibraryTest {
         library = new LibraryImpl();
         book = mock(Book.class);
         libraryController = mock(LibraryController.class);
-
     }
 
     @Test
@@ -44,26 +43,19 @@ public class LibraryTest {
         when(libraryController.borrowBook(book)).thenReturn(true);
         assertTrue(libraryController.borrowBook(book));
         verify(libraryController, times(1)).borrowBook(book);
-
         //library.checkoutBook(library.getAvailableBooks().get(0));
         //assertTrue(library.getBorrowedBooks().contains(BOOK_1));
     }
 
     @Test
     public void testReturnBook() throws Exception {
-
         //controller
-
         //when(libraryService.returnBook()).return(true);
-
         //library.returnBook(BOOK_1);
-
         //verify(libraryService, time(1)).returnBook();
-
         when(libraryController.returnBook(book)).thenReturn(true);
         assertTrue(libraryController.returnBook(book));
         verify(libraryController, times(1)).returnBook(book);
-
         //library.checkoutBook(library.getAvailableBooks().get(0));
         //library.returnBook(library.getBorrowedBooks().get(0));
         //assertTrue(library.getAvailableBooks().contains(BOOK_1));

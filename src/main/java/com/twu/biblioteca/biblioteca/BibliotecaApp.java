@@ -7,6 +7,12 @@ import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.LibraryImpl;
 import com.twu.biblioteca.view.*;
 
+/**
+ * Run Biblioteca Library System
+ *
+ * @author Desiree Kelly
+ * @version 1.0
+ */
 class BibliotecaApp {
     public static void main(String[] args) {
         //Setup Library
@@ -15,7 +21,7 @@ class BibliotecaApp {
         ReturnService returnService = new ReturnService(library);
         LibraryController libraryController = new LibraryController(library, borrowService, returnService);
 
-        //Setup View
+        //Setup UI
         Messages messages = new MessagesImpl();
         BorrowMenu borrowMenu = new BorrowMenuImpl(libraryController, System.in, System.out, messages);
         ReturnMenu returnMenu = new ReturnMenuImpl(libraryController, System.in, System.out, messages);
