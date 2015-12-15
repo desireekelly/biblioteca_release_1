@@ -28,7 +28,7 @@ public class LibraryControllerTest {
     private Book book;
     private Library library;
     private List<Book> bookList;
-    private static final String BOOK = "Java 101, Joe Bloggs, 1990";
+    private static final String BOOK_TITLE = "Java 101";
 
     @Before
     public void setUp() throws Exception {
@@ -115,15 +115,15 @@ public class LibraryControllerTest {
 
     @Test
     public void testCheckoutBook() throws Exception {
-        when(libraryControllerMock.checkoutBook(1)).thenReturn(BOOK);
-        assertEquals(libraryControllerMock.checkoutBook(1), BOOK);
+        when(libraryControllerMock.checkoutBook(1)).thenReturn(BOOK_TITLE);
+        assertEquals(libraryControllerMock.checkoutBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkoutBook(1);
     }
 
     @Test
     public void testCheckinBook() throws Exception {
-        when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK);
-        assertEquals(libraryControllerMock.checkinBook(1), BOOK);
+        when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK_TITLE);
+        assertEquals(libraryControllerMock.checkinBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkinBook(1);
     }
 }
