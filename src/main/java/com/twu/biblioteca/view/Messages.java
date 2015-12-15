@@ -1,4 +1,4 @@
-package com.twu.biblioteca.messages;
+package com.twu.biblioteca.view;
 
 /**
  * Messages interface.

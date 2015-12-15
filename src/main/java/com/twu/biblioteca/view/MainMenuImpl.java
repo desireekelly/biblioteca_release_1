@@ -1,8 +1,6 @@
-package com.twu.biblioteca.menu;
+package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.Utilities.Utilities;
 import com.twu.biblioteca.library.LibraryController;
-import com.twu.biblioteca.messages.Messages;
 
 import java.io.InputStream;
 import java.io.PrintStream;

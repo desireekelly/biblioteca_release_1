@@ -1,9 +1,7 @@
 package com.twu.biblioteca.biblioteca;
 
 import com.twu.biblioteca.library.*;
-import com.twu.biblioteca.menu.*;
-import com.twu.biblioteca.messages.Messages;
-import com.twu.biblioteca.messages.MessagesImpl;
+import com.twu.biblioteca.view.*;
 
 class BibliotecaApp {
  public static void main(String[] args) {

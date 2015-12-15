@@ -1,9 +1,7 @@
-package com.twu.biblioteca.menu;
+package com.twu.biblioteca.view;
 
-import com.twu.biblioteca.Utilities.Utilities;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.library.LibraryController;
-import com.twu.biblioteca.messages.Messages;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -13,7 +11,7 @@ import java.util.Scanner;
 /**
  * Created by desiree on 10/12/2015.
  */
-public class ReturnMenuImpl implements ReturnMenu {
+public class BorrowMenuImpl implements BorrowMenu {
 
     private LibraryController libraryController;
     private PrintStream outputStream;
@@ -21,7 +19,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     private Scanner input;
     private boolean exit;
 
-    public ReturnMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
+    public BorrowMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
         this.libraryController = libraryController;
         this.outputStream = outputStream;
         this.messages = messages;
@@ -29,15 +27,15 @@ public class ReturnMenuImpl implements ReturnMenu {
         exit = false;
     }
 
-
     @Override
-    public void callReturnMenu() {
-        displayReturnMenu();
-        displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
+    public void callBorrowMenu() {
+        displayBorrowMenu();
+        displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
+
         do {
             try {
                 if (input.hasNextLine()) {
-                    callReturnMenuOptions(input.nextInt(10));
+                    callBorrowMenuOptions(input.nextInt(10));
                 } else {
                     exit = true;
                 }
@@ -49,16 +47,16 @@ public class ReturnMenuImpl implements ReturnMenu {
         } while (!exit);
     }
 
-    private void callReturnMenuOptions(int option) {
+    private void callBorrowMenuOptions(int option) {
         if (option == 0) {
             exit = true;
             return;
         }
-        if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
+        if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
+                outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 exit = true;
-            } catch (BookNotReturnable e) {
+            } catch (BookNotBorrowable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
@@ -67,15 +65,14 @@ public class ReturnMenuImpl implements ReturnMenu {
         }
     }
 
-
     @Override
-    public void displayReturnMenu() {
-        outputStream.print(messages.returnMessage());
+    public void displayBorrowMenu() {
+        outputStream.print(messages.borrowMessage());
         outputStream.print(messages.bookListingMessage());
     }
 
     @Override
-    public void displayBorrowedBookListing(String books) {
+    public void displayAvailableBookListing(String books) {
         outputStream.println(books);
         outputStream.print(messages.optionMessage());
     }
@@ -86,17 +83,17 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     @Override
-    public void displayIncorrectReturnMessage() {
-        outputStream.print(messages.incorrectReturnMessage());
+    public String getBorrowThankYouMessage() {
+        return messages.borrowThankYouMessage();
+    }
+
+    @Override
+    public void displayIncorrectBorrowMessage() {
+        outputStream.print(messages.incorrectBorrowMessage());
     }
 
     @Override
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
-    }
-
-    @Override
-    public String getReturnThankYouMessage() {
-        return messages.returnThankYouMessage();
     }
 }
