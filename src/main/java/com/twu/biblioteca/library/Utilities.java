@@ -1,4 +1,4 @@
-package com.twu.biblioteca.utilities;
+package com.twu.biblioteca.library;
 
 import com.twu.biblioteca.book.Book;
 
@@ -17,7 +17,7 @@ public class Utilities {
      *
      * @return Returns a formatted list of books in columns.
      */
-    public static String displayFormattedBookList(List<Book> bookList) {
+    public static String formatBookList(List<Book> bookList) {
         String formattedBookList = "";
         int index = 0;
 

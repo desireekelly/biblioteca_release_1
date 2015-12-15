@@ -6,8 +6,8 @@ import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.menu.BorrowMenuImpl;
 import com.twu.biblioteca.menu.MainMenuImpl;
 import com.twu.biblioteca.menu.ReturnMenuImpl;
-import com.twu.biblioteca.utilities.Messages;
-import com.twu.biblioteca.utilities.MessagesImpl;
+import com.twu.biblioteca.messages.Messages;
+import com.twu.biblioteca.messages.MessagesImpl;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -70,7 +70,7 @@ public class LibraryController {
     private void callMainMenuOptions(int option) {
         switch (option) {
             case 1:
-                mainMenu.displayAvailableBookListing(library.getAvailableBooks());
+                mainMenu.displayAvailableBookListing(Utilities.formatBookList(library.getAvailableBooks()));
                 break;
             case 2:
                 if (library.getAvailableBooks().isEmpty()) {
@@ -98,7 +98,7 @@ public class LibraryController {
 
     private void callBorrowMenu() {
         borrowMenu.displayBorrowMenu();
-        borrowMenu.displayAvailableBookListing(library.getAvailableBooks());
+        borrowMenu.displayAvailableBookListing(Utilities.formatBookList(library.getAvailableBooks()));
             try {
                 if (input.hasNextLine()) {
                     callBorrowMenuOptions(input.nextInt(10));
@@ -131,7 +131,7 @@ public class LibraryController {
 
     private void callReturnMenu() {
         returnMenu.displayReturnMenu();
-        returnMenu.displayBorrowedBookListing(library.getBorrowedBooks());
+        returnMenu.displayBorrowedBookListing(Utilities.formatBookList(library.getBorrowedBooks()));
             try {
                 if (input.hasNextLine()) {
                     callReturnMenuOptions(input.nextInt(10));

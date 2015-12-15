@@ -1,11 +1,8 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.book.Book;
-import com.twu.biblioteca.utilities.Messages;
-import com.twu.biblioteca.utilities.Utilities;
+import com.twu.biblioteca.messages.Messages;
 
 import java.io.PrintStream;
-import java.util.List;
 
 /**
  * Created by desiree on 10/12/2015.
@@ -31,9 +28,9 @@ public class MainMenuImpl implements MainMenu {
     }
 
     @Override
-    public void displayAvailableBookListing(List<Book> books) {
+    public void displayAvailableBookListing(String books) {
         outputStream.print(messages.bookListingMessage());
-        outputStream.print(Utilities.displayFormattedBookList(books));
+        outputStream.print(books);
     }
 
     @Override

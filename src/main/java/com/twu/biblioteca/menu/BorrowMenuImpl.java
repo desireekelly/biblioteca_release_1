@@ -1,11 +1,8 @@
 package com.twu.biblioteca.menu;
 
-import com.twu.biblioteca.book.Book;
-import com.twu.biblioteca.utilities.Messages;
-import com.twu.biblioteca.utilities.Utilities;
+import com.twu.biblioteca.messages.Messages;
 
 import java.io.PrintStream;
-import java.util.List;
 
 /**
  * Created by desiree on 10/12/2015.
@@ -27,8 +24,8 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     @Override
-    public void displayAvailableBookListing(List<Book> books) {
-        outputStream.println(Utilities.displayFormattedBookList(books));
+    public void displayAvailableBookListing(String books) {
+        outputStream.println(books);
         outputStream.print(messages.optionMessage());
     }
 
