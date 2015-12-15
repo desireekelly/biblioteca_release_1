@@ -21,14 +21,12 @@ public class BorrowMenuImpl implements BorrowMenu {
     private PrintStream outputStream;
     private Messages messages;
     private Scanner input;
-    private boolean exit;
 
     public BorrowMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
         this.libraryController = libraryController;
         this.outputStream = outputStream;
         this.messages = messages;
         this.input = new Scanner(inputStream);
-        exit = false;
     }
 
     @Override
@@ -40,32 +38,36 @@ public class BorrowMenuImpl implements BorrowMenu {
                 if (input.hasNextLine()) {
                     callBorrowMenuOptions(input.nextInt(10));
                 } else {
-                    exit = true;
+                    exit();
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit = true;
+                exit();
             }
-        } while (!exit);
+        } while (!exit());
     }
 
     private void callBorrowMenuOptions(int option) {
         if (option == 0) {
-            exit = true;
+            exit();
             return;
         }
         if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
             try {
                 outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
-                exit = true;
+                exit();
             } catch (BookNotBorrowable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectInputMessage();
-            exit = true;
+            exit();
         }
+    }
+
+    private boolean exit() {
+        return true;
     }
 
     @Override

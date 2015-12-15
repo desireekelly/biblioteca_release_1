@@ -21,14 +21,12 @@ public class ReturnMenuImpl implements ReturnMenu {
     private PrintStream outputStream;
     private Messages messages;
     private Scanner input;
-    private boolean exit;
 
     public ReturnMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
         this.libraryController = libraryController;
         this.outputStream = outputStream;
         this.messages = messages;
         this.input = new Scanner(inputStream);
-        exit = false;
     }
 
     @Override
@@ -40,32 +38,36 @@ public class ReturnMenuImpl implements ReturnMenu {
                 if (input.hasNextLine()) {
                     callReturnMenuOptions(input.nextInt(10));
                 } else {
-                    exit = true;
+                    exit();
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit = true;
+                exit();
             }
-        } while (!exit);
+        } while (!exit());
     }
 
     private void callReturnMenuOptions(int option) {
         if (option == 0) {
-            exit = true;
+            exit();
             return;
         }
         if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
-                exit = true;
+                exit();
             } catch (BookNotReturnable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectInputMessage();
-            exit = true;
+            exit();
         }
+    }
+
+    private boolean exit() {
+        return true;
     }
 
     @Override
