@@ -13,8 +13,8 @@ import static org.junit.Assert.*;
  */
 public class BookTest {
 
-    public static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
-    public static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
+    private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
+    private static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
 
     @Test
     public void testGetTitle() throws Exception {

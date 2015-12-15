@@ -27,6 +27,8 @@ public class LibraryControllerTest {
     private LibraryController libraryControllerMock;
     private Book book;
     private Library library;
+    private List<Book> bookList;
+    private static final String BOOK = "Java 101, Joe Bloggs, 1990";
 
     @Before
     public void setUp() throws Exception {
@@ -36,6 +38,9 @@ public class LibraryControllerTest {
         book = mock(Book.class);
         libraryController = new LibraryController(library, borrowService, returnService);
         libraryControllerMock = mock(LibraryController.class);
+        bookList = new ArrayList<Book>();
+        bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
+        bookList.add(new Book("PHP 101", "Mary Jane", 2005));
     }
 
     @Test
@@ -68,21 +73,15 @@ public class LibraryControllerTest {
 
     @Test
     public void testGetAvailableBooks() throws Exception {
-        List<Book> books = new ArrayList<Book>();
-        books.add(new Book("Java 101", "Joe Bloggs", 1990));
-        books.add(new Book("PHP 101", "Mary Jane", 2005));
-        when(libraryControllerMock.getAvailableBooks()).thenReturn(books);
-        assertEquals(libraryControllerMock.getAvailableBooks(), books);
+        when(libraryControllerMock.getAvailableBooks()).thenReturn(bookList);
+        assertEquals(libraryControllerMock.getAvailableBooks(), bookList);
         verify(libraryControllerMock, times(1)).getAvailableBooks();
     }
 
     @Test
     public void testGetBorrowedBooks() throws Exception {
-        List<Book> books = new ArrayList<Book>();
-        books.add(new Book("Java 101", "Joe Bloggs", 1990));
-        books.add(new Book("PHP 101", "Mary Jane", 2005));
-        when(libraryControllerMock.getBorrowedBooks()).thenReturn(books);
-        assertEquals(libraryControllerMock.getBorrowedBooks(), books);
+        when(libraryControllerMock.getBorrowedBooks()).thenReturn(bookList);
+        assertEquals(libraryControllerMock.getBorrowedBooks(), bookList);
         verify(libraryControllerMock, times(1)).getBorrowedBooks();
     }
 
@@ -116,15 +115,15 @@ public class LibraryControllerTest {
 
     @Test
     public void testCheckoutBook() throws Exception {
-        when(libraryControllerMock.checkoutBook(1)).thenReturn("Book 1");
-        assertEquals(libraryControllerMock.checkoutBook(1), "Book 1");
+        when(libraryControllerMock.checkoutBook(1)).thenReturn(BOOK);
+        assertEquals(libraryControllerMock.checkoutBook(1), BOOK);
         verify(libraryControllerMock, times(1)).checkoutBook(1);
     }
 
     @Test
     public void testCheckinBook() throws Exception {
-        when(libraryControllerMock.checkinBook(1)).thenReturn("Book 1");
-        assertEquals(libraryControllerMock.checkinBook(1), "Book 1");
+        when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK);
+        assertEquals(libraryControllerMock.checkinBook(1), BOOK);
         verify(libraryControllerMock, times(1)).checkinBook(1);
     }
 }

@@ -18,8 +18,8 @@ import static org.mockito.Mockito.*;
  */
 public class LibraryTest {
 
-    public static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
-    public static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
+    private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
+    private static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
 
     private Library library;
     private LibraryController libraryController;
