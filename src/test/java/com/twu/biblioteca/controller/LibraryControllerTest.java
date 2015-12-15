@@ -2,6 +2,7 @@ package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -25,9 +26,12 @@ public class LibraryControllerTest {
     private LibraryController libraryController;
     private LibraryController libraryControllerMock;
     private Book book;
+    private Movie movie;
     private Library library;
     private List<Book> bookList;
+    private List<Movie> movieList;
     private static final String BOOK_TITLE = "Java 101";
+    private static final String MOVIE_TITLE = "The Matrix";
 
     @Before
     public void setUp() throws Exception {
@@ -35,11 +39,15 @@ public class LibraryControllerTest {
         returnService = mock(ReturnService.class);
         library = mock(Library.class);
         book = mock(Book.class);
+        movie = mock(Movie.class);
         libraryController = new LibraryController(library, borrowService, returnService);
         libraryControllerMock = mock(LibraryController.class);
         bookList = new ArrayList<Book>();
         bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
         bookList.add(new Book("PHP 101", "Mary Jane", 2005));
+        movieList = new ArrayList<Movie>();
+        movieList.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
+        movieList.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
     }
 
     @Test
@@ -54,6 +62,13 @@ public class LibraryControllerTest {
         when(returnService.returnBook(book)).thenReturn(true);
         assertTrue(libraryController.returnBook(book));
         verify(returnService, times(1)).returnBook(book);
+    }
+
+    @Test
+    public void libraryShouldDelegateToBorrowServiceWhenMovieBorrowed() throws Exception {
+        when(borrowService.borrowMovie(movie)).thenReturn(true);
+        assertTrue(libraryController.borrowMovie(movie));
+        verify(borrowService, times(1)).borrowMovie(movie);
     }
 
     @Test
@@ -124,5 +139,61 @@ public class LibraryControllerTest {
         when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK_TITLE);
         assertEquals(libraryControllerMock.checkinBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkinBook(1);
+    }
+
+    @Test
+    public void testBorrowMovie() throws Exception {
+        when(libraryControllerMock.borrowMovie(movie)).thenReturn(true);
+        assertTrue(libraryControllerMock.borrowMovie(movie));
+        verify(libraryControllerMock, times(1)).borrowMovie(movie);
+    }
+
+    @Test
+    public void testGetAvailableMovies() throws Exception {
+        when(libraryControllerMock.getAvailableMovies()).thenReturn(movieList);
+        assertEquals(libraryControllerMock.getAvailableMovies(), movieList);
+        verify(libraryControllerMock, times(1)).getAvailableMovies();
+    }
+
+    @Test
+    public void testGetBorrowedMovies() throws Exception {
+        when(libraryControllerMock.getBorrowedMovies()).thenReturn(movieList);
+        assertEquals(libraryControllerMock.getBorrowedMovies(), movieList);
+        verify(libraryControllerMock, times(1)).getBorrowedMovies();
+    }
+
+    @Test
+    public void testAvailableMoviesIsEmpty() throws Exception {
+        when(libraryControllerMock.availableMoviesIsEmpty()).thenReturn(true);
+        assertTrue(libraryControllerMock.availableMoviesIsEmpty());
+        verify(libraryControllerMock, times(1)).availableMoviesIsEmpty();
+    }
+
+    @Test
+    public void testBorrowedMoviesIsEmpty() throws Exception {
+        when(libraryControllerMock.borrowedMoviesIsEmpty()).thenReturn(true);
+        assertTrue(libraryControllerMock.borrowedMoviesIsEmpty());
+        verify(libraryControllerMock, times(1)).borrowedMoviesIsEmpty();
+    }
+
+    @Test
+    public void testGetAvailableMoviesSize() throws Exception {
+        when(libraryControllerMock.getAvailableMoviesSize()).thenReturn(4);
+        assertEquals(libraryControllerMock.getAvailableMoviesSize(), 4);
+        verify(libraryControllerMock, times(1)).getAvailableMoviesSize();
+    }
+
+    @Test
+    public void testGetBorrowedMoviesSize() throws Exception {
+        when(libraryControllerMock.getBorrowedMoviesSize()).thenReturn(4);
+        assertEquals(libraryControllerMock.getBorrowedMoviesSize(), 4);
+        verify(libraryControllerMock, times(1)).getBorrowedMoviesSize();
+    }
+
+    @Test
+    public void testCheckoutMovie() throws Exception {
+        when(libraryControllerMock.checkoutMovie(1)).thenReturn(MOVIE_TITLE);
+        assertEquals(libraryControllerMock.checkoutMovie(1), MOVIE_TITLE);
+        verify(libraryControllerMock, times(1)).checkoutMovie(1);
     }
 }

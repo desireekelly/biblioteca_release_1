@@ -2,8 +2,10 @@ package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
 
 import java.util.List;
 
@@ -32,12 +34,24 @@ public class LibraryController {
         return returnService.returnBook(book);
     }
 
+    public boolean borrowMovie(Movie movie) throws MovieNotBorrowable{
+        return borrowService.borrowMovie(movie);
+    }
+
     public List<Book> getAvailableBooks() {
         return library.getAvailableBooks();
     }
 
     public List<Book> getBorrowedBooks() {
         return library.getBorrowedBooks();
+    }
+
+    public List<Movie> getAvailableMovies(){
+        return library.getAvailableMovies();
+    }
+
+    public List<Movie> getBorrowedMovies(){
+        return library.getBorrowedMovies();
     }
 
     public boolean availableBooksIsEmpty() {
@@ -54,12 +68,34 @@ public class LibraryController {
         return false;
     }
 
+    public boolean availableMoviesIsEmpty() {
+        if (library.getAvailableMovies().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean borrowedMoviesIsEmpty() {
+        if (library.getBorrowedMovies().isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
     public int getAvailableBooksSize() {
         return library.getAvailableBooks().size();
     }
 
     public int getBorrowedBooksSize() {
         return library.getBorrowedBooks().size();
+    }
+
+    public int getAvailableMoviesSize() {
+        return library.getAvailableMovies().size();
+    }
+
+    public int getBorrowedMoviesSize() {
+        return library.getBorrowedMovies().size();
     }
 
     public String checkoutBook(int option) throws BookNotBorrowable {
@@ -72,5 +108,11 @@ public class LibraryController {
             Book bookToReturn = library.getBorrowedBooks().get(option - 1);
             returnBook(bookToReturn);
         return bookToReturn.getTitle().toString();
+    }
+
+    public String checkoutMovie(int option) throws MovieNotBorrowable {
+        Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
+        borrowMovie(movieToBorrow);
+        return movieToBorrow.getName().toString();
     }
 }
