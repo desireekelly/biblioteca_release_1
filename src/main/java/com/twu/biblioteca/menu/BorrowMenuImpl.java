@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Utilities.Utilities;
+import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.library.LibraryController;
 import com.twu.biblioteca.messages.Messages;
 
@@ -54,9 +55,12 @@ public class BorrowMenuImpl implements BorrowMenu {
             return;
         }
         if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
-            outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
-            exit = true;
-            return;
+            try {
+                outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
+                exit = true;
+            } catch (BookNotBorrowable e) {
+                outputStream.println("\n" + e.getMessage() + "\n");
+            }
         } else {
             displayIncorrectInputMessage();
             exit = true;

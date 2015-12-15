@@ -1,6 +1,7 @@
 package com.twu.biblioteca.menu;
 
 import com.twu.biblioteca.Utilities.Utilities;
+import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.library.LibraryController;
 import com.twu.biblioteca.messages.Messages;
 
@@ -54,9 +55,12 @@ public class ReturnMenuImpl implements ReturnMenu {
             return;
         }
         if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
-            outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
-            exit = true;
-            return;
+            try {
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
+                exit = true;
+            } catch (BookNotReturnable e) {
+                outputStream.println("\n" + e.getMessage() + "\n");
+            }
         } else {
             displayIncorrectInputMessage();
             exit = true;

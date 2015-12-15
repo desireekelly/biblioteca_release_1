@@ -60,30 +60,16 @@ public class LibraryController {
     }
 
 
-    public String checkoutBook(int option) {
-        String bookTitle = "";
-        try {
+    public String checkoutBook(int option) throws BookNotBorrowable {
             Book bookToBorrow = library.getAvailableBooks().get(option - 1);
             borrowBook(bookToBorrow);
-            bookTitle = bookToBorrow.getTitle().toString();
-
-        } catch (BookNotBorrowable e) {
-            System.out.println("\n" + e.getMessage() + "\n");
-        }
-        return bookTitle;
+        return bookToBorrow.getTitle().toString();
     }
 
-    public String checkinBook(int option) {
-        String bookTitle = "";
-        try {
+    public String checkinBook(int option) throws BookNotReturnable {
             Book bookToReturn = library.getBorrowedBooks().get(option - 1);
             returnBook(bookToReturn);
-            bookTitle = bookToReturn.getTitle().toString();
-
-        } catch (BookNotReturnable e) {
-            System.out.println("\n" + e.getMessage() + "\n");
-        }
-        return bookTitle;
+        return bookToReturn.getTitle().toString();
     }
 
 }
