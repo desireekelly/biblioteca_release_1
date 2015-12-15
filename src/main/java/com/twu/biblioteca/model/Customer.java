@@ -46,6 +46,10 @@ public class Customer {
         return this.name + ", " + this.emailAddress + ", " + this.phoneNumber;
     }
 
+    public String getCustomerInformation(){
+        return String.format("%-15d %-15s %-15s", this.name, this.emailAddress, this.phoneNumber);
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (!obj.getClass().equals(this.getClass())) {
