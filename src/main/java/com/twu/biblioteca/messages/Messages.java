@@ -31,4 +31,6 @@ public interface Messages {
     String returnMessage();
 
     String returnThankYouMessage();
+
+    String incorrectAvailableBooksMessage();
 }

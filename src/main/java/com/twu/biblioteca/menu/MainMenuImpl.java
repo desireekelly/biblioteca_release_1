@@ -59,6 +59,10 @@ public class MainMenuImpl implements MainMenu {
 
         switch (option) {
             case 1:
+                if (libraryController.availableBooksIsEmpty()) {
+                    displayIncorrectAvailableBooksMessage();
+                    break;
+                }
                 displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
                 break;
             case 2:
@@ -102,6 +106,11 @@ public class MainMenuImpl implements MainMenu {
     public void displayAvailableBookListing(String books) {
         outputStream.print(messages.bookListingMessage());
         outputStream.print(books);
+    }
+
+    @Override
+    public void displayIncorrectAvailableBooksMessage() {
+        outputStream.print(messages.incorrectAvailableBooksMessage());
     }
 
     @Override

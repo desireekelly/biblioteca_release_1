@@ -20,4 +20,6 @@ public interface MainMenu {
 
     void callMainMenu();
 
+    void displayIncorrectAvailableBooksMessage();
+
 }

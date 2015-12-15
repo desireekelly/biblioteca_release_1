@@ -39,6 +39,12 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
+    public String incorrectAvailableBooksMessage() {
+        String incorrectAvailableBooksMessage = "\nSorry, there are no available books in the library.\n";
+        return incorrectAvailableBooksMessage;
+    }
+
+    @Override
     public String incorrectInputMessage() {
         String incorrectInputMessage = "\nIncorrect option, please try again.\n";
         return incorrectInputMessage;
