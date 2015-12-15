@@ -150,5 +150,11 @@ public class LibraryTest {
         fail("MovieNotBorrowable Exception not thrown");
     }
 
-
+    @Test
+    public void testGetCustomerList() throws Exception {
+        library.getCustomerList().get(0);
+        assertTrue(library.getCustomerList().contains(CUSTOMER_1));
+        library.getCustomerList().get(1);
+        assertTrue(library.getCustomerList().contains(CUSTOMER_2));
+    }
 }
