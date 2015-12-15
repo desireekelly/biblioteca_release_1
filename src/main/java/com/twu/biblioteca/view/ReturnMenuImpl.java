@@ -33,41 +33,34 @@ public class ReturnMenuImpl implements ReturnMenu {
     public void callReturnMenu() {
         displayReturnMenu();
         displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
-        do {
             try {
                 if (input.hasNextLine()) {
                     callReturnMenuOptions(input.nextInt(10));
                 } else {
-                    exit();
+                    return;
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit();
+                return;
             }
-        } while (!exit());
     }
 
     private void callReturnMenuOptions(int option) {
         if (option == 0) {
-            exit();
             return;
         }
         if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
-                exit();
+                return;
             } catch (BookNotReturnable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectInputMessage();
-            exit();
+            return;
         }
-    }
-
-    private boolean exit() {
-        return true;
     }
 
     @Override

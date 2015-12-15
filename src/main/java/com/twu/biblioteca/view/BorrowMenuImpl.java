@@ -33,41 +33,34 @@ public class BorrowMenuImpl implements BorrowMenu {
     public void callBorrowMenu() {
         displayBorrowMenu();
         displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
-        do {
             try {
                 if (input.hasNextLine()) {
                     callBorrowMenuOptions(input.nextInt(10));
                 } else {
-                    exit();
+                    return;
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                exit();
+                return;
             }
-        } while (!exit());
     }
 
     private void callBorrowMenuOptions(int option) {
         if (option == 0) {
-            exit();
             return;
         }
         if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
             try {
                 outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
-                exit();
+                return;
             } catch (BookNotBorrowable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectInputMessage();
-            exit();
+            return;
         }
-    }
-
-    private boolean exit() {
-        return true;
     }
 
     @Override
