@@ -1,10 +1,12 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.Utilities.Utilities;
 import com.twu.biblioteca.library.LibraryController;
 import com.twu.biblioteca.messages.Messages;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -16,13 +18,51 @@ public class ReturnMenuImpl implements ReturnMenu {
     private PrintStream outputStream;
     private Messages messages;
     private Scanner input;
+    private boolean exit;
 
     public ReturnMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, Messages messages) {
         this.libraryController = libraryController;
         this.outputStream = outputStream;
         this.messages = messages;
         this.input = new Scanner(inputStream);
+        exit = false;
     }
+
+
+    @Override
+    public void callReturnMenu() {
+        displayReturnMenu();
+        displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
+        do {
+            try {
+                if (input.hasNextLine()) {
+                    callReturnMenuOptions(input.nextInt(10));
+                } else {
+                    exit = true;
+                }
+            } catch (InputMismatchException e) {
+                displayInputMismatchExceptionMessage();
+                input.nextLine();
+                exit = true;
+            }
+        } while (!exit);
+    }
+
+    private void callReturnMenuOptions(int option) {
+        if (option == 0) {
+            exit = true;
+            return;
+        }
+        if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
+            outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
+            exit = true;
+            return;
+        } else {
+            displayIncorrectInputMessage();
+            exit = true;
+        }
+    }
+
 
     @Override
     public void displayReturnMenu() {
@@ -42,27 +82,17 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     @Override
-    public void displayReturnThankYouMessage() {
-        outputStream.print(messages.returnThankYouMessage());
-    }
-
-    @Override
-    public void displayBookToReturn(String book) {
-        outputStream.print(book + "!\n");
-    }
-
-    @Override
     public void displayIncorrectReturnMessage() {
         outputStream.print(messages.incorrectReturnMessage());
     }
 
     @Override
-    public void displayReturnExceptionMessage(String exception) {
-        outputStream.print("\n" + exception + "\n");
+    public void displayInputMismatchExceptionMessage() {
+        displayIncorrectInputMessage();
     }
 
     @Override
-    public void displayInputMismatchExceptionMessage() {
-        displayIncorrectInputMessage();
+    public String getReturnThankYouMessage() {
+        return messages.returnThankYouMessage();
     }
 }

@@ -10,13 +10,11 @@ public interface ReturnMenu {
 
     void displayIncorrectInputMessage();
 
-    void displayReturnThankYouMessage();
-
-    void displayBookToReturn(String book);
-
     void displayIncorrectReturnMessage();
 
-    void displayReturnExceptionMessage(String exception);
-
     void displayInputMismatchExceptionMessage();
+
+    void callReturnMenu();
+
+    String getReturnThankYouMessage();
 }

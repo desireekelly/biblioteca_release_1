@@ -1,7 +1,7 @@
 package com.twu.biblioteca.menu;
 
+import com.twu.biblioteca.Utilities.Utilities;
 import com.twu.biblioteca.library.LibraryController;
-import com.twu.biblioteca.library.Utilities;
 import com.twu.biblioteca.messages.Messages;
 
 import java.io.InputStream;
@@ -73,7 +73,7 @@ public class MainMenuImpl implements MainMenu {
                     returnMenu.displayIncorrectReturnMessage();
                     break;
                 }
-                //callReturnMenu();
+                returnMenu.callReturnMenu();
                 break;
             case 4:
                 displayExitMessage();
@@ -85,13 +85,6 @@ public class MainMenuImpl implements MainMenu {
         }
 
     }
-
-
-
-
-
-
-
 
 
     @Override

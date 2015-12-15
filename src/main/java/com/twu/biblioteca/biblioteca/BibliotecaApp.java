@@ -7,10 +7,13 @@ import com.twu.biblioteca.messages.MessagesImpl;
 
 class BibliotecaApp {
  public static void main(String[] args) {
+     //Setup Library
      Library library = new LibraryImpl();
      BorrowService borrowService = new BorrowService(library);
      ReturnService returnService = new ReturnService(library);
      LibraryController libraryController = new LibraryController(library, borrowService, returnService);
+
+     //Setup View
      Messages messages = new MessagesImpl();
      BorrowMenu borrowMenu = new BorrowMenuImpl(libraryController, System.in, System.out, messages);
      ReturnMenu returnMenu = new ReturnMenuImpl(libraryController, System.in, System.out, messages);

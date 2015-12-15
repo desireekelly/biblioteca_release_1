@@ -14,13 +14,11 @@ public class LibraryController {
     private BorrowService borrowService;
     private ReturnService returnService;
     private Library library;
-    private boolean exit;
 
     public LibraryController(Library library, BorrowService borrowService, ReturnService returnService) {
         this.borrowService = borrowService;
         this.returnService = returnService;
         this.library = library;
-        exit = false;
     }
 
     public boolean borrowBook(Book book) throws BookNotBorrowable {
@@ -33,6 +31,10 @@ public class LibraryController {
 
     public List<Book> getAvailableBooks() {
         return library.getAvailableBooks();
+    }
+
+    public List<Book> getBorrowedBooks() {
+        return library.getBorrowedBooks();
     }
 
     public boolean availableBooksIsEmpty() {
@@ -53,6 +55,10 @@ public class LibraryController {
         return library.getAvailableBooks().size();
     }
 
+    public int getBorrowedBooksSize() {
+        return library.getBorrowedBooks().size();
+    }
+
 
     public String checkoutBook(int option) {
         String bookTitle = "";
@@ -67,40 +73,17 @@ public class LibraryController {
         return bookTitle;
     }
 
+    public String checkinBook(int option) {
+        String bookTitle = "";
+        try {
+            Book bookToReturn = library.getBorrowedBooks().get(option - 1);
+            returnBook(bookToReturn);
+            bookTitle = bookToReturn.getTitle().toString();
 
-
-/*
-
-
-    private void callReturnMenu() {
-        returnMenu.displayReturnMenu();
-        returnMenu.displayBorrowedBookListing(Utilities.formatBookList(library.getBorrowedBooks()));
-            try {
-                if (input.hasNextLine()) {
-                    callReturnMenuOptions(input.nextInt(10));
-                }
-            } catch (InputMismatchException e) {
-                returnMenu.displayInputMismatchExceptionMessage();
-                input.nextLine();
-            }
+        } catch (BookNotReturnable e) {
+            System.out.println("\n" + e.getMessage() + "\n");
+        }
+        return bookTitle;
     }
 
-    private void callReturnMenuOptions(int option) {
-        if (option == 0) {
-            return;
-        }
-        if (option > 0 && option <= library.getBorrowedBooks().size()) {
-            try {
-                Book bookToReturn = library.getBorrowedBooks().get(option - 1);
-                returnBook(bookToReturn);
-                returnMenu.displayReturnThankYouMessage();
-                returnMenu.displayBookToReturn(bookToReturn.getTitle().toString());
-            } catch (BookNotReturnable e) {
-                returnMenu.displayReturnExceptionMessage(e.getMessage());
-            }
-        } else {
-            returnMenu.displayIncorrectInputMessage();
-        }
-    }
-    */
 }
