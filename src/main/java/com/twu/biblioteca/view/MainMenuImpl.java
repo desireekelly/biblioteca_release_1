@@ -80,7 +80,7 @@ public class MainMenuImpl implements MainMenu {
                 }
                 returnMenu.callReturnMenu();
                 break;
-            case 4:
+            case 6:
                 displayExitMessage();
                 exit = true;
                 break;

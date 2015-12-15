@@ -11,7 +11,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String welcomeMessage() {
-        return "Welcome to the Bangalore Public library!\n\nWe know you'll find a book here that you love!\n";
+        return "Welcome to the Bangalore Public library!\n\nWe know you'll find something that you love!\n";
     }
 
     @Override
@@ -20,7 +20,9 @@ public class MessagesImpl implements Messages {
                 "1 Display the list of available books to borrow\n" +
                 "2 Borrow a book\n" +
                 "3 Return a book\n" +
-                "4 Exit\n";
+                "4 Display the list of available movies to borrow\n" +
+                "5 Borrow a movie\n" +
+                "6 Exit\n";
     }
 
     @Override
@@ -44,12 +46,12 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String incorrectReturnMessage() {
+    public String incorrectBookReturnMessage() {
         return "\nSorry, there are no available books to return\n";
     }
 
     @Override
-    public String incorrectBorrowMessage() {
+    public String incorrectBookBorrowMessage() {
         return "\nSorry, there are no available books to borrow\n";
     }
 
@@ -59,22 +61,47 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String borrowMessage() {
+    public String bookBorrowMessage() {
         return "\nSelect a book to borrow by entering the ID number or enter 0 to go back to the main menu:\n";
     }
 
     @Override
-    public String borrowThankYouMessage() {
+    public String bookBorrowThankYouMessage() {
         return "\nThank you! Enjoy reading ";
     }
 
     @Override
-    public String returnMessage() {
+    public String bookReturnMessage() {
         return "\nSelect a book to return by entering the ID number or enter 0 to go back to the main menu:\n";
     }
 
     @Override
     public String returnThankYouMessage() {
         return "\nThank you for returning ";
+    }
+
+    @Override
+    public String movieListingMessage(){
+        return "\nAvailable Movies:\n\n" + String.format("%-15s %-15s %-15s %-15s\n", "Title:", "Year:", "Director:", "Movie Rating:");
+    }
+
+    @Override
+    public String incorrectMovieBorrowMessage(){
+        return "\nSorry, there are no available movies to borrow\n";
+    }
+
+    @Override
+    public String movieBorrowThankYouMessage(){
+        return "\nThank you! Enjoy watching ";
+    }
+
+    @Override
+    public String movieBorrowMessage(){
+        return "\nSelect a movie to borrow by entering the ID number or enter 0 to go back to the main menu:\n";
+    }
+
+    @Override
+    public String incorrectAvailableMoviesMessage() {
+        return "\nSorry, there are no available movies in the library.\n";
     }
 }

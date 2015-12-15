@@ -65,7 +65,7 @@ public class ReturnMenuImpl implements ReturnMenu {
 
     @Override
     public void displayReturnMenu() {
-        outputStream.print(messages.returnMessage());
+        outputStream.print(messages.bookReturnMessage());
         outputStream.print(messages.bookListingMessage());
     }
 
@@ -82,7 +82,7 @@ public class ReturnMenuImpl implements ReturnMenu {
 
     @Override
     public void displayIncorrectReturnMessage() {
-        outputStream.print(messages.incorrectReturnMessage());
+        outputStream.print(messages.incorrectBookReturnMessage());
     }
 
     @Override

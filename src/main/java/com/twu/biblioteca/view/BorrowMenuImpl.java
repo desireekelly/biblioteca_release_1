@@ -65,7 +65,7 @@ public class BorrowMenuImpl implements BorrowMenu {
 
     @Override
     public void displayBorrowMenu() {
-        outputStream.print(messages.borrowMessage());
+        outputStream.print(messages.bookBorrowMessage());
         outputStream.print(messages.bookListingMessage());
     }
 
@@ -82,12 +82,12 @@ public class BorrowMenuImpl implements BorrowMenu {
 
     @Override
     public String getBorrowThankYouMessage() {
-        return messages.borrowThankYouMessage();
+        return messages.bookBorrowThankYouMessage();
     }
 
     @Override
     public void displayIncorrectBorrowMessage() {
-        outputStream.print(messages.incorrectBorrowMessage());
+        outputStream.print(messages.incorrectBookBorrowMessage());
     }
 
     @Override

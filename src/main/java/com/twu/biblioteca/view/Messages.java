@@ -16,21 +16,31 @@ public interface Messages {
 
     String bookListingMessage();
 
+    String incorrectAvailableBooksMessage();
+
     String incorrectInputMessage();
 
-    String incorrectReturnMessage();
+    String incorrectBookReturnMessage();
 
-    String incorrectBorrowMessage();
+    String incorrectBookBorrowMessage();
 
     String exitMessage();
 
-    String borrowMessage();
+    String bookBorrowMessage();
 
-    String borrowThankYouMessage();
+    String bookBorrowThankYouMessage();
 
-    String returnMessage();
+    String bookReturnMessage();
 
     String returnThankYouMessage();
 
-    String incorrectAvailableBooksMessage();
+    String movieListingMessage();
+
+    String incorrectMovieBorrowMessage();
+
+    String movieBorrowThankYouMessage();
+
+    String movieBorrowMessage();
+
+    String incorrectAvailableMoviesMessage();
 }
