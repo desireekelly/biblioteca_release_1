@@ -14,9 +14,6 @@ import static org.junit.Assert.assertEquals;
  */
 public class UtilitiesTest {
 
-    public static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
-    public static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
-
     private List<Book> books;
 
     @Before
@@ -26,8 +23,8 @@ public class UtilitiesTest {
 
     @Test
     public void testDisplayFormattedBookList() throws Exception {
-        books.add(BOOK_1);
-        books.add(BOOK_2);
+        books.add(new Book("Java 101", "Joe Bloggs", 1990));
+        books.add(new Book("PHP 101", "Mary Jane", 2005));
         assertEquals("1               Java 101        Joe Bloggs      1990           \n" +
                         "2               PHP 101         Mary Jane       2005           \n",
                 Utilities.formatBookList(books).toString());
