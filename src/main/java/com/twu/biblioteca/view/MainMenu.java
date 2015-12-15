@@ -1,7 +1,11 @@
 package com.twu.biblioteca.view;
 
 /**
- * Created by desiree on 15/12/2015.
+ * MainMenu interface.
+ * MainMenu is responsible for the MainMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public interface MainMenu {
     void displayWelcomeMessage();
@@ -21,5 +25,4 @@ public interface MainMenu {
     void callMainMenu();
 
     void displayIncorrectAvailableBooksMessage();
-
 }

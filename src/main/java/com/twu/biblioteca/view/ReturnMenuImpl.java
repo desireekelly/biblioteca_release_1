@@ -9,7 +9,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by desiree on 10/12/2015.
+ * ReturnMenu implementation.
+ * ReturnMenu is responsible for the ReturnMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public class ReturnMenuImpl implements ReturnMenu {
 
@@ -26,7 +30,6 @@ public class ReturnMenuImpl implements ReturnMenu {
         this.input = new Scanner(inputStream);
         exit = false;
     }
-
 
     @Override
     public void callReturnMenu() {
@@ -64,7 +67,6 @@ public class ReturnMenuImpl implements ReturnMenu {
             exit = true;
         }
     }
-
 
     @Override
     public void displayReturnMenu() {

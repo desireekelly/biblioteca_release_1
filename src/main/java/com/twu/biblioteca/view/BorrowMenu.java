@@ -1,7 +1,11 @@
 package com.twu.biblioteca.view;
 
 /**
- * Created by desiree on 15/12/2015.
+ * BorrowMenu interface.
+ * BorrowMenu is responsible for the BorrowMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public interface BorrowMenu {
     void displayBorrowMenu();

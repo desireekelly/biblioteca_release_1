@@ -6,8 +6,8 @@ import com.twu.biblioteca.exceptions.BookNotReturnable;
 import java.util.*;
 
 /**
- * library implementation.
- * library is responsible for holding the available and borrowed books.
+ * Library implementation.
+ * Library is responsible for holding the available and borrowed books.
  *
  * @author Desiree Kelly
  * @version 1.0
@@ -17,9 +17,6 @@ public class LibraryImpl implements Library {
     private List<Book> books = new ArrayList<Book>();
     private Set<Book> borrowedBooks = new HashSet<Book>();
 
-    /**
-     * Construct a library with a fixed set of books.
-     */
     public LibraryImpl() {
         this.createBookList();
     }
@@ -31,11 +28,6 @@ public class LibraryImpl implements Library {
         books.add(new Book("C++ 101", "Joyce Merry", 2001));
     }
 
-    /**
-     * Get the list of available books.
-     *
-     * @return Returns a list of books that are available to be borrowed.
-     */
     @Override
     public List<Book> getAvailableBooks() {
         List<Book> results = new ArrayList<Book>(books.size());
@@ -47,11 +39,6 @@ public class LibraryImpl implements Library {
         return results;
     }
 
-    /**
-     * Get the list of borrowed books.
-     *
-     * @return Returns a list of books that are out for loan.
-     */
     @Override
     public List<Book> getBorrowedBooks() {
         List<Book> results = new ArrayList<Book>(books.size());
@@ -63,22 +50,11 @@ public class LibraryImpl implements Library {
         return results;
     }
 
-    /**
-     * Get the list of all books this library has.
-     *
-     * @return Returns the book catalog.
-     */
     @Override
     public List<Book> getBookList() {
         return Collections.unmodifiableList(books);
     }
 
-    /**
-     * Check out a book.
-     *
-     * @param book The book to check out.
-     * @throws BookNotBorrowable Thrown if book is not available to check out.
-     */
     @Override
     public void checkoutBook(Book book) throws BookNotBorrowable {
         if (borrowedBooks.contains(book))
@@ -86,12 +62,6 @@ public class LibraryImpl implements Library {
         borrowedBooks.add(book);
     }
 
-    /**
-     * Return a checked out book.
-     *
-     * @param book The book to return.
-     * @throws BookNotReturnable Thrown if book is not currently checked out.
-     */
     @Override
     public void returnBook(Book book) throws BookNotReturnable {
         if (!borrowedBooks.contains(book))
@@ -99,4 +69,3 @@ public class LibraryImpl implements Library {
         borrowedBooks.remove(book);
     }
 }
-

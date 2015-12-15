@@ -9,7 +9,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by desiree on 10/12/2015.
+ * BorrowMenu implementation.
+ * BorrowMenu is responsible for the BorrowMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public class BorrowMenuImpl implements BorrowMenu {
 
@@ -31,7 +35,6 @@ public class BorrowMenuImpl implements BorrowMenu {
     public void callBorrowMenu() {
         displayBorrowMenu();
         displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
-
         do {
             try {
                 if (input.hasNextLine()) {

@@ -8,7 +8,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by desiree on 10/12/2015.
+ * MainMenu implementation.
+ * MainMenu is responsible for the MainMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public class MainMenuImpl implements MainMenu {
     private LibraryController libraryController;
@@ -52,7 +56,6 @@ public class MainMenuImpl implements MainMenu {
         } while (!exit);
     }
 
-
     private void callMainMenuOptions(int option) {
 
         switch (option) {
@@ -85,9 +88,7 @@ public class MainMenuImpl implements MainMenu {
                 displayIncorrectInputMessage();
                 break;
         }
-
     }
-
 
     @Override
     public void displayWelcomeMessage() {
@@ -126,5 +127,3 @@ public class MainMenuImpl implements MainMenu {
         displayIncorrectInputMessage();
     }
 }
-
-

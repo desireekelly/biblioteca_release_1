@@ -7,9 +7,11 @@ import com.twu.biblioteca.model.Library;
 
 import java.util.List;
 
-
 /**
- * Created by desiree on 10/12/2015.
+ * LibraryController is responsible for updating the Library Model.
+ *
+ * @author Desiree Kelly
+ * @version 1.0
  */
 public class LibraryController {
     private BorrowService borrowService;
@@ -60,7 +62,6 @@ public class LibraryController {
         return library.getBorrowedBooks().size();
     }
 
-
     public String checkoutBook(int option) throws BookNotBorrowable {
             Book bookToBorrow = library.getAvailableBooks().get(option - 1);
             borrowBook(bookToBorrow);
@@ -72,5 +73,4 @@ public class LibraryController {
             returnBook(bookToReturn);
         return bookToReturn.getTitle().toString();
     }
-
 }
