@@ -3,9 +3,7 @@ package com.twu.biblioteca.library;
 import com.twu.biblioteca.book.Book;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.menu.BorrowMenuImpl;
-import com.twu.biblioteca.menu.MainMenuImpl;
-import com.twu.biblioteca.menu.ReturnMenuImpl;
+import com.twu.biblioteca.menu.*;
 import com.twu.biblioteca.messages.Messages;
 import com.twu.biblioteca.messages.MessagesImpl;
 
@@ -20,9 +18,9 @@ public class LibraryController {
     private ReturnService returnService;
     private Scanner input;
     private Messages messages;
-    private BorrowMenuImpl borrowMenu;
-    private ReturnMenuImpl returnMenu;
-    private MainMenuImpl mainMenu;
+    private BorrowMenu borrowMenu;
+    private ReturnMenu returnMenu;
+    private MainMenu mainMenu;
     private Library library;
     private boolean exit;
 
