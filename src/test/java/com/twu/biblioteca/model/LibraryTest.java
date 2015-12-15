@@ -1,10 +1,10 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.controller.LibraryController;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -22,14 +22,14 @@ public class LibraryTest {
     private static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
 
     private Library library;
-    private LibraryController libraryController;
+    private Library libraryMock;
     private Book book;
 
     @Before
     public void setUp() throws Exception {
         library = new LibraryImpl();
         book = mock(Book.class);
-        libraryController = mock(LibraryController.class);
+        libraryMock = mock(LibraryImpl.class);
     }
 
     @Test
@@ -40,25 +40,16 @@ public class LibraryTest {
 
     @Test
     public void testCheckoutBook() throws Exception {
-        when(libraryController.borrowBook(book)).thenReturn(true);
-        assertTrue(libraryController.borrowBook(book));
-        verify(libraryController, times(1)).borrowBook(book);
-        //library.checkoutBook(library.getAvailableBooks().get(0));
-        //assertTrue(library.getBorrowedBooks().contains(BOOK_1));
+        libraryMock.checkoutBook(book);
+        verify(libraryMock).checkoutBook(Matchers.eq(book));
+        verify(libraryMock, times(1)).checkoutBook(book);
     }
 
     @Test
     public void testReturnBook() throws Exception {
-        //controller
-        //when(libraryService.returnBook()).return(true);
-        //library.returnBook(BOOK_1);
-        //verify(libraryService, time(1)).returnBook();
-        when(libraryController.returnBook(book)).thenReturn(true);
-        assertTrue(libraryController.returnBook(book));
-        verify(libraryController, times(1)).returnBook(book);
-        //library.checkoutBook(library.getAvailableBooks().get(0));
-        //library.returnBook(library.getBorrowedBooks().get(0));
-        //assertTrue(library.getAvailableBooks().contains(BOOK_1));
+        libraryMock.returnBook(book);
+        verify(libraryMock).returnBook(Matchers.eq(book));
+        verify(libraryMock, times(1)).returnBook(book);
     }
 
     @Test(expected = BookNotReturnable.class)
