@@ -46,12 +46,12 @@ public class LibraryImpl implements Library {
         User user1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
         User user2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
         User user3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
-        User user4 = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
+        User librarian = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
 
         users.put(user1.getLibraryNumber(), user1);
         users.put(user2.getLibraryNumber(), user2);
         users.put(user3.getLibraryNumber(), user3);
-        users.put(user4.getLibraryNumber(), user4);
+        users.put(librarian.getLibraryNumber(), librarian);
     }
 
     @Override

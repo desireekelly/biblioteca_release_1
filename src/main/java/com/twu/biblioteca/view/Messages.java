@@ -55,4 +55,6 @@ public interface Messages {
     String incorrectLoginMessage();
 
     String correctLoginMessage();
+
+    String logoutMessage();
 }

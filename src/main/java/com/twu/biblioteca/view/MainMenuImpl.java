@@ -68,28 +68,7 @@ public class MainMenuImpl implements MainMenu {
                 }
                 displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
                 break;
-            /*
             case 2:
-                if (libraryController.availableBooksIsEmpty()) {
-                    borrowMenu.displayIncorrectBookBorrowMessage();
-                    break;
-                }
-                borrowMenu.callBookBorrowMenu();
-                break;
-            case 3:
-                if (libraryController.borrowedBooksIsEmpty()) {
-                    returnMenu.displayIncorrectReturnMessage();
-                    break;
-                }
-                returnMenu.callReturnMenu();
-                break;
-                */
-            case 2:
-                //if (libraryController.borrowedBooksIsEmpty()) {
-                //   returnMenu.displayIncorrectReturnMessage();
-                // break;
-                //}
-                //returnMenu.callReturnMenu();
                 userMenu.login();
                 break;
             case 3:

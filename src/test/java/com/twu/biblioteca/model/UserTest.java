@@ -46,7 +46,10 @@ public class UserTest {
 
     @Test
     public void testToString() throws Exception {
-        assertEquals("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000", CUSTOMER_1.toString());
+        assertEquals("\n" +
+                "Name: Joe Bloggs\n" +
+                "Email: joebloggs@joebloggs.com\n" +
+                "Phone Number: 0400 000 000\n", CUSTOMER_1.toString());
     }
 
     @Test
@@ -57,20 +60,11 @@ public class UserTest {
 
     @Test
     public void testGetCustomerInformation() throws Exception {
-        assertEquals("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000", CUSTOMER_1.getCustomerInformation());
+        assertEquals("\n" +
+                "Name: Joe Bloggs\n" +
+                "Email: joebloggs@joebloggs.com\n" +
+                "Phone Number: 0400 000 000\n", CUSTOMER_1.getCustomerInformation());
     }
 
-    @Test
-    public void testCustomerIsLoggedIn() throws Exception {
-        CUSTOMER_1.loginCustomer(true);
-        assertTrue(CUSTOMER_1.isLoggedInCustomer());
-        assertFalse(CUSTOMER_2.isLoggedInCustomer());
-    }
 
-    @Test
-    public void testLibrarianIsLoggedIn() throws Exception {
-        LIBRARIAN_1.loginLibrarian(true);
-        assertTrue(LIBRARIAN_1.isLoggedInLibrarian());
-        assertFalse(LIBRARIAN_2.isLoggedInLibrarian());
-    }
 }

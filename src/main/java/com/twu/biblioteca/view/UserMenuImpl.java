@@ -8,7 +8,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
- * Created by desiree on 16/12/2015.
+ * UserMenu implementation.
+ * UserMenu is responsible for the UserMenu display.
+ *
+ * @author Desiree Kelly
+ * @version 2.0
  */
 public class UserMenuImpl {
 
@@ -28,13 +32,14 @@ public class UserMenuImpl {
         this.input = new Scanner(inputStream);
         this.borrowMenu = borrowMenu;
         this.returnMenu = returnMenu;
-        //exit = false;
         loggedIn = false;
+
     }
 
     public void callUserMenu() {
-        displayUserMenu();
-        do {
+
+        while (loggedIn) {
+            displayUserMenu();
             try {
                 if (input.hasNextLine()) {
                     callUserMenuOptions(input.nextInt(10));
@@ -44,9 +49,8 @@ public class UserMenuImpl {
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                return;
             }
-        } while (loggedIn);
+        }
     }
 
     public void login() {
@@ -57,6 +61,8 @@ public class UserMenuImpl {
         String password = input.next();
         if (libraryController.login(libraryNumber, password) != null) {
             displayCorrectLoginMessage();
+            displayCustomerName(libraryController.getCustomerName());
+
             loggedIn = true;
             callUserMenu();
         } else {
@@ -83,13 +89,11 @@ public class UserMenuImpl {
                 returnMenu.callReturnMenu();
                 break;
             case 3:
-                libraryController.getCustomerInformation();
+                displayCustomerInformation(libraryController.getCustomerInformation());
                 break;
             case 4:
+                displayLogoutMessage();
                 loggedIn = false;
-                displayExitMessage();
-                //exit = true;
-
                 break;
             default:
                 displayIncorrectInputMessage();
@@ -137,6 +141,18 @@ public class UserMenuImpl {
 
     public void displayCorrectLoginMessage() {
         outputStream.print(messages.correctLoginMessage());
+    }
+
+    public void displayLogoutMessage() {
+        outputStream.print(messages.logoutMessage());
+    }
+
+    public void displayCustomerInformation(String user) {
+        outputStream.print(user);
+    }
+
+    public void displayCustomerName(String user) {
+        outputStream.print(user + "\n");
     }
 
 }

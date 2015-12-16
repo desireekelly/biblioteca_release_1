@@ -135,6 +135,11 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String correctLoginMessage() {
-        return "\nYou have logged in successfully.\n";
+        return "\nYou have logged in successfully ";
+    }
+
+    @Override
+    public String logoutMessage() {
+        return "\nYou have logged out.\n";
     }
 }

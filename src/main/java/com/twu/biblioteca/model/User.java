@@ -13,8 +13,7 @@ public class User {
     private String phoneNumber;
     private String libraryNumber;
     private String password;
-    private Boolean customer = false;
-    private Boolean librarian = false;
+
 
     public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
         this.name = name;
@@ -51,24 +50,10 @@ public class User {
         return this.toString();
     }
 
-    public void loginCustomer(boolean loggedInCustomer) {
-        this.customer = loggedInCustomer;
-    }
 
-    public boolean isLoggedInCustomer() {
-        return customer;
-    }
-
-    public boolean isLoggedInLibrarian() {
-        return librarian;
-    }
-
-    public void loginLibrarian(boolean loggedInlibrarian) {
-        this.librarian = loggedInlibrarian;
-    }
 
     public String toString() {
-        return "Name: " + this.name + "\nEmail: " + this.emailAddress + "\nPhone Number: " + this.phoneNumber;
+        return "\nName: " + this.name + "\nEmail: " + this.emailAddress + "\nPhone Number: " + this.phoneNumber + "\n";
     }
 
     @Override
