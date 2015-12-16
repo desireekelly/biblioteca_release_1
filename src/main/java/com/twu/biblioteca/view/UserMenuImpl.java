@@ -22,7 +22,6 @@ public class UserMenuImpl {
     private Scanner input;
     private BorrowMenu borrowMenu;
     private ReturnMenu returnMenu;
-    private Boolean exit;
     private Boolean loggedIn;
 
     public UserMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, Messages messages) {

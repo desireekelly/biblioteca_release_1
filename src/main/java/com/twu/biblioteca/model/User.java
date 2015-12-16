@@ -14,6 +14,9 @@ public class User {
     private String libraryNumber;
     private String password;
 
+    private Boolean customer = false;
+    private Boolean librarian = false;
+
 
     public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
         this.name = name;
@@ -50,7 +53,21 @@ public class User {
         return this.toString();
     }
 
+    public void setCustomer(boolean customer) {
+        this.customer = customer;
+    }
 
+    public boolean isCustomer() {
+        return customer;
+    }
+
+    public boolean isLibrarian() {
+        return librarian;
+    }
+
+    public void setLibrarian(boolean librarian) {
+        this.librarian = librarian;
+    }
 
     public String toString() {
         return "\nName: " + this.name + "\nEmail: " + this.emailAddress + "\nPhone Number: " + this.phoneNumber + "\n";

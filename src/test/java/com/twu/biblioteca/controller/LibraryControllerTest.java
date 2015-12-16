@@ -6,6 +6,7 @@ import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Matchers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -218,5 +219,13 @@ public class LibraryControllerTest {
         when(libraryControllerMock.getCustomerInformation()).thenReturn("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
         assertEquals(libraryControllerMock.getCustomerInformation(), "Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
         verify(libraryControllerMock, times(1)).getCustomerInformation();
+    }
+
+    @Test
+    public void isCustomer() throws Exception {
+        libraryControllerMock.setCustomer(true);
+        verify(libraryControllerMock).setCustomer(Matchers.eq(true));
+        when(libraryControllerMock.isCustomer()).thenReturn(true);
+        assertTrue(libraryControllerMock.isCustomer());
     }
 }

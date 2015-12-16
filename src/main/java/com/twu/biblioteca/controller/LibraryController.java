@@ -132,4 +132,11 @@ public class LibraryController {
         return user.getName();
     }
 
+    public boolean isCustomer() {
+        return user.isCustomer();
+    }
+
+    public void setCustomer(boolean customer) {
+        user.setCustomer(customer);
+    }
 }

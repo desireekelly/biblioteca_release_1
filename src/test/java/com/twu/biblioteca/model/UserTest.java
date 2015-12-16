@@ -66,5 +66,17 @@ public class UserTest {
                 "Phone Number: 0400 000 000\n", CUSTOMER_1.getCustomerInformation());
     }
 
+    @Test
+    public void testIsCustomer() throws Exception {
+        CUSTOMER_1.setCustomer(true);
+        assertTrue(CUSTOMER_1.isCustomer());
+    }
+
+    @Test
+    public void testIsLibrarian() throws Exception {
+        LIBRARIAN_1.setLibrarian(true);
+        assertTrue(LIBRARIAN_1.isLibrarian());
+    }
+
 
 }
