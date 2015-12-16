@@ -90,7 +90,7 @@ public class MainMenuImpl implements MainMenu {
                 // break;
                 //}
                 //returnMenu.callReturnMenu();
-                login();
+                userMenu.login();
                 break;
             case 3:
                 if (libraryController.availableMoviesIsEmpty()) {
@@ -116,19 +116,6 @@ public class MainMenuImpl implements MainMenu {
         }
     }
 
-    public void login() {
-        displayLoginMessage();
-        displayLibraryNumberMessage();
-        String libraryNumber = input.next();
-        displayPasswordMessage();
-        String password = input.next();
-        if (libraryController.login(libraryNumber, password) != null) {
-            userMenu.callUserMenu();
-        } else {
-            displayIncorrectLoginMessage();
-            return;
-        }
-    }
 
     @Override
     public void displayAvailableMovieListing(String movies) {
@@ -176,25 +163,6 @@ public class MainMenuImpl implements MainMenu {
     @Override
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
-    }
-    @Override
-    public void displayLibraryNumberMessage() {
-        outputStream.print(messages.libraryNumberMessage());
-    }
-
-    @Override
-    public void displayPasswordMessage() {
-        outputStream.print(messages.passwordMessage());
-    }
-
-    @Override
-    public void displayLoginMessage() {
-        outputStream.print(messages.loginMessage());
-    }
-
-    @Override
-    public void displayIncorrectLoginMessage() {
-        outputStream.print(messages.incorrectLoginMessage());
     }
 
 

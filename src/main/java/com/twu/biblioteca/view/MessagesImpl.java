@@ -30,7 +30,7 @@ public class MessagesImpl implements Messages {
                 "1 Borrow a book\n" +
                 "2 Return a book\n" +
                 "3 Display account information\n" +
-                "4 Exit to main menu\n";
+                "4 Logout\n";
     }
 
     @Override
@@ -131,5 +131,10 @@ public class MessagesImpl implements Messages {
     @Override
     public String incorrectLoginMessage() {
         return "\nIncorrect user login details. Please try again.\n";
+    }
+
+    @Override
+    public String correctLoginMessage() {
+        return "\nYou have logged in successfully.\n";
     }
 }

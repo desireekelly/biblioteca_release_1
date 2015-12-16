@@ -53,4 +53,6 @@ public interface Messages {
     String loginMessage();
 
     String incorrectLoginMessage();
+
+    String correctLoginMessage();
 }

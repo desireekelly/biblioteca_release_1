@@ -19,6 +19,7 @@ public class UserMenuImpl {
     private BorrowMenu borrowMenu;
     private ReturnMenu returnMenu;
     private Boolean exit;
+    private Boolean loggedIn;
 
     public UserMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, Messages messages) {
         this.libraryController = libraryController;
@@ -27,25 +28,42 @@ public class UserMenuImpl {
         this.input = new Scanner(inputStream);
         this.borrowMenu = borrowMenu;
         this.returnMenu = returnMenu;
-        exit = false;
+        //exit = false;
+        loggedIn = false;
     }
 
     public void callUserMenu() {
         displayUserMenu();
-        try {
-            if (input.hasNextLine()) {
-                callUserMenuOptions(input.nextInt(10));
-            } else {
+        do {
+            try {
+                if (input.hasNextLine()) {
+                    callUserMenuOptions(input.nextInt(10));
+                } else {
+                    return;
+                }
+            } catch (InputMismatchException e) {
+                displayInputMismatchExceptionMessage();
+                input.nextLine();
                 return;
             }
-        } catch (InputMismatchException e) {
-            displayInputMismatchExceptionMessage();
-            input.nextLine();
-            return;
-        }
-
+        } while (loggedIn);
     }
 
+    public void login() {
+        displayLoginMessage();
+        displayLibraryNumberMessage();
+        String libraryNumber = input.next();
+        displayPasswordMessage();
+        String password = input.next();
+        if (libraryController.login(libraryNumber, password) != null) {
+            displayCorrectLoginMessage();
+            loggedIn = true;
+            callUserMenu();
+        } else {
+            displayIncorrectLoginMessage();
+            return;
+        }
+    }
 
     private void callUserMenuOptions(int option) {
 
@@ -68,8 +86,10 @@ public class UserMenuImpl {
                 libraryController.getCustomerInformation();
                 break;
             case 4:
+                loggedIn = false;
                 displayExitMessage();
-                exit = true;
+                //exit = true;
+
                 break;
             default:
                 displayIncorrectInputMessage();
@@ -94,5 +114,29 @@ public class UserMenuImpl {
         outputStream.print(messages.exitMessage());
     }
 
+
+    public void displayLibraryNumberMessage() {
+        outputStream.print(messages.libraryNumberMessage());
+    }
+
+
+    public void displayPasswordMessage() {
+        outputStream.print(messages.passwordMessage());
+    }
+
+
+    public void displayLoginMessage() {
+        outputStream.print(messages.loginMessage());
+    }
+
+
+    public void displayIncorrectLoginMessage() {
+        outputStream.print(messages.incorrectLoginMessage());
+    }
+
+
+    public void displayCorrectLoginMessage() {
+        outputStream.print(messages.correctLoginMessage());
+    }
 
 }

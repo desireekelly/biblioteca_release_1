@@ -30,11 +30,4 @@ public interface MainMenu {
 
     void displayAvailableMovieListing(String movies);
 
-    void displayLibraryNumberMessage();
-
-    void displayPasswordMessage();
-
-    void displayLoginMessage();
-
-    void displayIncorrectLoginMessage();
 }
