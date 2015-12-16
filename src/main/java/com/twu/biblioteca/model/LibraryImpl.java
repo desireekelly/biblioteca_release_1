@@ -20,6 +20,7 @@ public class LibraryImpl implements Library {
     private List<Movie> movies = new ArrayList<Movie>();
     private Set<Movie> borrowedMovies = new HashSet<Movie>();
     private List<User> users = new ArrayList<User>();
+    private Map<String, String> booksCheckedOutByCustomer = new HashMap<String, String>();
 
     public LibraryImpl() {
         this.createBookList();
