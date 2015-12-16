@@ -68,10 +68,10 @@ public class MainMenuImpl implements MainMenu {
                 break;
             case 2:
                 if (libraryController.availableBooksIsEmpty()) {
-                    borrowMenu.displayIncorrectBorrowMessage();
+                    borrowMenu.displayIncorrectBookBorrowMessage();
                     break;
                 }
-                borrowMenu.callBorrowMenu();
+                borrowMenu.callBookBorrowMenu();
                 break;
             case 3:
                 if (libraryController.borrowedBooksIsEmpty()) {
@@ -79,6 +79,20 @@ public class MainMenuImpl implements MainMenu {
                     break;
                 }
                 returnMenu.callReturnMenu();
+                break;
+            case 4:
+                if (libraryController.availableMoviesIsEmpty()) {
+                    displayIncorrectAvailableMoviesMessage();
+                    break;
+                }
+                displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
+                break;
+            case 5:
+                if (libraryController.availableMoviesIsEmpty()) {
+                    borrowMenu.displayIncorrectMovieBorrowMessage();
+                    break;
+                }
+                borrowMenu.callMovieBorrowMenu();
                 break;
             case 6:
                 displayExitMessage();
@@ -88,6 +102,17 @@ public class MainMenuImpl implements MainMenu {
                 displayIncorrectInputMessage();
                 break;
         }
+    }
+
+    @Override
+    public void displayAvailableMovieListing(String movies) {
+        outputStream.print(messages.movieListingMessage());
+        outputStream.print(movies);
+    }
+
+    @Override
+    public void displayIncorrectAvailableMoviesMessage() {
+        outputStream.print(messages.incorrectAvailableMoviesMessage());
     }
 
     @Override

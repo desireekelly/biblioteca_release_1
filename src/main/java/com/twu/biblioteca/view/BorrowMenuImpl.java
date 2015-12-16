@@ -2,6 +2,7 @@ package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.LibraryController;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -30,12 +31,12 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     @Override
-    public void callBorrowMenu() {
-        displayBorrowMenu();
+    public void callBookBorrowMenu() {
+        displayBookBorrowMenu();
         displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
             try {
                 if (input.hasNextLine()) {
-                    callBorrowMenuOptions(input.nextInt(10));
+                    callBookBorrowMenuOptions(input.nextInt(10));
                 } else {
                     return;
                 }
@@ -46,13 +47,31 @@ public class BorrowMenuImpl implements BorrowMenu {
             }
     }
 
-    private void callBorrowMenuOptions(int option) {
+    @Override
+    public void callMovieBorrowMenu() {
+        displayMovieBorrowMenu();
+        displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
+        try {
+            if (input.hasNextLine()) {
+                callMovieBorrowMenuOptions(input.nextInt(10));
+            } else {
+                return;
+            }
+        } catch (InputMismatchException e) {
+            displayInputMismatchExceptionMessage();
+            input.nextLine();
+            return;
+        }
+
+    }
+
+    private void callBookBorrowMenuOptions(int option) {
         if (option == 0) {
             return;
         }
         if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
             try {
-                outputStream.print(getBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
+                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 return;
             } catch (BookNotBorrowable e) {
                 outputStream.println("\n" + e.getMessage() + "\n");
@@ -63,10 +82,33 @@ public class BorrowMenuImpl implements BorrowMenu {
         }
     }
 
+    private void callMovieBorrowMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getAvailableMoviesSize()) {
+            try {
+                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
+                return;
+            } catch (MovieNotBorrowable e) {
+                outputStream.println("\n" + e.getMessage() + "\n");
+            }
+        } else {
+            displayIncorrectInputMessage();
+            return;
+        }
+    }
+
     @Override
-    public void displayBorrowMenu() {
+    public void displayBookBorrowMenu() {
         outputStream.print(messages.bookBorrowMessage());
         outputStream.print(messages.bookListingMessage());
+    }
+
+    @Override
+    public void displayMovieBorrowMenu() {
+        outputStream.print(messages.movieBorrowMessage());
+        outputStream.print(messages.movieListingMessage());
     }
 
     @Override
@@ -76,18 +118,34 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     @Override
+    public void displayAvailableMovieListing(String movies) {
+        outputStream.println(movies);
+        outputStream.print(messages.optionMessage());
+    }
+
+    @Override
     public void displayIncorrectInputMessage() {
         outputStream.print(messages.incorrectInputMessage());
     }
 
     @Override
-    public String getBorrowThankYouMessage() {
+    public String getBookBorrowThankYouMessage() {
         return messages.bookBorrowThankYouMessage();
     }
 
     @Override
-    public void displayIncorrectBorrowMessage() {
+    public String getMovieBorrowThankYouMessage() {
+        return messages.movieBorrowThankYouMessage();
+    }
+
+    @Override
+    public void displayIncorrectBookBorrowMessage() {
         outputStream.print(messages.incorrectBookBorrowMessage());
+    }
+
+    @Override
+    public void displayIncorrectMovieBorrowMessage() {
+        outputStream.print(messages.incorrectMovieBorrowMessage());
     }
 
     @Override

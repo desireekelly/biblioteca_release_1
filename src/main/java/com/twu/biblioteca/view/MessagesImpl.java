@@ -82,7 +82,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String movieListingMessage(){
-        return "\nAvailable Movies:\n\n" + String.format("%-15s %-15s %-15s %-15s\n", "Title:", "Year:", "Director:", "Movie Rating:");
+        return "\nAvailable Movies:\n\n" + String.format("%-20s %-30s %-20s %-35s %-20s\n", "ID:", "Title:", "Year:", "Director:", "Movie Rating:");
     }
 
     @Override

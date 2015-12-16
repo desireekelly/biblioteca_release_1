@@ -8,17 +8,27 @@ package com.twu.biblioteca.view;
  * @version 1.0
  */
 public interface BorrowMenu {
-    void displayBorrowMenu();
+    void displayBookBorrowMenu();
 
     void displayAvailableBookListing(String books);
 
     void displayIncorrectInputMessage();
 
-    String getBorrowThankYouMessage();
+    String getBookBorrowThankYouMessage();
 
-    void displayIncorrectBorrowMessage();
+    void displayIncorrectBookBorrowMessage();
 
     void displayInputMismatchExceptionMessage();
 
-    void callBorrowMenu();
+    void callBookBorrowMenu();
+
+    void callMovieBorrowMenu();
+
+    void displayMovieBorrowMenu();
+
+    void displayAvailableMovieListing(String movies);
+
+    String getMovieBorrowThankYouMessage();
+
+    void displayIncorrectMovieBorrowMessage();
 }
