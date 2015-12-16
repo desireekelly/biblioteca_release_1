@@ -19,13 +19,13 @@ public class LibraryImpl implements Library {
     private Set<Book> borrowedBooks = new HashSet<Book>();
     private List<Movie> movies = new ArrayList<Movie>();
     private Set<Movie> borrowedMovies = new HashSet<Movie>();
-    private List<User> users = new ArrayList<User>();
+    private Map<String, User> users = new HashMap<String, User>();
     private Map<String, String> booksCheckedOutByCustomer = new HashMap<String, String>();
 
     public LibraryImpl() {
         this.createBookList();
         this.createMovieList();
-        this.createUserList();
+        this.createUsers();
     }
 
     private void createBookList() {
@@ -42,11 +42,16 @@ public class LibraryImpl implements Library {
         movies.add(new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
     }
 
-    private void createUserList() {
-        users.add(new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd"));
-        users.add(new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5"));
-        users.add(new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8"));
-        users.add(new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3"));
+    private void createUsers() {
+        User user1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
+        User user2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
+        User user3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
+        User user4 = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
+
+        users.put(user1.getLibraryNumber(), user1);
+        users.put(user2.getLibraryNumber(), user2);
+        users.put(user3.getLibraryNumber(), user3);
+        users.put(user4.getLibraryNumber(), user4);
     }
 
     @Override
@@ -125,11 +130,6 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public List<User> getUserList() {
-        return Collections.unmodifiableList(users);
-    }
-
-    @Override
     public String getBooksCheckedOutByCustomer(String bookTitle) {
         String bookcheckedOutByCustomer = "";
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
@@ -138,5 +138,20 @@ public class LibraryImpl implements Library {
             }
         }
         return bookcheckedOutByCustomer;
+    }
+
+    @Override
+    public Map<String, User> getUsers() {
+        return Collections.unmodifiableMap(users);
+    }
+
+    @Override
+    public User login(String libraryNumber, String password) {
+        if (users.containsKey(libraryNumber)) {
+            if (users.get(libraryNumber).checkPassword(password)) {
+                return users.get(libraryNumber);
+            }
+        }
+        return null;
     }
 }

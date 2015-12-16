@@ -54,9 +54,14 @@ public class LibraryTest {
     }
 
     @Test
-    public void testCreateUserList() throws Exception {
-        assertEquals(USER_1, library.getUserList().get(0));
-        assertEquals(USER_2, library.getUserList().get(1));
+    public void testCreateUsers() throws Exception {
+        assertTrue(library.getUsers().containsKey("123-4566"));
+        assertTrue(library.getUsers().containsKey("123-4567"));
+    }
+
+    @Test
+    public void testUserLogin() throws Exception {
+        assertTrue(USER_1.equals(library.login("123-4566", "f8kf93jd")));
     }
 
     @Test
@@ -148,13 +153,5 @@ public class LibraryTest {
             throw e;
         }
         fail("MovieNotBorrowable Exception not thrown");
-    }
-
-    @Test
-    public void testGetUserList() throws Exception {
-        library.getUserList().get(0);
-        assertTrue(library.getUserList().contains(USER_1));
-        library.getUserList().get(1);
-        assertTrue(library.getUserList().contains(USER_2));
     }
 }

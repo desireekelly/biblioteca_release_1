@@ -5,6 +5,7 @@ import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Library interface.
@@ -33,7 +34,9 @@ public interface Library {
 
     void checkoutMovie(Movie movie) throws MovieNotBorrowable;
 
-    List<User> getUserList();
-
     String getBooksCheckedOutByCustomer(String bookTitle);
+
+    Map<String, User> getUsers();
+
+    User login(String libraryNumber, String password);
 }
