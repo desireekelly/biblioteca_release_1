@@ -128,4 +128,15 @@ public class LibraryImpl implements Library {
     public List<User> getUserList() {
         return Collections.unmodifiableList(users);
     }
+
+    @Override
+    public String getBooksCheckedOutByCustomer(String bookTitle) {
+        String bookcheckedOutByCustomer = "";
+        for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
+            if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
+                bookcheckedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
+            }
+        }
+        return bookcheckedOutByCustomer;
+    }
 }

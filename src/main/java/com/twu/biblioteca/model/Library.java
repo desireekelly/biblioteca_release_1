@@ -34,4 +34,6 @@ public interface Library {
     void checkoutMovie(Movie movie) throws MovieNotBorrowable;
 
     List<User> getUserList();
+
+    String getBooksCheckedOutByCustomer(String bookTitle);
 }
