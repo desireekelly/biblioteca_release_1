@@ -19,12 +19,12 @@ public class LibraryImpl implements Library {
     private Set<Book> borrowedBooks = new HashSet<Book>();
     private List<Movie> movies = new ArrayList<Movie>();
     private Set<Movie> borrowedMovies = new HashSet<Movie>();
-    private List<Customer> customers = new ArrayList<Customer>();
+    private List<User> users = new ArrayList<User>();
 
     public LibraryImpl() {
         this.createBookList();
         this.createMovieList();
-        this.createCustomerList();
+        this.createUserList();
     }
 
     private void createBookList() {
@@ -41,11 +41,11 @@ public class LibraryImpl implements Library {
         movies.add(new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
     }
 
-    private void createCustomerList() {
-        customers.add(new Customer("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd"));
-        customers.add(new Customer("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5"));
-        customers.add(new Customer("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8"));
-        customers.add(new Customer("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3"));
+    private void createUserList() {
+        users.add(new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd"));
+        users.add(new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5"));
+        users.add(new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8"));
+        users.add(new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3"));
     }
 
     @Override
@@ -124,7 +124,7 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public List<Customer> getCustomerList() {
-        return Collections.unmodifiableList(customers);
+    public List<User> getUserList() {
+        return Collections.unmodifiableList(users);
     }
 }

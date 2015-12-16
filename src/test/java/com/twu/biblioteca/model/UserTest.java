@@ -5,16 +5,18 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Tests for the Customer class.
+ * Tests for the User class.
  *
  * @author Desiree Kelly
  * @version 2.0
- * @see Customer
+ * @see User
  */
-public class CustomerTest {
+public class UserTest {
 
-    private static final Customer CUSTOMER_1 = new Customer("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4567", "f8kf93jd");
-    private static final Customer CUSTOMER_2 = new Customer("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4568", "5jgfdkl5");
+    private static final User CUSTOMER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4567", "f8kf93jd");
+    private static final User CUSTOMER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4568", "5jgfdkl5");
+    private static final User LIBRARIAN_1 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
+    private static final User LIBRARIAN_2 = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
 
     @Test
     public void testGetName() throws Exception {
@@ -39,6 +41,7 @@ public class CustomerTest {
     @Test
     public void testCheckPassword() throws Exception {
         assertTrue(CUSTOMER_1.checkPassword("f8kf93jd"));
+        assertFalse(CUSTOMER_1.checkPassword("93jf93km"));
     }
 
     @Test
@@ -55,5 +58,19 @@ public class CustomerTest {
     @Test
     public void testGetCustomerInformation() throws Exception {
         assertEquals("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000", CUSTOMER_1.getCustomerInformation());
+    }
+
+    @Test
+    public void testCustomerIsLoggedIn() throws Exception {
+        CUSTOMER_1.loginCustomer(true);
+        assertTrue(CUSTOMER_1.isLoggedInCustomer());
+        assertFalse(CUSTOMER_2.isLoggedInCustomer());
+    }
+
+    @Test
+    public void testLibrarianIsLoggedIn() throws Exception {
+        LIBRARIAN_1.loginLibrarian(true);
+        assertTrue(LIBRARIAN_1.isLoggedInLibrarian());
+        assertFalse(LIBRARIAN_2.isLoggedInLibrarian());
     }
 }

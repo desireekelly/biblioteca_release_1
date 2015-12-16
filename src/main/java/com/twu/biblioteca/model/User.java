@@ -1,20 +1,22 @@
 package com.twu.biblioteca.model;
 
 /**
- * Customer is responsible for holding all the information about a customer.
+ * User is responsible for holding all the information about a user.
  *
  * @author Desiree Kelly
  * @version 2.0
  */
-public class Customer {
+public class User {
 
     private String name;
     private String emailAddress;
     private String phoneNumber;
     private String libraryNumber;
     private String password;
+    private Boolean customer = false;
+    private Boolean librarian = false;
 
-    public Customer(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
+    public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
         this.name = name;
         this.emailAddress = emailAddress;
         this.phoneNumber = phoneNumber;
@@ -49,6 +51,22 @@ public class Customer {
         return this.toString();
     }
 
+    public void loginCustomer(boolean loggedInCustomer) {
+        this.customer = loggedInCustomer;
+    }
+
+    public boolean isLoggedInCustomer() {
+        return customer;
+    }
+
+    public boolean isLoggedInLibrarian() {
+        return librarian;
+    }
+
+    public void loginLibrarian(boolean loggedInlibrarian) {
+        this.librarian = loggedInlibrarian;
+    }
+
     public String toString() {
         return "Name: " + this.name + "\nEmail: " + this.emailAddress + "\nPhone Number: " + this.phoneNumber;
     }
@@ -59,12 +77,12 @@ public class Customer {
             return false;
         }
 
-        Customer customer = (Customer) obj;
+        User user = (User) obj;
 
-        return this.name.equals(customer.name)
-                && this.emailAddress.equals(customer.emailAddress)
-                && this.phoneNumber.equals(customer.phoneNumber)
-                && this.libraryNumber.equals(customer.libraryNumber)
-                && this.password.equals(customer.password);
+        return this.name.equals(user.name)
+                && this.emailAddress.equals(user.emailAddress)
+                && this.phoneNumber.equals(user.phoneNumber)
+                && this.libraryNumber.equals(user.libraryNumber)
+                && this.password.equals(user.password);
     }
 }

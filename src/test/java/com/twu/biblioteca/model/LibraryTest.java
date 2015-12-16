@@ -25,8 +25,8 @@ public class LibraryTest {
     private static final Movie MOVIE_1 = new Movie("The Matrix", 1999, "The Wachowski Brothers", "10");
     private static final Movie MOVIE_2 = new Movie("Inception", 2010, "Christopher Nolan", "8");
 
-    private static final Customer CUSTOMER_1 = new Customer("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
-    private static final Customer CUSTOMER_2 = new Customer("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
+    private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
+    private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
 
     private Library library;
     private Library libraryMock;
@@ -55,8 +55,8 @@ public class LibraryTest {
 
     @Test
     public void testCreateCustomerList() throws Exception {
-        assertEquals(CUSTOMER_1, library.getCustomerList().get(0));
-        assertEquals(CUSTOMER_2, library.getCustomerList().get(1));
+        assertEquals(USER_1, library.getUserList().get(0));
+        assertEquals(USER_2, library.getUserList().get(1));
     }
 
     @Test
@@ -152,9 +152,9 @@ public class LibraryTest {
 
     @Test
     public void testGetCustomerList() throws Exception {
-        library.getCustomerList().get(0);
-        assertTrue(library.getCustomerList().contains(CUSTOMER_1));
-        library.getCustomerList().get(1);
-        assertTrue(library.getCustomerList().contains(CUSTOMER_2));
+        library.getUserList().get(0);
+        assertTrue(library.getUserList().contains(USER_1));
+        library.getUserList().get(1);
+        assertTrue(library.getUserList().contains(USER_2));
     }
 }
