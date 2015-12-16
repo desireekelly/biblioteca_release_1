@@ -58,7 +58,9 @@ public class LibraryImpl implements Library {
     }
 
     private void setupBooksCheckedOutByCustomerForSimulation() {
-        booksCheckedOutByCustomer.put(books.get(3).getTitle(), users.get(3).getLibraryNumber());
+        User user = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
+        Book book = new Book("Ruby 101", "Jenny Moore", 2013);
+        booksCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
     }
 
     @Override
