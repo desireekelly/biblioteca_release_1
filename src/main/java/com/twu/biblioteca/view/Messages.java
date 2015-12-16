@@ -44,7 +44,9 @@ public interface Messages {
 
     String incorrectAvailableMoviesMessage();
 
-    String userMenuMessage();
+    String customerMenuMessage();
+
+    String librarianMenuMessage();
 
     String libraryNumberMessage();
 

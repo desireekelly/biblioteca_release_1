@@ -25,12 +25,19 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String userMenuMessage() {
+    public String customerMenuMessage() {
         return "\nEnter one of the following options:\n" +
                 "1 Borrow a book\n" +
                 "2 Return a book\n" +
                 "3 Display account information\n" +
                 "4 Logout\n";
+    }
+
+    @Override
+    public String librarianMenuMessage() {
+        return "\nEnter one of the following options:\n" +
+                "1 Search for a checked out book\n" +
+                "2 Logout\n";
     }
 
     @Override

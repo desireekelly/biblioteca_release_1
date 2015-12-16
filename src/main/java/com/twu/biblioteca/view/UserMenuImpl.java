@@ -40,7 +40,7 @@ public class UserMenuImpl {
     public void callCustomerMenu() {
 
         while (customerLoggedIn) {
-            displayUserMenu();
+            displayCustomerMenu();
             try {
                 if (input.hasNextLine()) {
                     callCustomerMenuOptions(input.nextInt(10));
@@ -57,7 +57,7 @@ public class UserMenuImpl {
     public void callLibrarianMenu() {
 
         while (librarianLoggedIn) {
-            displayUserMenu();
+            displayLibrarianMenu();
             try {
                 if (input.hasNextLine()) {
                     callLibrarianMenuOptions(input.nextInt(10));
@@ -129,7 +129,8 @@ public class UserMenuImpl {
 
         switch (option) {
             case 1:
-                displayCustomerInformation(libraryController.getCustomerInformation());
+                String book = input.next();
+                displayBooksCheckedOutByCustomer(libraryController.getBooksCheckedOutByCustomer(book));
                 break;
             case 2:
                 displayLogoutMessage();
@@ -141,8 +142,13 @@ public class UserMenuImpl {
         }
     }
 
-    public void displayUserMenu() {
-        outputStream.print(messages.userMenuMessage());
+    public void displayCustomerMenu() {
+        outputStream.print(messages.customerMenuMessage());
+        outputStream.print(messages.optionMessage());
+    }
+
+    public void displayLibrarianMenu() {
+        outputStream.print(messages.librarianMenuMessage());
         outputStream.print(messages.optionMessage());
     }
 
@@ -189,6 +195,11 @@ public class UserMenuImpl {
 
     public void displayUserName(String user) {
         outputStream.print(user + "\n");
+    }
+
+    public void displayBooksCheckedOutByCustomer(String book) {
+        outputStream.print(book + "\n");
+
     }
 
 }

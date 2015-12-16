@@ -26,6 +26,7 @@ public class LibraryImpl implements Library {
         this.createBookList();
         this.createMovieList();
         this.createUsers();
+        this.setupBooksCheckedOutByCustomerForSimulation();
     }
 
     private void createBookList() {
@@ -54,6 +55,10 @@ public class LibraryImpl implements Library {
         users.put(librarian.getLibraryNumber(), librarian);
 
         librarian.setLibrarian(true);
+    }
+
+    private void setupBooksCheckedOutByCustomerForSimulation() {
+        booksCheckedOutByCustomer.put(books.get(3).getTitle(), users.get(3).getLibraryNumber());
     }
 
     @Override
@@ -139,10 +144,12 @@ public class LibraryImpl implements Library {
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
             if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
                 bookcheckedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
+                return bookcheckedOutByCustomer;
             }
         }
-        return bookcheckedOutByCustomer;
+        return null;
     }
+
 
     @Override
     public Map<String, User> getUsers() {

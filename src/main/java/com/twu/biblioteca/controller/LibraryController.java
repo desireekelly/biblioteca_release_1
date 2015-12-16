@@ -139,4 +139,8 @@ public class LibraryController {
     public boolean isLibrarian() {
         return user.isLibrarian();
     }
+
+    public String getBooksCheckedOutByCustomer(String bookTitle) {
+        return library.getBooksCheckedOutByCustomer(bookTitle);
+    }
 }
