@@ -177,7 +177,6 @@ public class MainMenuImpl implements MainMenu {
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
     }
-
     @Override
     public void displayLibraryNumberMessage() {
         outputStream.print(messages.libraryNumberMessage());

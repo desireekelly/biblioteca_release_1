@@ -46,6 +46,7 @@ public class UserMenuImpl {
 
     }
 
+
     private void callUserMenuOptions(int option) {
 
         switch (option) {
@@ -64,7 +65,7 @@ public class UserMenuImpl {
                 returnMenu.callReturnMenu();
                 break;
             case 3:
-                //libraryController.getCustomerInformation();
+                libraryController.getCustomerInformation();
                 break;
             case 4:
                 displayExitMessage();
@@ -92,4 +93,6 @@ public class UserMenuImpl {
     public void displayExitMessage() {
         outputStream.print(messages.exitMessage());
     }
+
+
 }

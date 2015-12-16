@@ -207,8 +207,16 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void testLogin() {
+    public void testLogin() throws Exception {
         when(libraryControllerMock.login("123-4566", "f8kf93jd")).thenReturn(USER_1);
         assertTrue(USER_1.equals(libraryControllerMock.login("123-4566", "f8kf93jd")));
+        verify(libraryControllerMock, times(1)).login("123-4566", "f8kf93jd");
+    }
+
+    @Test
+    public void getCustomerInformation() throws Exception {
+        when(libraryControllerMock.getCustomerInformation()).thenReturn("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
+        assertEquals(libraryControllerMock.getCustomerInformation(), "Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
+        verify(libraryControllerMock, times(1)).getCustomerInformation();
     }
 }

@@ -123,4 +123,8 @@ public class LibraryController {
         user = library.login(libraryNumber, password);
         return user;
     }
+
+    public String getCustomerInformation() {
+        return user.getCustomerInformation();
+    }
 }
