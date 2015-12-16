@@ -82,17 +82,19 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void checkoutBook(Book book) throws BookNotBorrowable {
+    public void checkoutBook(Book book, User user) throws BookNotBorrowable {
         if (borrowedBooks.contains(book))
             throw new BookNotBorrowable("book is not available");
         borrowedBooks.add(book);
+        booksCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
     }
 
     @Override
-    public void returnBook(Book book) throws BookNotReturnable {
+    public void returnBook(Book book, User user) throws BookNotReturnable {
         if (!borrowedBooks.contains(book))
             throw new BookNotReturnable("book is already returned");
         borrowedBooks.remove(book);
+        booksCheckedOutByCustomer.remove(book.getTitle());
     }
 
     @Override

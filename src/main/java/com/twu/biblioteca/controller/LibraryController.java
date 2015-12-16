@@ -6,6 +6,7 @@ import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class LibraryController {
     private BorrowService borrowService;
     private ReturnService returnService;
     private Library library;
+    private User user;
 
     public LibraryController(Library library, BorrowService borrowService, ReturnService returnService) {
         this.borrowService = borrowService;
@@ -26,12 +28,12 @@ public class LibraryController {
         this.library = library;
     }
 
-    public boolean borrowBook(Book book) throws BookNotBorrowable {
-        return borrowService.borrowBook(book);
+    public boolean borrowBook(Book book, User user) throws BookNotBorrowable {
+        return borrowService.borrowBook(book, user);
     }
 
-    public boolean returnBook(Book book) throws BookNotReturnable {
-        return returnService.returnBook(book);
+    public boolean returnBook(Book book, User user) throws BookNotReturnable {
+        return returnService.returnBook(book, user);
     }
 
     public boolean borrowMovie(Movie movie) throws MovieNotBorrowable{
@@ -98,15 +100,16 @@ public class LibraryController {
         return library.getBorrowedMovies().size();
     }
 
+
     public String checkoutBook(int option) throws BookNotBorrowable {
             Book bookToBorrow = library.getAvailableBooks().get(option - 1);
-            borrowBook(bookToBorrow);
+        borrowBook(bookToBorrow, user);
         return bookToBorrow.getTitle().toString();
     }
 
     public String checkinBook(int option) throws BookNotReturnable {
             Book bookToReturn = library.getBorrowedBooks().get(option - 1);
-            returnBook(bookToReturn);
+        returnBook(bookToReturn, user);
         return bookToReturn.getTitle().toString();
     }
 
@@ -114,5 +117,10 @@ public class LibraryController {
         Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
         borrowMovie(movieToBorrow);
         return movieToBorrow.getName().toString();
+    }
+
+    public User login(String libraryNumber, String password) {
+        user = library.login(libraryNumber, password);
+        return user;
     }
 }

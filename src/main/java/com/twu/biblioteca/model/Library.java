@@ -22,9 +22,9 @@ public interface Library {
 
     List<Book> getBookList();
 
-    void checkoutBook(Book book) throws BookNotBorrowable;
+    void checkoutBook(Book book, User user) throws BookNotBorrowable;
 
-    void returnBook(Book book) throws BookNotReturnable;
+    void returnBook(Book book, User user) throws BookNotReturnable;
 
     List<Movie> getAvailableMovies();
 

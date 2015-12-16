@@ -47,6 +47,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callReturnMenuOptions(int option) {
+
         if (option == 0) {
             return;
         }
@@ -61,6 +62,7 @@ public class ReturnMenuImpl implements ReturnMenu {
             displayIncorrectInputMessage();
             return;
         }
+
     }
 
     @Override

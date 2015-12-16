@@ -3,6 +3,7 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.User;
 
 /**
  * ReturnService is responsible for returning a book to the Library
@@ -18,8 +19,8 @@ public class ReturnService {
         this.library = library;
     }
 
-    public boolean returnBook(Book book) throws BookNotReturnable {
-        library.returnBook(book);
+    public boolean returnBook(Book book, User user) throws BookNotReturnable {
+        library.returnBook(book, user);
         return true;
     }
 }

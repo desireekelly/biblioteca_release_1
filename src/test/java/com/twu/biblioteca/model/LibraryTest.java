@@ -32,12 +32,14 @@ public class LibraryTest {
     private Library libraryMock;
     private Book book;
     private Movie movie;
+    private User user;
 
     @Before
     public void setUp() throws Exception {
         library = new LibraryImpl();
         book = mock(Book.class);
         movie = mock(Movie.class);
+        user = mock(User.class);
         libraryMock = mock(LibraryImpl.class);
     }
 
@@ -60,28 +62,35 @@ public class LibraryTest {
     }
 
     @Test
+    public void testGetBooksCheckedOutByCustomer() throws Exception {
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
+        assertEquals("Java 101 is checked out by user: 123-4566", library.getBooksCheckedOutByCustomer("Java 101"));
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_2);
+        assertEquals("PHP 101 is checked out by user: 123-4567", library.getBooksCheckedOutByCustomer("PHP 101"));
+    }
+
+    @Test
     public void testUserLogin() throws Exception {
         assertTrue(USER_1.equals(library.login("123-4566", "f8kf93jd")));
+        assertTrue(USER_2.equals(library.login("123-4567", "5jgfdkl5")));
     }
 
     @Test
     public void testCheckoutBook() throws Exception {
-        libraryMock.checkoutBook(book);
-        verify(libraryMock).checkoutBook(Matchers.eq(book));
-        verify(libraryMock, times(1)).checkoutBook(book);
+        libraryMock.checkoutBook(book, user);
+        verify(libraryMock, times(1)).checkoutBook(book, user);
     }
 
     @Test
     public void testReturnBook() throws Exception {
-        libraryMock.returnBook(book);
-        verify(libraryMock).returnBook(Matchers.eq(book));
-        verify(libraryMock, times(1)).returnBook(book);
+        libraryMock.returnBook(book, user);
+        verify(libraryMock, times(1)).returnBook(book, user);
     }
 
     @Test(expected = BookNotReturnable.class)
     public void testExceptionThrownWhenBookAlreadyReturned() throws Exception {
         try {
-            library.returnBook(library.getAvailableBooks().get(0));
+            library.returnBook(library.getAvailableBooks().get(0), USER_1);
         } catch (BookNotReturnable e) {
             String message = "book is already returned";
             assertEquals(message, e.getMessage());
@@ -93,8 +102,8 @@ public class LibraryTest {
     @Test(expected = BookNotBorrowable.class)
     public void testExceptionThrownWhenBookBorrowedTwice() throws Exception {
         try {
-            library.checkoutBook(library.getBookList().get(0));
-            library.checkoutBook(library.getBookList().get(0));
+            library.checkoutBook(library.getBookList().get(0), USER_1);
+            library.checkoutBook(library.getBookList().get(0), USER_1);
         } catch (BookNotBorrowable e) {
             String message = "book is not available";
             assertEquals(message, e.getMessage());
@@ -105,17 +114,17 @@ public class LibraryTest {
 
     @Test
     public void testGetBorrowedBooks() throws Exception {
-        library.checkoutBook(library.getAvailableBooks().get(0));
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
         assertTrue(library.getBorrowedBooks().contains(BOOK_1));
-        library.checkoutBook(library.getAvailableBooks().get(0));
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_2);
         assertTrue(library.getBorrowedBooks().contains(BOOK_2));
     }
 
     @Test
     public void testGetAvailableBooks() throws Exception {
-        library.checkoutBook(library.getAvailableBooks().get(0));
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
         assertFalse(library.getAvailableBooks().contains(BOOK_1));
-        library.checkoutBook(library.getAvailableBooks().get(0));
+        library.checkoutBook(library.getAvailableBooks().get(0), USER_2);
         assertFalse(library.getAvailableBooks().contains(BOOK_2));
     }
 

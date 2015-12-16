@@ -5,6 +5,7 @@ import com.twu.biblioteca.exceptions.MovieNotBorrowable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 
 /**
  * BorrowService is responsible for borrowing a book from the Library
@@ -20,8 +21,8 @@ public class BorrowService {
         this.library = library;
     }
 
-    public boolean borrowBook(Book book) throws BookNotBorrowable {
-        library.checkoutBook(book);
+    public boolean borrowBook(Book book, User user) throws BookNotBorrowable {
+        library.checkoutBook(book, user);
         return true;
     }
 

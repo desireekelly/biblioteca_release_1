@@ -66,6 +66,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     private void callBookBorrowMenuOptions(int option) {
+
         if (option == 0) {
             return;
         }
@@ -80,6 +81,7 @@ public class BorrowMenuImpl implements BorrowMenu {
             displayIncorrectInputMessage();
             return;
         }
+
     }
 
     private void callMovieBorrowMenuOptions(int option) {
