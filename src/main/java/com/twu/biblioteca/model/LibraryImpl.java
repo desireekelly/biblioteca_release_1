@@ -52,6 +52,8 @@ public class LibraryImpl implements Library {
         users.put(user2.getLibraryNumber(), user2);
         users.put(user3.getLibraryNumber(), user3);
         users.put(librarian.getLibraryNumber(), librarian);
+
+        librarian.setLibrarian(true);
     }
 
     @Override

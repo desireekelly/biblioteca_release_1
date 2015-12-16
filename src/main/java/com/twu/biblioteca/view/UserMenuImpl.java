@@ -22,7 +22,8 @@ public class UserMenuImpl {
     private Scanner input;
     private BorrowMenu borrowMenu;
     private ReturnMenu returnMenu;
-    private Boolean loggedIn;
+    private Boolean librarianLoggedIn;
+    private Boolean customerLoggedIn;
 
     public UserMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, Messages messages) {
         this.libraryController = libraryController;
@@ -31,17 +32,18 @@ public class UserMenuImpl {
         this.input = new Scanner(inputStream);
         this.borrowMenu = borrowMenu;
         this.returnMenu = returnMenu;
-        loggedIn = false;
+        librarianLoggedIn = false;
+        customerLoggedIn = false;
 
     }
 
-    public void callUserMenu() {
+    public void callCustomerMenu() {
 
-        while (loggedIn) {
+        while (customerLoggedIn) {
             displayUserMenu();
             try {
                 if (input.hasNextLine()) {
-                    callUserMenuOptions(input.nextInt(10));
+                    callCustomerMenuOptions(input.nextInt(10));
                 } else {
                     return;
                 }
@@ -52,6 +54,24 @@ public class UserMenuImpl {
         }
     }
 
+    public void callLibrarianMenu() {
+
+        while (librarianLoggedIn) {
+            displayUserMenu();
+            try {
+                if (input.hasNextLine()) {
+                    callLibrarianMenuOptions(input.nextInt(10));
+                } else {
+                    return;
+                }
+            } catch (InputMismatchException e) {
+                displayInputMismatchExceptionMessage();
+                input.nextLine();
+            }
+        }
+    }
+
+
     public void login() {
         displayLoginMessage();
         displayLibraryNumberMessage();
@@ -61,16 +81,15 @@ public class UserMenuImpl {
         if (libraryController.login(libraryNumber, password) != null) {
             displayCorrectLoginMessage();
             displayCustomerName(libraryController.getCustomerName());
-
-            loggedIn = true;
-            callUserMenu();
+            customerLoggedIn = true;
+            callCustomerMenu();
         } else {
             displayIncorrectLoginMessage();
             return;
         }
     }
 
-    private void callUserMenuOptions(int option) {
+    private void callCustomerMenuOptions(int option) {
 
         switch (option) {
             case 1:
@@ -92,7 +111,37 @@ public class UserMenuImpl {
                 break;
             case 4:
                 displayLogoutMessage();
-                loggedIn = false;
+                customerLoggedIn = false;
+                break;
+            default:
+                displayIncorrectInputMessage();
+                break;
+        }
+    }
+
+    private void callLibrarianMenuOptions(int option) {
+
+        switch (option) {
+            case 1:
+                if (libraryController.availableBooksIsEmpty()) {
+                    borrowMenu.displayIncorrectBookBorrowMessage();
+                    break;
+                }
+                borrowMenu.callBookBorrowMenu();
+                break;
+            case 2:
+                if (libraryController.borrowedBooksIsEmpty()) {
+                    returnMenu.displayIncorrectReturnMessage();
+                    break;
+                }
+                returnMenu.callReturnMenu();
+                break;
+            case 3:
+                displayCustomerInformation(libraryController.getCustomerInformation());
+                break;
+            case 4:
+                displayLogoutMessage();
+                customerLoggedIn = false;
                 break;
             default:
                 displayIncorrectInputMessage();
@@ -111,10 +160,6 @@ public class UserMenuImpl {
 
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
-    }
-
-    public void displayExitMessage() {
-        outputStream.print(messages.exitMessage());
     }
 
 

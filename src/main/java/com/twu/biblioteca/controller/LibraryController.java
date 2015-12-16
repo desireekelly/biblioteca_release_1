@@ -136,7 +136,7 @@ public class LibraryController {
         return user.isCustomer();
     }
 
-    public void setCustomer(boolean customer) {
-        user.setCustomer(customer);
+    public boolean isLibrarian() {
+        return user.isLibrarian();
     }
 }
