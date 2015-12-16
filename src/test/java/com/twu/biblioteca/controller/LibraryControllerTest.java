@@ -37,6 +37,7 @@ public class LibraryControllerTest {
 
     private static final String BOOK_TITLE = "Java 101";
     private static final String MOVIE_TITLE = "The Matrix";
+    private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
 
     @Before
     public void setUp() throws Exception {
@@ -205,4 +206,9 @@ public class LibraryControllerTest {
         verify(libraryControllerMock, times(1)).checkoutMovie(1);
     }
 
+    @Test
+    public void testLogin() {
+        when(libraryControllerMock.login("123-4566", "f8kf93jd")).thenReturn(USER_1);
+        assertTrue(USER_1.equals(libraryControllerMock.login("123-4566", "f8kf93jd")));
+    }
 }
