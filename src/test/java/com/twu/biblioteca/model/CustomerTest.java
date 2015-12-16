@@ -37,19 +37,23 @@ public class CustomerTest {
     }
 
     @Test
-    public void testGetPassword() throws Exception {
-        assertEquals("f8kf93jd", CUSTOMER_1.getPassword());
+    public void testCheckPassword() throws Exception {
+        assertTrue(CUSTOMER_1.checkPassword("f8kf93jd"));
     }
 
     @Test
     public void testToString() throws Exception {
-        assertEquals("Joe Bloggs, joebloggs@joebloggs.com, 0400 000 000", CUSTOMER_1.toString());
+        assertEquals("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000", CUSTOMER_1.toString());
     }
 
     @Test
-    public void testIfTwoCustomersAreTheSame() throws Exception {
-        assertFalse(CUSTOMER_1.equals("Joe Bloggs, joebloggs@joebloggs.com, 0400 000 000, 123-4567, f8kf93jd"));
+    public void testCustomerEqualsCustomer() throws Exception {
         assertTrue(CUSTOMER_1.equals(CUSTOMER_1));
         assertFalse(CUSTOMER_1.equals(CUSTOMER_2));
+    }
+
+    @Test
+    public void testGetCustomerInformation() throws Exception {
+        assertEquals("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000", CUSTOMER_1.getCustomerInformation());
     }
 }

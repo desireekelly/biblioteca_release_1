@@ -38,16 +38,19 @@ public class Customer {
         return libraryNumber;
     }
 
-    public String getPassword() {
-        return password;
+    public Boolean checkPassword(String password) {
+        if (this.password.equals(password)) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getCustomerInformation() {
+        return this.toString();
     }
 
     public String toString() {
-        return this.name + ", " + this.emailAddress + ", " + this.phoneNumber;
-    }
-
-    public String getCustomerInformation(){
-        return String.format("%-15d %-15s %-15s", this.name, this.emailAddress, this.phoneNumber);
+        return "Name: " + this.name + "\nEmail: " + this.emailAddress + "\nPhone Number: " + this.phoneNumber;
     }
 
     @Override
@@ -56,12 +59,12 @@ public class Customer {
             return false;
         }
 
-        Customer otherCustomer = (Customer) obj;
+        Customer customer = (Customer) obj;
 
-        return this.name.equals(otherCustomer.name)
-                && this.emailAddress.equals(otherCustomer.emailAddress)
-                && this.phoneNumber.equals(otherCustomer.phoneNumber)
-                && this.libraryNumber.equals(otherCustomer.libraryNumber)
-                && this.password.equals(otherCustomer.password);
+        return this.name.equals(customer.name)
+                && this.emailAddress.equals(customer.emailAddress)
+                && this.phoneNumber.equals(customer.phoneNumber)
+                && this.libraryNumber.equals(customer.libraryNumber)
+                && this.password.equals(customer.password);
     }
 }
