@@ -20,7 +20,7 @@ public class LibraryImpl implements Library {
     private List<Movie> movies = new ArrayList<Movie>();
     private Set<Movie> borrowedMovies = new HashSet<Movie>();
     private Map<String, User> users = new HashMap<String, User>();
-    private Map<String, String> booksCheckedOutByCustomer = new HashMap<String, String>();
+    private Map<String, String> bookCheckedOutByCustomer = new HashMap<String, String>();
 
     public LibraryImpl() {
         this.createBookList();
@@ -62,7 +62,7 @@ public class LibraryImpl implements Library {
         User customer4 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
         users.put(customer4.getLibraryNumber(), customer4);
         borrowedBooks.add(book5);
-        booksCheckedOutByCustomer.put(book5.getTitle(), customer4.getLibraryNumber());
+        bookCheckedOutByCustomer.put(book5.getTitle(), customer4.getLibraryNumber());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class LibraryImpl implements Library {
         if (borrowedBooks.contains(book))
             throw new BookNotBorrowable("book is not available");
         borrowedBooks.add(book);
-        booksCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
+        bookCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class LibraryImpl implements Library {
         if (!borrowedBooks.contains(book))
             throw new BookNotReturnable("book is already returned");
         borrowedBooks.remove(book);
-        booksCheckedOutByCustomer.remove(book.getTitle());
+        bookCheckedOutByCustomer.remove(book.getTitle());
     }
 
     @Override
@@ -145,16 +145,14 @@ public class LibraryImpl implements Library {
     @Override
     public String getBooksCheckedOutByCustomer(String bookTitle) {
         String checkedOutByCustomer;
-        for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
-            if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
+        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
+            if (bookCheckedOutByCustomer.containsKey(bookTitle)) {
                 checkedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
                 return checkedOutByCustomer;
             }
         }
         return null;
-
     }
-
 
     @Override
     public Map<String, User> getUsers() {

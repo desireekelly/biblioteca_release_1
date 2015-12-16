@@ -25,7 +25,7 @@ class BibliotecaApp {
         Messages messages = new MessagesImpl();
         BorrowMenu borrowMenu = new BorrowMenuImpl(libraryController, System.in, System.out, messages);
         ReturnMenu returnMenu = new ReturnMenuImpl(libraryController, System.in, System.out, messages);
-        UserMenuImpl userMenu = new UserMenuImpl(libraryController, System.in, System.out, borrowMenu, returnMenu, messages);
+        UserMenu userMenu = new UserMenuImpl(libraryController, System.in, System.out, borrowMenu, returnMenu, messages);
         MainMenu mainMenu = new MainMenuImpl(libraryController, System.in, System.out, borrowMenu, returnMenu, userMenu, messages);
         mainMenu.launch();
     }

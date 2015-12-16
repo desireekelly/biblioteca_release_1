@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Desiree Kelly
  * @version 2.0
  */
-public class UserMenuImpl {
+public class UserMenuImpl implements UserMenu {
 
     private LibraryController libraryController;
     private PrintStream outputStream;
@@ -72,6 +72,7 @@ public class UserMenuImpl {
     }
 
 
+    @Override
     public void login() {
         displayLoginMessage();
         displayLibraryNumberMessage();
@@ -151,66 +152,80 @@ public class UserMenuImpl {
         }
     }
 
+    @Override
     public void displayCustomerMenu() {
         outputStream.print(messages.customerMenuMessage());
         outputStream.print(messages.optionMessage());
     }
 
+    @Override
     public void displayLibrarianMenu() {
         outputStream.print(messages.librarianMenuMessage());
         outputStream.print(messages.optionMessage());
     }
 
+    @Override
     public void displayIncorrectInputMessage() {
         outputStream.print(messages.incorrectInputMessage());
     }
 
+    @Override
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
     }
 
 
+    @Override
     public void displayLibraryNumberMessage() {
         outputStream.print(messages.libraryNumberMessage());
     }
 
 
+    @Override
     public void displayPasswordMessage() {
         outputStream.print(messages.passwordMessage());
     }
 
 
+    @Override
     public void displayLoginMessage() {
         outputStream.print(messages.loginMessage());
     }
 
 
+    @Override
     public void displayIncorrectLoginMessage() {
         outputStream.print(messages.incorrectLoginMessage());
     }
 
 
+    @Override
     public void displayCorrectLoginMessage() {
         outputStream.print(messages.correctLoginMessage());
     }
 
+    @Override
     public void displayLogoutMessage() {
         outputStream.print(messages.logoutMessage());
     }
 
+    @Override
     public void displayCustomerInformation(String user) {
         outputStream.print(user);
     }
 
+    @Override
     public void displayUserName(String user) {
         outputStream.print(user + "\n");
     }
 
+    @Override
     public void displayBooksCheckedOutByCustomer(String book) {
         outputStream.print(book + "\n");
 
     }
 
+    @Override
     public void displayBooksCheckedOutByCustomerMessage() {
         outputStream.print(messages.booksCheckedOutByCustomerMessage());
     }
