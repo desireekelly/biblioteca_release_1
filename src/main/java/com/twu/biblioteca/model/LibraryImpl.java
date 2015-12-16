@@ -148,10 +148,11 @@ public class LibraryImpl implements Library {
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
             if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
                 bookcheckedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
-
+                return bookcheckedOutByCustomer;
             }
         }
-        return bookcheckedOutByCustomer;
+        return null;
+
     }
 
 
