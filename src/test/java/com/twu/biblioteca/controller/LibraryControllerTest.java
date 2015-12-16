@@ -9,7 +9,8 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.*;
 
 /**
@@ -27,9 +28,11 @@ public class LibraryControllerTest {
     private LibraryController libraryControllerMock;
     private Book book;
     private Movie movie;
+
     private Library library;
     private List<Book> bookList;
     private List<Movie> movieList;
+
     private static final String BOOK_TITLE = "Java 101";
     private static final String MOVIE_TITLE = "The Matrix";
 
@@ -40,11 +43,13 @@ public class LibraryControllerTest {
         library = mock(Library.class);
         book = mock(Book.class);
         movie = mock(Movie.class);
-        libraryController = new LibraryController(library, borrowService, returnService);
         libraryControllerMock = mock(LibraryController.class);
+        libraryController = new LibraryController(library, borrowService, returnService);
+
         bookList = new ArrayList<Book>();
         bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
         bookList.add(new Book("PHP 101", "Mary Jane", 2005));
+
         movieList = new ArrayList<Movie>();
         movieList.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         movieList.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
