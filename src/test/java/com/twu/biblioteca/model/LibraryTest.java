@@ -63,9 +63,7 @@ public class LibraryTest {
 
     @Test
     public void testGetBooksCheckedOutByCustomer() throws Exception {
-        when(libraryMock.getBooksCheckedOutByCustomer("Ruby 101")).thenReturn("Ruby 101 is checked out by user: 123-4570");
-        assertEquals("Ruby 101 is checked out by user: 123-4570", libraryMock.getBooksCheckedOutByCustomer("Ruby 101"));
-        assertEquals("Ruby 101 is checked out by user: 123-4570", library.getBooksCheckedOutByCustomer("Ruby 101"));
+        assertEquals(library.getBooksCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
     }
 
     @Test

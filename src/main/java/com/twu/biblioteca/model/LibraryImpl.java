@@ -144,11 +144,11 @@ public class LibraryImpl implements Library {
 
     @Override
     public String getBooksCheckedOutByCustomer(String bookTitle) {
-        String bookcheckedOutByCustomer = "";
+        String checkedOutByCustomer;
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
             if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
-                bookcheckedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
-                return bookcheckedOutByCustomer;
+                checkedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
+                return checkedOutByCustomer;
             }
         }
         return null;
