@@ -63,8 +63,8 @@ public class LibraryTest {
 
     @Test
     public void testGetBooksCheckedOutByCustomer() throws Exception {
-        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
-        assertEquals("Java 101 is checked out by user: 123-4566", library.getBooksCheckedOutByCustomer("Java 101"));
+        when(libraryMock.getBooksCheckedOutByCustomer("Ruby 101")).thenReturn("Ruby 101 is checked out by user: 123-4570");
+        assertEquals("Ruby 101 is checked out by user: 123-4570", libraryMock.getBooksCheckedOutByCustomer("Ruby 101"));
     }
 
     @Test

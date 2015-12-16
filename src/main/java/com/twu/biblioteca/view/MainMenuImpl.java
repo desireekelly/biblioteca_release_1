@@ -40,8 +40,7 @@ public class MainMenuImpl implements MainMenu {
         callMainMenu();
     }
 
-    @Override
-    public void callMainMenu() {
+    private void callMainMenu() {
         displayWelcomeMessage();
         do {
             try {

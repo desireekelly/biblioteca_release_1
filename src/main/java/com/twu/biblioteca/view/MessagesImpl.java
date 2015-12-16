@@ -41,6 +41,12 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
+    public String booksCheckedOutByCustomerMessage() {
+        return "\nSearch for a checked out book by Title:";
+
+    }
+
+    @Override
     public String optionMessage() {
         return "Enter your option:";
     }
@@ -77,7 +83,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String bookBorrowMessage() {
-        return "\nSelect a book to borrow by entering the ID number or enter 0 to go back to the main menu:\n";
+        return "\nSelect a book to borrow by entering the ID number or enter 0 to go back to the main menu:";
     }
 
     @Override
@@ -87,7 +93,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String bookReturnMessage() {
-        return "\nSelect a book to return by entering the ID number or enter 0 to go back to the main menu:\n";
+        return "\nSelect a book to return by entering the ID number or enter 0 to go back to the main menu:";
     }
 
     @Override

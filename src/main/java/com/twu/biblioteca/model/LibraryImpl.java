@@ -26,7 +26,7 @@ public class LibraryImpl implements Library {
         this.createBookList();
         this.createMovieList();
         this.createUsers();
-        this.setupBooksCheckedOutByCustomerForSimulation();
+        this.setupBooksCheckedOutByCustomerForLibrarianSimulation();
     }
 
     private void createBookList() {
@@ -44,23 +44,25 @@ public class LibraryImpl implements Library {
     }
 
     private void createUsers() {
-        User user1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
-        User user2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
-        User user3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
+        User customer1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
+        User customer2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
+        User customer3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
         User librarian = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
 
-        users.put(user1.getLibraryNumber(), user1);
-        users.put(user2.getLibraryNumber(), user2);
-        users.put(user3.getLibraryNumber(), user3);
+        users.put(customer1.getLibraryNumber(), customer1);
+        users.put(customer2.getLibraryNumber(), customer2);
+        users.put(customer3.getLibraryNumber(), customer3);
         users.put(librarian.getLibraryNumber(), librarian);
 
         librarian.setLibrarian(true);
     }
 
-    private void setupBooksCheckedOutByCustomerForSimulation() {
-        User user = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
-        Book book = new Book("Ruby 101", "Jenny Moore", 2013);
-        booksCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
+    private void setupBooksCheckedOutByCustomerForLibrarianSimulation() {
+        Book book5 = new Book("Ruby 101", "Jenny Moore", 2013);
+        User customer4 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
+        users.put(customer4.getLibraryNumber(), customer4);
+        borrowedBooks.add(book5);
+        booksCheckedOutByCustomer.put(book5.getTitle(), customer4.getLibraryNumber());
     }
 
     @Override
@@ -146,10 +148,10 @@ public class LibraryImpl implements Library {
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomer.entrySet()) {
             if (booksCheckedOutByCustomer.containsKey(bookTitle)) {
                 bookcheckedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
-                return bookcheckedOutByCustomer;
+
             }
         }
-        return null;
+        return bookcheckedOutByCustomer;
     }
 
 

@@ -37,7 +37,7 @@ public class UserMenuImpl {
 
     }
 
-    public void callCustomerMenu() {
+    private void callCustomerMenu() {
 
         while (customerLoggedIn) {
             displayCustomerMenu();
@@ -54,7 +54,7 @@ public class UserMenuImpl {
         }
     }
 
-    public void callLibrarianMenu() {
+    private void callLibrarianMenu() {
 
         while (librarianLoggedIn) {
             displayLibrarianMenu();
@@ -95,6 +95,14 @@ public class UserMenuImpl {
         }
     }
 
+    private void booksCheckedOutByCustomer() {
+        displayBooksCheckedOutByCustomerMessage();
+
+        String book = input.next();
+        displayBooksCheckedOutByCustomer(libraryController.getBooksCheckedOutByCustomer(book));
+
+    }
+
     private void callCustomerMenuOptions(int option) {
 
         switch (option) {
@@ -129,8 +137,7 @@ public class UserMenuImpl {
 
         switch (option) {
             case 1:
-                String book = input.next();
-                displayBooksCheckedOutByCustomer(libraryController.getBooksCheckedOutByCustomer(book));
+                booksCheckedOutByCustomer();
                 break;
             case 2:
                 displayLogoutMessage();
@@ -200,6 +207,10 @@ public class UserMenuImpl {
     public void displayBooksCheckedOutByCustomer(String book) {
         outputStream.print(book + "\n");
 
+    }
+
+    public void displayBooksCheckedOutByCustomerMessage() {
+        outputStream.print(messages.booksCheckedOutByCustomerMessage());
     }
 
 }

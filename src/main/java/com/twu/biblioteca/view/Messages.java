@@ -50,6 +50,8 @@ public interface Messages {
 
     String libraryNumberMessage();
 
+    String booksCheckedOutByCustomerMessage();
+
     String passwordMessage();
 
     String loginMessage();

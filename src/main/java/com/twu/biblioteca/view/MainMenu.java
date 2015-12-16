@@ -22,8 +22,6 @@ public interface MainMenu {
 
     void launch();
 
-    void callMainMenu();
-
     void displayIncorrectAvailableBooksMessage();
 
     void displayIncorrectAvailableMoviesMessage();
