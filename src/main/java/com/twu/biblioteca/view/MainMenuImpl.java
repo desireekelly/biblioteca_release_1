@@ -21,15 +21,17 @@ public class MainMenuImpl implements MainMenu {
     private Messages messages;
     private BorrowMenu borrowMenu;
     private ReturnMenu returnMenu;
+    private UserMenuImpl userMenu;
     private boolean exit;
 
-    public MainMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, Messages messages) {
+    public MainMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, UserMenuImpl userMenu, Messages messages) {
         this.libraryController = libraryController;
         this.input = new Scanner(inputStream);
         this.outputStream = outputStream;
         this.messages = messages;
         this.borrowMenu = borrowMenu;
         this.returnMenu = returnMenu;
+        this.userMenu = userMenu;
         exit = false;
     }
 
@@ -66,6 +68,7 @@ public class MainMenuImpl implements MainMenu {
                 }
                 displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
                 break;
+            /*
             case 2:
                 if (libraryController.availableBooksIsEmpty()) {
                     borrowMenu.displayIncorrectBookBorrowMessage();
@@ -80,27 +83,50 @@ public class MainMenuImpl implements MainMenu {
                 }
                 returnMenu.callReturnMenu();
                 break;
-            case 4:
+                */
+            case 2:
+                //if (libraryController.borrowedBooksIsEmpty()) {
+                //   returnMenu.displayIncorrectReturnMessage();
+                // break;
+                //}
+                //returnMenu.callReturnMenu();
+                login();
+                break;
+            case 3:
                 if (libraryController.availableMoviesIsEmpty()) {
                     displayIncorrectAvailableMoviesMessage();
                     break;
                 }
                 displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
                 break;
-            case 5:
+            case 4:
                 if (libraryController.availableMoviesIsEmpty()) {
                     borrowMenu.displayIncorrectMovieBorrowMessage();
                     break;
                 }
                 borrowMenu.callMovieBorrowMenu();
                 break;
-            case 6:
+            case 5:
                 displayExitMessage();
                 exit = true;
                 break;
             default:
                 displayIncorrectInputMessage();
                 break;
+        }
+    }
+
+    public void login() {
+        displayLoginMessage();
+        displayLibraryNumberMessage();
+        String libraryNumber = input.next();
+        displayPasswordMessage();
+        String password = input.next();
+        if (libraryController.login(libraryNumber, password) != null) {
+            userMenu.callUserMenu();
+        } else {
+            displayIncorrectLoginMessage();
+            return;
         }
     }
 
@@ -151,4 +177,26 @@ public class MainMenuImpl implements MainMenu {
     public void displayInputMismatchExceptionMessage() {
         displayIncorrectInputMessage();
     }
+
+    @Override
+    public void displayLibraryNumberMessage() {
+        outputStream.print(messages.libraryNumberMessage());
+    }
+
+    @Override
+    public void displayPasswordMessage() {
+        outputStream.print(messages.passwordMessage());
+    }
+
+    @Override
+    public void displayLoginMessage() {
+        outputStream.print(messages.loginMessage());
+    }
+
+    @Override
+    public void displayIncorrectLoginMessage() {
+        outputStream.print(messages.incorrectLoginMessage());
+    }
+
+
 }

@@ -18,11 +18,19 @@ public class MessagesImpl implements Messages {
     public String mainMenuMessage() {
         return "\nEnter one of the following options:\n" +
                 "1 Display the list of available books\n" +
-                "2 Borrow a book\n" +
-                "3 Return a book\n" +
-                "4 Display the list of available movies\n" +
-                "5 Borrow a movie\n" +
-                "6 Exit\n";
+                "2 Login to account\n" +
+                "3 Display the list of available movies\n" +
+                "4 Borrow a movie\n" +
+                "5 Exit\n";
+    }
+
+    @Override
+    public String userMenuMessage() {
+        return "\nEnter one of the following options:\n" +
+                "1 Borrow a book\n" +
+                "2 Return a book\n" +
+                "3 Display account information\n" +
+                "4 Exit to main menu\n";
     }
 
     @Override
@@ -103,5 +111,25 @@ public class MessagesImpl implements Messages {
     @Override
     public String incorrectAvailableMoviesMessage() {
         return "\nSorry, there are no available movies in the library.\n";
+    }
+
+    @Override
+    public String libraryNumberMessage() {
+        return "\nEnter your Library Number:";
+    }
+
+    @Override
+    public String passwordMessage() {
+        return "\nEnter your Password:";
+    }
+
+    @Override
+    public String loginMessage() {
+        return "\nPlease login with your Library Number and Password.\n";
+    }
+
+    @Override
+    public String incorrectLoginMessage() {
+        return "\nIncorrect user login details. Please try again.\n";
     }
 }

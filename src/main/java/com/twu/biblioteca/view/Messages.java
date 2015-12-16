@@ -43,4 +43,14 @@ public interface Messages {
     String movieBorrowMessage();
 
     String incorrectAvailableMoviesMessage();
+
+    String userMenuMessage();
+
+    String libraryNumberMessage();
+
+    String passwordMessage();
+
+    String loginMessage();
+
+    String incorrectLoginMessage();
 }

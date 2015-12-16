@@ -29,4 +29,12 @@ public interface MainMenu {
     void displayIncorrectAvailableMoviesMessage();
 
     void displayAvailableMovieListing(String movies);
+
+    void displayLibraryNumberMessage();
+
+    void displayPasswordMessage();
+
+    void displayLoginMessage();
+
+    void displayIncorrectLoginMessage();
 }
