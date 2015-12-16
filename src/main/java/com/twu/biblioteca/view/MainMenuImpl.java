@@ -20,17 +20,15 @@ public class MainMenuImpl implements MainMenu {
     private PrintStream outputStream;
     private Messages messages;
     private BorrowMenu borrowMenu;
-    private ReturnMenu returnMenu;
     private UserMenu userMenu;
     private boolean exit;
 
-    public MainMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, ReturnMenu returnMenu, UserMenu userMenu, Messages messages) {
+    public MainMenuImpl(LibraryController libraryController, InputStream inputStream, PrintStream outputStream, BorrowMenu borrowMenu, UserMenu userMenu, Messages messages) {
         this.libraryController = libraryController;
         this.input = new Scanner(inputStream);
         this.outputStream = outputStream;
         this.messages = messages;
         this.borrowMenu = borrowMenu;
-        this.returnMenu = returnMenu;
         this.userMenu = userMenu;
         exit = false;
     }
