@@ -221,6 +221,12 @@ public class LibraryControllerTest {
     }
 
     @Test
+    public void getCustomerName() throws Exception {
+        when(libraryControllerMock.getUserName()).thenReturn("Joe Bloggs");
+        assertEquals(libraryControllerMock.getUserName(), "Joe Bloggs");
+    }
+
+    @Test
     public void isCustomer() throws Exception {
         when(libraryControllerMock.isCustomer()).thenReturn(true);
         assertTrue(libraryControllerMock.isCustomer());

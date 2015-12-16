@@ -128,7 +128,7 @@ public class LibraryController {
         return user.getCustomerInformation();
     }
 
-    public String getCustomerName() {
+    public String getUserName() {
         return user.getName();
     }
 

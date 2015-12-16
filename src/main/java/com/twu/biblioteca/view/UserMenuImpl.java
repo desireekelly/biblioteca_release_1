@@ -78,11 +78,17 @@ public class UserMenuImpl {
         String libraryNumber = input.next();
         displayPasswordMessage();
         String password = input.next();
-        if (libraryController.login(libraryNumber, password) != null) {
+        if (libraryController.login(libraryNumber, password) != null && !libraryController.isLibrarian()) {
             displayCorrectLoginMessage();
-            displayCustomerName(libraryController.getCustomerName());
+            displayUserName(libraryController.getUserName());
             customerLoggedIn = true;
             callCustomerMenu();
+        } else if (libraryController.login(libraryNumber, password) != null && libraryController.isLibrarian()) {
+            displayCorrectLoginMessage();
+            displayUserName(libraryController.getUserName());
+            librarianLoggedIn = true;
+            callLibrarianMenu();
+
         } else {
             displayIncorrectLoginMessage();
             return;
@@ -123,25 +129,11 @@ public class UserMenuImpl {
 
         switch (option) {
             case 1:
-                if (libraryController.availableBooksIsEmpty()) {
-                    borrowMenu.displayIncorrectBookBorrowMessage();
-                    break;
-                }
-                borrowMenu.callBookBorrowMenu();
-                break;
-            case 2:
-                if (libraryController.borrowedBooksIsEmpty()) {
-                    returnMenu.displayIncorrectReturnMessage();
-                    break;
-                }
-                returnMenu.callReturnMenu();
-                break;
-            case 3:
                 displayCustomerInformation(libraryController.getCustomerInformation());
                 break;
-            case 4:
+            case 2:
                 displayLogoutMessage();
-                customerLoggedIn = false;
+                librarianLoggedIn = false;
                 break;
             default:
                 displayIncorrectInputMessage();
@@ -195,7 +187,7 @@ public class UserMenuImpl {
         outputStream.print(user);
     }
 
-    public void displayCustomerName(String user) {
+    public void displayUserName(String user) {
         outputStream.print(user + "\n");
     }
 

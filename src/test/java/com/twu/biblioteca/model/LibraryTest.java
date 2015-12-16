@@ -70,7 +70,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void testUserLogin() throws Exception {
+    public void testLogin() throws Exception {
         assertTrue(USER_1.equals(library.login("123-4566", "f8kf93jd")));
         assertTrue(USER_2.equals(library.login("123-4567", "5jgfdkl5")));
     }
