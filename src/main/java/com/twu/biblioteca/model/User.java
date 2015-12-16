@@ -76,9 +76,7 @@ public class User {
         if (!obj.getClass().equals(this.getClass())) {
             return false;
         }
-
         User user = (User) obj;
-
         return this.name.equals(user.name)
                 && this.emailAddress.equals(user.emailAddress)
                 && this.phoneNumber.equals(user.phoneNumber)
