@@ -11,16 +11,16 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String welcomeMessage() {
-        return "Welcome to the Bangalore Public library!\n\nWe know you'll find something that you love!\n";
+        return "Welcome to the Bangalore Public library!\n\nPlease login to your account to borrow or return a book.\n";
     }
 
     @Override
     public String mainMenuMessage() {
         return "\nEnter one of the following options:\n" +
-                "1 Display the list of available books to borrow\n" +
+                "1 Display the list of available books\n" +
                 "2 Borrow a book\n" +
                 "3 Return a book\n" +
-                "4 Display the list of available movies to borrow\n" +
+                "4 Display the list of available movies\n" +
                 "5 Borrow a movie\n" +
                 "6 Exit\n";
     }
