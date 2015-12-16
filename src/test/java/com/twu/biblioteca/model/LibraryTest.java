@@ -54,7 +54,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void testCreateCustomerList() throws Exception {
+    public void testCreateUserList() throws Exception {
         assertEquals(USER_1, library.getUserList().get(0));
         assertEquals(USER_2, library.getUserList().get(1));
     }
@@ -151,7 +151,7 @@ public class LibraryTest {
     }
 
     @Test
-    public void testGetCustomerList() throws Exception {
+    public void testGetUserList() throws Exception {
         library.getUserList().get(0);
         assertTrue(library.getUserList().contains(USER_1));
         library.getUserList().get(1);
