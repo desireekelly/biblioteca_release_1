@@ -1,9 +1,6 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Movie;
-import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.model.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +28,7 @@ public class LibraryControllerTest {
     private Movie movie;
     private User user;
 
+    private Library libraryMock;
     private Library library;
     private List<Book> bookList;
     private List<Movie> movieList;
@@ -43,12 +41,13 @@ public class LibraryControllerTest {
     public void setUp() throws Exception {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
-        library = mock(Library.class);
+        libraryMock = mock(Library.class);
         book = mock(Book.class);
         movie = mock(Movie.class);
         user = mock(User.class);
         libraryControllerMock = mock(LibraryController.class);
-        libraryController = new LibraryController(library, borrowService, returnService);
+        library = new LibraryImpl();
+        libraryController = new LibraryController(libraryMock, borrowService, returnService);
 
         bookList = new ArrayList<Book>();
         bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
@@ -236,5 +235,10 @@ public class LibraryControllerTest {
     public void isLibrarian() throws Exception {
         when(libraryControllerMock.isLibrarian()).thenReturn(true);
         assertTrue(libraryControllerMock.isLibrarian());
+    }
+
+    @Test
+    public void getBooksCheckedOutByCustomer() throws Exception {
+        assertEquals(libraryController.getBooksCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
     }
 }

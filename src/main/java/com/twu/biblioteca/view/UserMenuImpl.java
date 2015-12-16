@@ -95,6 +95,7 @@ public class UserMenuImpl {
         }
     }
 
+
     private void callCustomerMenuOptions(int option) {
 
         switch (option) {
@@ -125,17 +126,20 @@ public class UserMenuImpl {
         }
     }
 
+    private void booksCheckedOutByCustomer() {
+        displayBooksCheckedOutByCustomerMessage();
+        String book = input.next();
+        if (libraryController.getBooksCheckedOutByCustomer(book) == null) {
+            outputStream.print("list == null");
+            return;
+        }
+    }
+
     private void callLibrarianMenuOptions(int option) {
 
         switch (option) {
             case 1:
-                displayBooksCheckedOutByCustomerMessage();
-                String book = input.next();
-                if (libraryController.getBooksCheckedOutByCustomer(book) == null) {
-                    displayIncorrectInputMessage();
-                    break;
-                }
-                displayBooksCheckedOutByCustomer(libraryController.getBooksCheckedOutByCustomer(book));
+                booksCheckedOutByCustomer();
                 break;
             case 2:
                 displayLogoutMessage();
