@@ -26,7 +26,7 @@ public class LibraryImpl implements Library {
         this.createBookList();
         this.createMovieList();
         this.createUsers();
-        this.setupBooksCheckedOutByCustomerForLibrarianSimulation();
+        this.createBooksCheckedOutByCustomer();
     }
 
     private void createBookList() {
@@ -57,12 +57,12 @@ public class LibraryImpl implements Library {
         librarian.setLibrarian(true);
     }
 
-    private void setupBooksCheckedOutByCustomerForLibrarianSimulation() {
-        Book book5 = new Book("Ruby 101", "Jenny Moore", 2013);
-        User customer4 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
-        users.put(customer4.getLibraryNumber(), customer4);
-        borrowedBooks.add(book5);
-        bookCheckedOutByCustomer.put(book5.getTitle(), customer4.getLibraryNumber());
+    private void createBooksCheckedOutByCustomer() {
+        Book book = new Book("Ruby 101", "Jenny Moore", 2013);
+        User customer = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
+        users.put(customer.getLibraryNumber(), customer);
+        borrowedBooks.add(book);
+        bookCheckedOutByCustomer.put(book.getTitle(), customer.getLibraryNumber());
     }
 
     @Override
