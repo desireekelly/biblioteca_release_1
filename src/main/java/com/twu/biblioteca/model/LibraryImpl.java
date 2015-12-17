@@ -20,7 +20,7 @@ public class LibraryImpl implements Library {
     private List<Movie> movies = new ArrayList<Movie>();
     private Set<Movie> borrowedMovies = new HashSet<Movie>();
     private Map<String, User> users = new HashMap<String, User>();
-    private Map<String, String> bookCheckedOutByCustomer = new HashMap<String, String>();
+    private SortedMap<String, String> booksCheckedOutByCustomers = new TreeMap<String, String>();
 
     public LibraryImpl() {
         this.createBookList();
@@ -62,7 +62,7 @@ public class LibraryImpl implements Library {
         User customer = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
         users.put(customer.getLibraryNumber(), customer);
         borrowedBooks.add(book);
-        bookCheckedOutByCustomer.put(book.getTitle(), customer.getLibraryNumber());
+        booksCheckedOutByCustomers.put(book.getTitle(), customer.getLibraryNumber());
     }
 
     @Override
@@ -97,7 +97,7 @@ public class LibraryImpl implements Library {
         if (borrowedBooks.contains(book))
             throw new BookNotBorrowable("book is not available");
         borrowedBooks.add(book);
-        bookCheckedOutByCustomer.put(book.getTitle(), user.getLibraryNumber());
+        booksCheckedOutByCustomers.put(book.getTitle(), user.getLibraryNumber());
     }
 
     @Override
@@ -105,7 +105,7 @@ public class LibraryImpl implements Library {
         if (!borrowedBooks.contains(book))
             throw new BookNotReturnable("book is already returned");
         borrowedBooks.remove(book);
-        bookCheckedOutByCustomer.remove(book.getTitle());
+        booksCheckedOutByCustomers.remove(book.getTitle());
     }
 
     @Override
@@ -147,7 +147,7 @@ public class LibraryImpl implements Library {
     public String getBooksCheckedOutByCustomersList() {
 
         String books = "";
-        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
+        for (Map.Entry<String, String> entry : booksCheckedOutByCustomers.entrySet()) {
 
             books += entry.getKey() + " is checked out by user: " + entry.getValue() + "\n";
         }
