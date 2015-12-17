@@ -98,13 +98,7 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
-    private void bookCheckedOutByCustomer() {
-        displayBookCheckedOutByCustomerMessage();
-        String book = input.next();
-        displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
 
-
-    }
 
 
     private void callCustomerMenuOptions(int option) {
@@ -137,6 +131,19 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
+    private void getBookCheckedOutByCustomer() {
+        //displayBookCheckedOutByCustomerMessage();
+        String book = "Ruby 101";
+        //String book = input.next();
+        if (libraryController.getBookCheckedOutByCustomer(book) != null) {
+            displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
+            return;
+        } else {
+            displayIncorrectInputMessage();
+            return;
+        }
+
+    }
 
     private void callLibrarianMenuOptions(int option) {
 
@@ -146,7 +153,8 @@ public class UserMenuImpl implements UserMenu {
                     displayIncorrectBooksCheckedOutByCustomerMessage();
                     break;
                 }
-                bookCheckedOutByCustomer();
+                getBookCheckedOutByCustomer();
+
 
                 break;
             case 2:
@@ -228,7 +236,7 @@ public class UserMenuImpl implements UserMenu {
 
     @Override
     public void displayBookCheckedOutByCustomer(String book) {
-        outputStream.print(book + "\n");
+        outputStream.print("\n" + book + "\n");
 
     }
 
