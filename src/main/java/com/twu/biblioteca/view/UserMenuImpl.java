@@ -67,7 +67,7 @@ public class UserMenuImpl implements UserMenu {
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
-                input.nextLine();
+                //input.nextLine();
                 return;
             }
         }
@@ -132,13 +132,17 @@ public class UserMenuImpl implements UserMenu {
     }
 
     private void getBookCheckedOutByCustomer() {
-        //displayBookCheckedOutByCustomerMessage();
-        String book = "Ruby 101";
+
+        displayBookCheckedOutByCustomerMessage();
+
         //String book = input.next();
+        String book = "Ruby 101";
+
         if (libraryController.getBookCheckedOutByCustomer(book) != null) {
-            displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
+            //displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
+            outputStream.print("\n\nSuccess\n");
             return;
-        } else {
+        } else if (libraryController.getBookCheckedOutByCustomer(book) == null) {
             displayIncorrectInputMessage();
             return;
         }
@@ -236,7 +240,7 @@ public class UserMenuImpl implements UserMenu {
 
     @Override
     public void displayBookCheckedOutByCustomer(String book) {
-        outputStream.print("\n" + book + "\n");
+        outputStream.print(book + "\n");
 
     }
 
