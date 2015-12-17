@@ -3,6 +3,7 @@ package com.twu.biblioteca.model;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.MovieNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 
 import java.util.*;
 
@@ -140,6 +141,13 @@ public class LibraryImpl implements Library {
         if (borrowedMovies.contains(movie))
             throw new MovieNotBorrowable("movie is not available");
         borrowedMovies.add(movie);
+    }
+
+    @Override
+    public void returnMovie(Movie movie) throws MovieNotReturnable {
+        if (!borrowedMovies.contains(movie))
+            throw new MovieNotReturnable("movie is already returned");
+        borrowedMovies.remove(movie);
     }
 
 

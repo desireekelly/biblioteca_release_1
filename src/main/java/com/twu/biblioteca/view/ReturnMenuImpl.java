@@ -2,6 +2,7 @@ package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.LibraryController;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -29,24 +30,43 @@ public class ReturnMenuImpl implements ReturnMenu {
         this.input = new Scanner(inputStream);
     }
 
+
     @Override
-    public void callReturnMenu() {
-        displayReturnMenu();
+    public void callBookReturnMenu() {
+        displayBookReturnMenu();
         displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
-            try {
-                if (input.hasNextLine()) {
-                    callReturnMenuOptions(input.nextInt(10));
-                } else {
-                    return;
-                }
-            } catch (InputMismatchException e) {
-                displayInputMismatchExceptionMessage();
-                input.nextLine();
+        try {
+            if (input.hasNextLine()) {
+                callBookReturnMenuOptions(input.nextInt(10));
+            } else {
                 return;
             }
+        } catch (InputMismatchException e) {
+            displayInputMismatchExceptionMessage();
+            input.nextLine();
+            return;
+        }
     }
 
-    private void callReturnMenuOptions(int option) {
+    @Override
+    public void callMovieReturnMenu() {
+        displayMovieReturnMenu();
+        displayBorrowedMovieListing(Utilities.formatMovieList(libraryController.getBorrowedMovies()));
+        try {
+            if (input.hasNextLine()) {
+                callMovieReturnMenuOptions(input.nextInt(10));
+            } else {
+                return;
+            }
+        } catch (InputMismatchException e) {
+            displayInputMismatchExceptionMessage();
+            input.nextLine();
+            return;
+        }
+
+    }
+
+    private void callBookReturnMenuOptions(int option) {
 
         if (option == 0) {
             return;
@@ -65,10 +85,33 @@ public class ReturnMenuImpl implements ReturnMenu {
 
     }
 
+    private void callMovieReturnMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getBorrowedMoviesSize()) {
+            try {
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
+                return;
+            } catch (MovieNotReturnable e) {
+                outputStream.println("\n" + e.getMessage() + "\n");
+            }
+        } else {
+            displayIncorrectOptionMessage();
+            return;
+        }
+    }
+
     @Override
-    public void displayReturnMenu() {
+    public void displayBookReturnMenu() {
         outputStream.print(messages.bookReturnMessage());
         outputStream.print(messages.bookListingMessage());
+    }
+
+    @Override
+    public void displayMovieReturnMenu() {
+        outputStream.print(messages.movieReturnMessage());
+        outputStream.print(messages.movieListingMessage());
     }
 
     @Override
@@ -78,12 +121,18 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     @Override
+    public void displayBorrowedMovieListing(String movies) {
+        outputStream.println(movies);
+        outputStream.print(messages.optionMessage());
+    }
+
+    @Override
     public void displayIncorrectOptionMessage() {
         outputStream.print(messages.incorrectOptionMessage());
     }
 
     @Override
-    public void displayIncorrectReturnMessage() {
+    public void displayIncorrectBookReturnMessage() {
         outputStream.print(messages.incorrectBookReturnMessage());
     }
 
@@ -95,5 +144,11 @@ public class ReturnMenuImpl implements ReturnMenu {
     @Override
     public String getReturnThankYouMessage() {
         return messages.returnThankYouMessage();
+    }
+
+
+    @Override
+    public void displayIncorrectMovieReturnMessage() {
+        outputStream.print(messages.incorrectMovieReturnMessage());
     }
 }

@@ -8,17 +8,28 @@ package com.twu.biblioteca.view;
  * @version 1.0
  */
 public interface ReturnMenu {
-    void displayReturnMenu();
+
 
     void displayBorrowedBookListing(String books);
 
     void displayIncorrectOptionMessage();
 
-    void displayIncorrectReturnMessage();
+    void displayIncorrectBookReturnMessage();
 
     void displayInputMismatchExceptionMessage();
 
-    void callReturnMenu();
+
+    void displayIncorrectMovieReturnMessage();
 
     String getReturnThankYouMessage();
+
+    void displayBookReturnMenu();
+
+    void displayMovieReturnMenu();
+
+    void displayBorrowedMovieListing(String movies);
+
+    void callBookReturnMenu();
+
+    void callMovieReturnMenu();
 }

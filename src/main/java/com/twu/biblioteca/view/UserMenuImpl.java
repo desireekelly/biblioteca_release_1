@@ -111,10 +111,10 @@ public class UserMenuImpl implements UserMenu {
                 break;
             case 2:
                 if (libraryController.borrowedBooksIsEmpty()) {
-                    returnMenu.displayIncorrectReturnMessage();
+                    returnMenu.displayIncorrectBookReturnMessage();
                     break;
                 }
-                returnMenu.callReturnMenu();
+                returnMenu.callBookReturnMenu();
                 break;
             case 3:
                 displayCustomerInformation(libraryController.getCustomerInformation());

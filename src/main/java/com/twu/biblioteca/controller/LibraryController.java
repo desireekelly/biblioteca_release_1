@@ -3,6 +3,7 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.MovieNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -38,6 +39,10 @@ public class LibraryController {
 
     public boolean borrowMovie(Movie movie) throws MovieNotBorrowable{
         return borrowService.borrowMovie(movie);
+    }
+
+    public boolean returnMovie(Movie movie) throws MovieNotReturnable {
+        return returnService.returnMovie(movie);
     }
 
     public List<Book> getAvailableBooks() {
@@ -117,6 +122,12 @@ public class LibraryController {
         Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
         borrowMovie(movieToBorrow);
         return movieToBorrow.getName().toString();
+    }
+
+    public String checkinMovie(int option) throws MovieNotReturnable {
+        Movie movieToReturn = library.getBorrowedMovies().get(option - 1);
+        returnMovie(movieToReturn);
+        return movieToReturn.getName().toString();
     }
 
     public User login(String libraryNumber, String password) {

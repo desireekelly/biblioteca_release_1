@@ -21,7 +21,8 @@ public class MessagesImpl implements Messages {
                 "2 Login to account\n" +
                 "3 Display the list of available movies\n" +
                 "4 Borrow a movie\n" +
-                "5 Exit\n";
+                "5 Return a movie\n" +
+                "6 Exit\n";
     }
 
     @Override
@@ -77,6 +78,11 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
+    public String incorrectMovieReturnMessage() {
+        return "\nSorry, there are no available movies to return\n";
+    }
+
+    @Override
     public String incorrectBookBorrowMessage() {
         return "\nSorry, there are no available books to borrow\n";
     }
@@ -124,6 +130,11 @@ public class MessagesImpl implements Messages {
     @Override
     public String movieBorrowMessage(){
         return "\nSelect a movie to borrow by entering the ID number or enter 0 to go back to the main menu:\n";
+    }
+
+    @Override
+    public String movieReturnMessage() {
+        return "\nSelect a movie to return by entering the ID number or enter 0 to go back to the main menu:\n";
     }
 
     @Override

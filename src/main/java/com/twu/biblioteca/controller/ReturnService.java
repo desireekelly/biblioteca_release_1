@@ -1,8 +1,10 @@
 package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 
 /**
@@ -21,6 +23,11 @@ public class ReturnService {
 
     public boolean returnBook(Book book, User user) throws BookNotReturnable {
         library.returnBook(book, user);
+        return true;
+    }
+
+    public boolean returnMovie(Movie movie) throws MovieNotReturnable {
+        library.returnMovie(movie);
         return true;
     }
 }

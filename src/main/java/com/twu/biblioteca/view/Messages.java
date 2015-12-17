@@ -38,6 +38,10 @@ public interface Messages {
 
     String movieListingMessage();
 
+    String movieReturnMessage();
+
+    String incorrectMovieReturnMessage();
+
     String incorrectMovieBorrowMessage();
 
     String movieBorrowThankYouMessage();

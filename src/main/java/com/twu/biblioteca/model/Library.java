@@ -3,6 +3,7 @@ package com.twu.biblioteca.model;
 import com.twu.biblioteca.exceptions.BookNotBorrowable;
 import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.MovieNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public interface Library {
 
     void checkoutMovie(Movie movie) throws MovieNotBorrowable;
 
-    //String getBookCheckedOutByCustomer(String bookTitle);
+    void returnMovie(Movie movie) throws MovieNotReturnable;
 
     Map<String, User> getUsers();
 
