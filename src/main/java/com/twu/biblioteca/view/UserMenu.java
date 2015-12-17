@@ -38,5 +38,5 @@ public interface UserMenu {
 
     void displayIncorrectBooksCheckedOutByCustomerMessage();
 
-    void displayBooksCheckedOutByCustomerMessage();
+    void displayBookCheckedOutByCustomerMessage();
 }

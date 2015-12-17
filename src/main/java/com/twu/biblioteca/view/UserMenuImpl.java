@@ -98,8 +98,8 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
-    private void booksCheckedOutByCustomer() {
-        displayBooksCheckedOutByCustomerMessage();
+    private void bookCheckedOutByCustomer() {
+        displayBookCheckedOutByCustomerMessage();
         String book = input.next();
         displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
 
@@ -146,7 +146,7 @@ public class UserMenuImpl implements UserMenu {
                     displayIncorrectBooksCheckedOutByCustomerMessage();
                     break;
                 }
-                booksCheckedOutByCustomer();
+                bookCheckedOutByCustomer();
 
                 break;
             case 2:
@@ -233,7 +233,7 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
-    public void displayBooksCheckedOutByCustomerMessage() {
+    public void displayBookCheckedOutByCustomerMessage() {
         outputStream.print(messages.booksCheckedOutByCustomerMessage());
     }
 
