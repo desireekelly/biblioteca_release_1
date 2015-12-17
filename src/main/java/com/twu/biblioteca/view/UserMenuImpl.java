@@ -50,7 +50,6 @@ public class UserMenuImpl implements UserMenu {
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                return;
             }
         }
     }
@@ -68,7 +67,6 @@ public class UserMenuImpl implements UserMenu {
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
-                return;
             }
         }
     }
