@@ -133,14 +133,14 @@ public class UserMenuImpl implements UserMenu {
 
     private void getBookCheckedOutByCustomer() {
 
-        displayBookCheckedOutByCustomerMessage();
+        //displayBookCheckedOutByCustomerMessage();
 
         //String book = input.next();
         String book = "Ruby 101";
 
         if (libraryController.getBookCheckedOutByCustomer(book) != null) {
             //displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
-            outputStream.print("\n\nSuccess\n");
+            outputStream.print("\nSuccess\n");
             return;
         } else if (libraryController.getBookCheckedOutByCustomer(book) == null) {
             displayIncorrectInputMessage();

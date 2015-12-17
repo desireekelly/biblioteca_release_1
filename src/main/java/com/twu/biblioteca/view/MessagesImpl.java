@@ -42,7 +42,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String booksCheckedOutByCustomerMessage() {
-        return "\nSearch for a checked out book by Title:";
+        return "Search for a checked out book by Title:";
 
     }
 
