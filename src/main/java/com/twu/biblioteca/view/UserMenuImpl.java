@@ -50,6 +50,7 @@ public class UserMenuImpl implements UserMenu {
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
+                return;
             }
         }
     }
@@ -67,6 +68,7 @@ public class UserMenuImpl implements UserMenu {
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
                 input.nextLine();
+                return;
             }
         }
     }
@@ -94,6 +96,14 @@ public class UserMenuImpl implements UserMenu {
             displayIncorrectLoginMessage();
             return;
         }
+    }
+
+    private void booksCheckedOutByCustomer() {
+        displayBooksCheckedOutByCustomerMessage();
+        String book = input.next();
+        displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
+
+
     }
 
 
@@ -127,20 +137,17 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
-    private void booksCheckedOutByCustomer() {
-        displayBooksCheckedOutByCustomerMessage();
-        String book = input.next();
-        // if (libraryController.getBooksCheckedOutByCustomer(book) == null) {
-            outputStream.print("list == null");
-            return;
-        // }
-    }
 
     private void callLibrarianMenuOptions(int option) {
 
         switch (option) {
             case 1:
+                if (libraryController.booksCheckedOutByCustomerListIsEmpty()) {
+                    displayIncorrectBooksCheckedOutByCustomerMessage();
+                    break;
+                }
                 booksCheckedOutByCustomer();
+
                 break;
             case 2:
                 displayLogoutMessage();
@@ -220,7 +227,7 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
-    public void displayBooksCheckedOutByCustomer(String book) {
+    public void displayBookCheckedOutByCustomer(String book) {
         outputStream.print(book + "\n");
 
     }
@@ -228,6 +235,12 @@ public class UserMenuImpl implements UserMenu {
     @Override
     public void displayBooksCheckedOutByCustomerMessage() {
         outputStream.print(messages.booksCheckedOutByCustomerMessage());
+    }
+
+    @Override
+    public void displayIncorrectBooksCheckedOutByCustomerMessage() {
+        outputStream.print(messages.incorrectBooksCheckedOutByCustomer());
+
     }
 
 }

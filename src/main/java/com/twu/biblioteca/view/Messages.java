@@ -52,6 +52,8 @@ public interface Messages {
 
     String booksCheckedOutByCustomerMessage();
 
+    String incorrectBooksCheckedOutByCustomer();
+
     String passwordMessage();
 
     String loginMessage();

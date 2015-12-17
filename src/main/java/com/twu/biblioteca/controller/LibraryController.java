@@ -140,7 +140,18 @@ public class LibraryController {
         return user.isLibrarian();
     }
 
-    public String getBooksCheckedOutByCustomer(String bookTitle) {
-        return library.getBooksCheckedOutByCustomer(bookTitle);
+
+    public boolean booksCheckedOutByCustomerListIsEmpty() {
+        if (library.getBooksCheckedOutByCustomerList().isEmpty()) {
+            return true;
+        }
+        return false;
     }
+
+    public String getBookCheckedOutByCustomer(String bookTitle) {
+        return library.getBookCheckedOutByCustomer(bookTitle);
+    }
+
+
+
 }

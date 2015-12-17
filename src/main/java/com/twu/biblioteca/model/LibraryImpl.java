@@ -143,15 +143,28 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public String getBooksCheckedOutByCustomer(String bookTitle) {
-        String checkedOutByCustomer;
+    public String getBookCheckedOutByCustomer(String bookTitle) {
+        String book = "";
         for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
             if (bookCheckedOutByCustomer.containsKey(bookTitle)) {
-                checkedOutByCustomer = entry.getKey() + " is checked out by user: " + entry.getValue();
-                return checkedOutByCustomer;
+                book = entry.getKey() + " is checked out by user: " + entry.getValue();
             }
+
         }
-        return null;
+        return book;
+    }
+
+
+    @Override
+    public List<String> getBooksCheckedOutByCustomerList() {
+        List<String> results = new ArrayList<String>(bookCheckedOutByCustomer.size());
+        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
+            results.add(entry.getKey() + " is checked out by user: " + entry.getValue());
+
+        }
+
+        return results;
+
     }
 
     @Override

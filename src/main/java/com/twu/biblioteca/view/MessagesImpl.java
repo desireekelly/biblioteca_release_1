@@ -155,4 +155,9 @@ public class MessagesImpl implements Messages {
     public String logoutMessage() {
         return "\nYou have logged out.\n";
     }
+
+    @Override
+    public String incorrectBooksCheckedOutByCustomer() {
+        return "\nSorry, there are no books checked out from the Library.\n";
+    }
 }

@@ -23,6 +23,7 @@ public class LibraryControllerTest {
     private BorrowService borrowService;
     private ReturnService returnService;
     private LibraryController libraryController;
+    private LibraryController libraryController2;
     private LibraryController libraryControllerMock;
     private Book book;
     private Movie movie;
@@ -48,6 +49,7 @@ public class LibraryControllerTest {
         libraryControllerMock = mock(LibraryController.class);
         library = new LibraryImpl();
         libraryController = new LibraryController(libraryMock, borrowService, returnService);
+        libraryController2 = new LibraryController(library, borrowService, returnService);
 
         bookList = new ArrayList<Book>();
         bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
@@ -213,32 +215,39 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void getCustomerInformation() throws Exception {
+    public void testGetCustomerInformation() throws Exception {
         when(libraryControllerMock.getCustomerInformation()).thenReturn("Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
         assertEquals(libraryControllerMock.getCustomerInformation(), "Name: Joe Bloggs\nEmail: joebloggs@joebloggs.com\nPhone Number: 0400 000 000");
         verify(libraryControllerMock, times(1)).getCustomerInformation();
     }
 
     @Test
-    public void getCustomerName() throws Exception {
+    public void testGetCustomerName() throws Exception {
         when(libraryControllerMock.getUserName()).thenReturn("Joe Bloggs");
         assertEquals(libraryControllerMock.getUserName(), "Joe Bloggs");
     }
 
     @Test
-    public void isCustomer() throws Exception {
+    public void testIsCustomer() throws Exception {
         when(libraryControllerMock.isCustomer()).thenReturn(true);
         assertTrue(libraryControllerMock.isCustomer());
     }
 
     @Test
-    public void isLibrarian() throws Exception {
+    public void testIsLibrarian() throws Exception {
         when(libraryControllerMock.isLibrarian()).thenReturn(true);
         assertTrue(libraryControllerMock.isLibrarian());
     }
 
     @Test
-    public void getBooksCheckedOutByCustomer() throws Exception {
-        assertEquals(libraryController.getBooksCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
+    public void testBooksCheckedOutByCustomerListIsEmpty() throws Exception {
+        when(libraryControllerMock.booksCheckedOutByCustomerListIsEmpty()).thenReturn(true);
+        assertTrue(libraryControllerMock.booksCheckedOutByCustomerListIsEmpty());
+        verify(libraryControllerMock, times(1)).booksCheckedOutByCustomerListIsEmpty();
+    }
+
+    @Test
+    public void testGetBookCheckedOutByCustomer() throws Exception {
+        assertEquals(libraryController2.getBookCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
     }
 }
