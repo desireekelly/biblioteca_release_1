@@ -34,11 +34,11 @@ public interface Library {
 
     void checkoutMovie(Movie movie) throws MovieNotBorrowable;
 
-    String getBookCheckedOutByCustomer(String bookTitle);
+    //String getBookCheckedOutByCustomer(String bookTitle);
 
     Map<String, User> getUsers();
 
     User login(String libraryNumber, String password);
 
-    List<String> getBooksCheckedOutByCustomerList();
+    String getBooksCheckedOutByCustomersList();
 }

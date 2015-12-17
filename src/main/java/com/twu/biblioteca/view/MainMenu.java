@@ -16,7 +16,7 @@ public interface MainMenu {
 
     void displayExitMessage();
 
-    void displayIncorrectInputMessage();
+    void displayIncorrectOptionMessage();
 
     void displayInputMismatchExceptionMessage();
 

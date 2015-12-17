@@ -1,6 +1,9 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.model.*;
+import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,14 +26,13 @@ public class LibraryControllerTest {
     private BorrowService borrowService;
     private ReturnService returnService;
     private LibraryController libraryController;
-    private LibraryController libraryController2;
     private LibraryController libraryControllerMock;
     private Book book;
     private Movie movie;
     private User user;
 
-    private Library libraryMock;
     private Library library;
+
     private List<Book> bookList;
     private List<Movie> movieList;
 
@@ -42,14 +44,13 @@ public class LibraryControllerTest {
     public void setUp() throws Exception {
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
-        libraryMock = mock(Library.class);
+        library = mock(Library.class);
         book = mock(Book.class);
         movie = mock(Movie.class);
         user = mock(User.class);
         libraryControllerMock = mock(LibraryController.class);
-        library = new LibraryImpl();
-        libraryController = new LibraryController(libraryMock, borrowService, returnService);
-        libraryController2 = new LibraryController(library, borrowService, returnService);
+
+        libraryController = new LibraryController(library, borrowService, returnService);
 
         bookList = new ArrayList<Book>();
         bookList.add(new Book("Java 101", "Joe Bloggs", 1990));
@@ -240,14 +241,18 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void testBooksCheckedOutByCustomerListIsEmpty() throws Exception {
-        when(libraryControllerMock.booksCheckedOutByCustomerListIsEmpty()).thenReturn(true);
-        assertTrue(libraryControllerMock.booksCheckedOutByCustomerListIsEmpty());
-        verify(libraryControllerMock, times(1)).booksCheckedOutByCustomerListIsEmpty();
+    public void testBooksCheckedOutByCustomersListIsEmpty() throws Exception {
+        when(libraryControllerMock.booksCheckedOutByCustomersListIsEmpty()).thenReturn(true);
+        assertTrue(libraryControllerMock.booksCheckedOutByCustomersListIsEmpty());
+        verify(libraryControllerMock, times(1)).booksCheckedOutByCustomersListIsEmpty();
     }
 
+
     @Test
-    public void testGetBookCheckedOutByCustomer() throws Exception {
-        assertEquals(libraryController2.getBookCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
+    public void testGetBooksCheckedOutByCustomersList() throws Exception {
+        when(libraryControllerMock.getBooksCheckedOutByCustomersList()).thenReturn("Ruby 101 is checked out by user: 123-4570\n");
+        assertEquals(libraryControllerMock.getBooksCheckedOutByCustomersList(), "Ruby 101 is checked out by user: 123-4570\n");
+        verify(libraryControllerMock, times(1)).getBooksCheckedOutByCustomersList();
     }
+
 }

@@ -12,7 +12,7 @@ public interface ReturnMenu {
 
     void displayBorrowedBookListing(String books);
 
-    void displayIncorrectInputMessage();
+    void displayIncorrectOptionMessage();
 
     void displayIncorrectReturnMessage();
 

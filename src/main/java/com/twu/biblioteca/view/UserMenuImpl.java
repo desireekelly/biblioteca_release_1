@@ -129,35 +129,15 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
-    private void getBookCheckedOutByCustomer() {
-        Scanner line = new Scanner(System.in);
-        displayBookCheckedOutByCustomerMessage();
-        String book = line.nextLine();
-
-        if (libraryController.getBookCheckedOutByCustomer(book) != null) {
-            displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
-            return;
-        } else if (libraryController.getBookCheckedOutByCustomer(book) == null) {
-            displayIncorrectOptionMessage();
-            return;
-        } else {
-            displayIncorrectInputMessage();
-            return;
-        }
-
-    }
-
     private void callLibrarianMenuOptions(int option) {
 
         switch (option) {
             case 1:
-                if (libraryController.booksCheckedOutByCustomerListIsEmpty()) {
-                    displayIncorrectBooksCheckedOutByCustomerMessage();
+                if (libraryController.booksCheckedOutByCustomersListIsEmpty()) {
+                    displayIncorrectBooksCheckedOutByCustomersMessage();
                     break;
                 }
-                getBookCheckedOutByCustomer();
-
-
+                displayBooksCheckedOutByCustomers(libraryController.getBooksCheckedOutByCustomersList());
                 break;
             case 2:
                 displayLogoutMessage();
@@ -187,13 +167,8 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
-    public void displayIncorrectInputMessage() {
-        outputStream.print(messages.incorrectInputMessage());
-    }
-
-    @Override
     public void displayInputMismatchExceptionMessage() {
-        displayIncorrectOptionMessage();
+        outputStream.print(messages.incorrectInputMessage());
     }
 
 
@@ -242,20 +217,16 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
-    public void displayBookCheckedOutByCustomer(String book) {
-        outputStream.print(book + "\n");
-
+    public void displayBooksCheckedOutByCustomers(String list) {
+        outputStream.print(messages.booksCheckedOutByCustomersMessage());
+        outputStream.print(list);
     }
 
     @Override
-    public void displayBookCheckedOutByCustomerMessage() {
-        outputStream.print(messages.booksCheckedOutByCustomerMessage());
-    }
-
-    @Override
-    public void displayIncorrectBooksCheckedOutByCustomerMessage() {
-        outputStream.print(messages.incorrectBooksCheckedOutByCustomer());
+    public void displayIncorrectBooksCheckedOutByCustomersMessage() {
+        outputStream.print(messages.incorrectBooksCheckedOutByCustomersMessage());
 
     }
+
 
 }

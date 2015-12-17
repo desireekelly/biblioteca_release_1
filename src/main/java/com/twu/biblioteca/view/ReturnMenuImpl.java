@@ -59,7 +59,7 @@ public class ReturnMenuImpl implements ReturnMenu {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
-            displayIncorrectInputMessage();
+            displayIncorrectOptionMessage();
             return;
         }
 
@@ -78,7 +78,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     @Override
-    public void displayIncorrectInputMessage() {
+    public void displayIncorrectOptionMessage() {
         outputStream.print(messages.incorrectOptionMessage());
     }
 
@@ -89,7 +89,7 @@ public class ReturnMenuImpl implements ReturnMenu {
 
     @Override
     public void displayInputMismatchExceptionMessage() {
-        displayIncorrectInputMessage();
+        outputStream.print(messages.incorrectInputMessage());
     }
 
     @Override

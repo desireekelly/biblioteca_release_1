@@ -1,5 +1,6 @@
 package com.twu.biblioteca.view;
 
+
 /**
  * UserMenu interface.
  * UserMenu is responsible for the UserMenu display.
@@ -16,7 +17,6 @@ public interface UserMenu {
 
     void displayIncorrectOptionMessage();
 
-    void displayIncorrectInputMessage();
 
     void displayInputMismatchExceptionMessage();
 
@@ -36,9 +36,9 @@ public interface UserMenu {
 
     void displayUserName(String user);
 
-    void displayBookCheckedOutByCustomer(String book);
 
-    void displayIncorrectBooksCheckedOutByCustomerMessage();
+    void displayIncorrectBooksCheckedOutByCustomersMessage();
 
-    void displayBookCheckedOutByCustomerMessage();
+    void displayBooksCheckedOutByCustomers(String list);
+
 }

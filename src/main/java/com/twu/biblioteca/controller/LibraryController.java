@@ -141,17 +141,17 @@ public class LibraryController {
     }
 
 
-    public boolean booksCheckedOutByCustomerListIsEmpty() {
-        if (library.getBooksCheckedOutByCustomerList().isEmpty()) {
+    public boolean booksCheckedOutByCustomersListIsEmpty() {
+        if (library.getBooksCheckedOutByCustomersList() == null) {
             return true;
         }
         return false;
     }
 
-    public String getBookCheckedOutByCustomer(String bookTitle) {
-        return library.getBookCheckedOutByCustomer(bookTitle);
-    }
 
+    public String getBooksCheckedOutByCustomersList() {
+        return library.getBooksCheckedOutByCustomersList();
+    }
 
 
 }

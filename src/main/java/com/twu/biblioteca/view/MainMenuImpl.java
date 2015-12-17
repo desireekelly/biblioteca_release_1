@@ -87,7 +87,7 @@ public class MainMenuImpl implements MainMenu {
                 exit = true;
                 break;
             default:
-                displayIncorrectInputMessage();
+                displayIncorrectOptionMessage();
                 break;
         }
     }
@@ -132,13 +132,13 @@ public class MainMenuImpl implements MainMenu {
     }
 
     @Override
-    public void displayIncorrectInputMessage() {
+    public void displayIncorrectOptionMessage() {
         outputStream.print(messages.incorrectOptionMessage());
     }
 
     @Override
     public void displayInputMismatchExceptionMessage() {
-        displayIncorrectInputMessage();
+        outputStream.print(messages.incorrectInputMessage());
     }
 
 

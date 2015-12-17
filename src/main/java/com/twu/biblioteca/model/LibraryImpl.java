@@ -142,30 +142,17 @@ public class LibraryImpl implements Library {
         borrowedMovies.add(movie);
     }
 
-    @Override
-    public String getBookCheckedOutByCustomer(String bookTitle) {
-        String book;
-        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
-            if (bookCheckedOutByCustomer.containsKey(bookTitle)) {
-                book = entry.getKey() + " is checked out by user: " + entry.getValue();
-                return book;
-            }
-
-        }
-        return null;
-
-    }
-
 
     @Override
-    public List<String> getBooksCheckedOutByCustomerList() {
-        List<String> results = new ArrayList<String>(bookCheckedOutByCustomer.size());
-        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
-            results.add(entry.getKey() + " is checked out by user: " + entry.getValue());
+    public String getBooksCheckedOutByCustomersList() {
 
+        String books = "";
+        for (Map.Entry<String, String> entry : bookCheckedOutByCustomer.entrySet()) {
+
+            books += entry.getKey() + " is checked out by user: " + entry.getValue() + "\n";
         }
 
-        return results;
+        return books;
 
     }
 

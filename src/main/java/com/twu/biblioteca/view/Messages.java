@@ -52,9 +52,9 @@ public interface Messages {
 
     String libraryNumberMessage();
 
-    String booksCheckedOutByCustomerMessage();
+    String booksCheckedOutByCustomersMessage();
 
-    String incorrectBooksCheckedOutByCustomer();
+    String incorrectBooksCheckedOutByCustomersMessage();
 
     String passwordMessage();
 

@@ -61,14 +61,10 @@ public class LibraryTest {
         assertTrue(library.getUsers().containsKey("123-4567"));
     }
 
-    @Test
-    public void testGetBooksCheckedOutByCustomer() throws Exception {
-        assertEquals(library.getBookCheckedOutByCustomer("Ruby 101"), "Ruby 101 is checked out by user: 123-4570");
-    }
 
     @Test
-    public void testGetBooksCheckedOutByCustomerList() throws Exception {
-        assertTrue(library.getBooksCheckedOutByCustomerList().contains("Ruby 101 is checked out by user: 123-4570"));
+    public void testGetBooksCheckedOutByCustomersList() throws Exception {
+        assertTrue(library.getBooksCheckedOutByCustomersList().contains("Ruby 101 is checked out by user: 123-4570\n"));
 
     }
 

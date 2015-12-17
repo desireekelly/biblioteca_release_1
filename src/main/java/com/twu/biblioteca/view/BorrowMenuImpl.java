@@ -78,7 +78,7 @@ public class BorrowMenuImpl implements BorrowMenu {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
-            displayIncorrectInputMessage();
+            displayIncorrectOptionMessage();
             return;
         }
 
@@ -96,7 +96,7 @@ public class BorrowMenuImpl implements BorrowMenu {
                 outputStream.println("\n" + e.getMessage() + "\n");
             }
         } else {
-            displayIncorrectInputMessage();
+            displayIncorrectOptionMessage();
             return;
         }
     }
@@ -126,7 +126,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     @Override
-    public void displayIncorrectInputMessage() {
+    public void displayIncorrectOptionMessage() {
         outputStream.print(messages.incorrectOptionMessage());
     }
 
@@ -152,6 +152,6 @@ public class BorrowMenuImpl implements BorrowMenu {
 
     @Override
     public void displayInputMismatchExceptionMessage() {
-        displayIncorrectInputMessage();
+        outputStream.print(messages.incorrectInputMessage());
     }
 }

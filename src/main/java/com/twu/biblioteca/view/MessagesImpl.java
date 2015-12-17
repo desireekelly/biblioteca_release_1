@@ -36,13 +36,13 @@ public class MessagesImpl implements Messages {
     @Override
     public String librarianMenuMessage() {
         return "\nEnter one of the following options:\n" +
-                "1 Search for a checked out book\n" +
+                "1 Display books checked out by customers\n" +
                 "2 Logout\n";
     }
 
     @Override
-    public String booksCheckedOutByCustomerMessage() {
-        return "Search for a checked out book by Title:";
+    public String booksCheckedOutByCustomersMessage() {
+        return "\nBooks checked out by customers:\n\n";
 
     }
 
@@ -162,7 +162,8 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String incorrectBooksCheckedOutByCustomer() {
+    public String incorrectBooksCheckedOutByCustomersMessage() {
         return "\nSorry, there are no books checked out from the Library.\n";
     }
+
 }
