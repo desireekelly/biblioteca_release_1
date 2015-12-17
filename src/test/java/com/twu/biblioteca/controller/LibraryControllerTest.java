@@ -83,6 +83,13 @@ public class LibraryControllerTest {
     }
 
     @Test
+    public void libraryShouldDelegateToReturnServiceWhenMovieReturned() throws Exception {
+        when(returnService.returnMovie(movie)).thenReturn(true);
+        assertTrue(libraryController.returnMovie(movie));
+        verify(returnService, times(1)).returnMovie(movie);
+    }
+
+    @Test
     public void testBorrowBook() throws Exception {
         when(libraryControllerMock.borrowBook(book, user)).thenReturn(true);
         assertTrue(libraryControllerMock.borrowBook(book, user));
@@ -94,6 +101,13 @@ public class LibraryControllerTest {
         when(libraryControllerMock.returnBook(book, user)).thenReturn(true);
         assertTrue(libraryControllerMock.returnBook(book, user));
         verify(libraryControllerMock, times(1)).returnBook(book, user);
+    }
+
+    @Test
+    public void testReturnMovie() throws Exception {
+        when(libraryControllerMock.returnMovie(movie)).thenReturn(true);
+        assertTrue(libraryControllerMock.returnMovie(movie));
+        verify(libraryControllerMock, times(1)).returnMovie(movie);
     }
 
     @Test
@@ -150,6 +164,13 @@ public class LibraryControllerTest {
         when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK_TITLE);
         assertEquals(libraryControllerMock.checkinBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkinBook(1);
+    }
+
+    @Test
+    public void testCheckinMovie() throws Exception {
+        when(libraryControllerMock.checkinMovie(1)).thenReturn(MOVIE_TITLE);
+        assertEquals(libraryControllerMock.checkinMovie(1), MOVIE_TITLE);
+        verify(libraryControllerMock, times(1)).checkinMovie(1);
     }
 
     @Test
