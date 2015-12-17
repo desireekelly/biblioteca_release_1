@@ -67,7 +67,7 @@ public class UserMenuImpl implements UserMenu {
                 }
             } catch (InputMismatchException e) {
                 displayInputMismatchExceptionMessage();
-                //input.nextLine();
+                input.nextLine();
                 return;
             }
         }
