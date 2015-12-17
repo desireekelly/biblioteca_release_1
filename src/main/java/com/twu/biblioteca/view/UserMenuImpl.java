@@ -71,7 +71,6 @@ public class UserMenuImpl implements UserMenu {
         }
     }
 
-
     @Override
     public void login() {
         displayLoginMessage();
@@ -95,9 +94,6 @@ public class UserMenuImpl implements UserMenu {
             return;
         }
     }
-
-
-
 
     private void callCustomerMenuOptions(int option) {
 
@@ -130,7 +126,6 @@ public class UserMenuImpl implements UserMenu {
     }
 
     private void callLibrarianMenuOptions(int option) {
-
         switch (option) {
             case 1:
                 if (libraryController.booksCheckedOutByCustomersListIsEmpty()) {
@@ -171,30 +166,25 @@ public class UserMenuImpl implements UserMenu {
         outputStream.print(messages.incorrectInputMessage());
     }
 
-
     @Override
     public void displayLibraryNumberMessage() {
         outputStream.print(messages.libraryNumberMessage());
     }
-
 
     @Override
     public void displayPasswordMessage() {
         outputStream.print(messages.passwordMessage());
     }
 
-
     @Override
     public void displayLoginMessage() {
         outputStream.print(messages.loginMessage());
     }
 
-
     @Override
     public void displayIncorrectLoginMessage() {
         outputStream.print(messages.incorrectLoginMessage());
     }
-
 
     @Override
     public void displayCorrectLoginMessage() {
@@ -227,6 +217,4 @@ public class UserMenuImpl implements UserMenu {
         outputStream.print(messages.incorrectBooksCheckedOutByCustomersMessage());
 
     }
-
-
 }

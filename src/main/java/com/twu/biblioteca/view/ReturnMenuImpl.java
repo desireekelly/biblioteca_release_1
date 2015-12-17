@@ -30,7 +30,6 @@ public class ReturnMenuImpl implements ReturnMenu {
         this.input = new Scanner(inputStream);
     }
 
-
     @Override
     public void callBookReturnMenu() {
         displayBookReturnMenu();
@@ -63,11 +62,9 @@ public class ReturnMenuImpl implements ReturnMenu {
             input.nextLine();
             return;
         }
-
     }
 
     private void callBookReturnMenuOptions(int option) {
-
         if (option == 0) {
             return;
         }
@@ -82,7 +79,6 @@ public class ReturnMenuImpl implements ReturnMenu {
             displayIncorrectOptionMessage();
             return;
         }
-
     }
 
     private void callMovieReturnMenuOptions(int option) {
@@ -145,7 +141,6 @@ public class ReturnMenuImpl implements ReturnMenu {
     public String getReturnThankYouMessage() {
         return messages.returnThankYouMessage();
     }
-
 
     @Override
     public void displayIncorrectMovieReturnMessage() {

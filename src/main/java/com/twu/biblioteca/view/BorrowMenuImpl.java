@@ -62,11 +62,9 @@ public class BorrowMenuImpl implements BorrowMenu {
             input.nextLine();
             return;
         }
-
     }
 
     private void callBookBorrowMenuOptions(int option) {
-
         if (option == 0) {
             return;
         }
@@ -81,7 +79,6 @@ public class BorrowMenuImpl implements BorrowMenu {
             displayIncorrectOptionMessage();
             return;
         }
-
     }
 
     private void callMovieBorrowMenuOptions(int option) {

@@ -27,6 +27,4 @@ public interface MainMenu {
     void displayIncorrectAvailableMoviesMessage();
 
     void displayAvailableMovieListing(String movies);
-
-
 }

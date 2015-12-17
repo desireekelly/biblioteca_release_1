@@ -151,7 +151,6 @@ public class LibraryController {
         return user.isLibrarian();
     }
 
-
     public boolean booksCheckedOutByCustomersListIsEmpty() {
         if (library.getBooksCheckedOutByCustomersList() == null) {
             return true;
@@ -159,10 +158,7 @@ public class LibraryController {
         return false;
     }
 
-
     public String getBooksCheckedOutByCustomersList() {
         return library.getBooksCheckedOutByCustomersList();
     }
-
-
 }

@@ -268,12 +268,10 @@ public class LibraryControllerTest {
         verify(libraryControllerMock, times(1)).booksCheckedOutByCustomersListIsEmpty();
     }
 
-
     @Test
     public void testGetBooksCheckedOutByCustomersList() throws Exception {
         when(libraryControllerMock.getBooksCheckedOutByCustomersList()).thenReturn("Ruby 101 is checked out by user: 123-4570\n");
         assertEquals(libraryControllerMock.getBooksCheckedOutByCustomersList(), "Ruby 101 is checked out by user: 123-4570\n");
         verify(libraryControllerMock, times(1)).getBooksCheckedOutByCustomersList();
     }
-
 }

@@ -9,7 +9,6 @@ package com.twu.biblioteca.view;
  */
 public interface ReturnMenu {
 
-
     void displayBorrowedBookListing(String books);
 
     void displayIncorrectOptionMessage();
@@ -17,7 +16,6 @@ public interface ReturnMenu {
     void displayIncorrectBookReturnMessage();
 
     void displayInputMismatchExceptionMessage();
-
 
     void displayIncorrectMovieReturnMessage();
 

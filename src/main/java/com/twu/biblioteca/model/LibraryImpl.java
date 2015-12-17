@@ -150,18 +150,14 @@ public class LibraryImpl implements Library {
         borrowedMovies.remove(movie);
     }
 
-
     @Override
     public String getBooksCheckedOutByCustomersList() {
-
         String books = "";
         for (Map.Entry<String, String> entry : booksCheckedOutByCustomers.entrySet()) {
 
             books += entry.getKey() + " is checked out by user: " + entry.getValue() + "\n";
         }
-
         return books;
-
     }
 
     @Override

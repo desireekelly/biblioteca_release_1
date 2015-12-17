@@ -58,7 +58,6 @@ public class MainMenuImpl implements MainMenu {
     }
 
     private void callMainMenuOptions(int option) {
-
         switch (option) {
             case 1:
                 if (libraryController.availableBooksIsEmpty()) {
@@ -100,7 +99,6 @@ public class MainMenuImpl implements MainMenu {
                 break;
         }
     }
-
 
     @Override
     public void displayAvailableMovieListing(String movies) {
@@ -149,6 +147,4 @@ public class MainMenuImpl implements MainMenu {
     public void displayInputMismatchExceptionMessage() {
         outputStream.print(messages.incorrectInputMessage());
     }
-
-
 }

@@ -77,6 +77,4 @@ public class UserTest {
         LIBRARIAN_1.setLibrarian(true);
         assertTrue(LIBRARIAN_1.isLibrarian());
     }
-
-
 }
