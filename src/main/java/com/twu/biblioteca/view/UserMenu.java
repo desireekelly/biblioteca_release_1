@@ -14,6 +14,8 @@ public interface UserMenu {
 
     void displayLibrarianMenu();
 
+    void displayIncorrectOptionMessage();
+
     void displayIncorrectInputMessage();
 
     void displayInputMismatchExceptionMessage();

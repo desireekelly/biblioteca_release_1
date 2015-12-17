@@ -79,7 +79,7 @@ public class ReturnMenuImpl implements ReturnMenu {
 
     @Override
     public void displayIncorrectInputMessage() {
-        outputStream.print(messages.incorrectInputMessage());
+        outputStream.print(messages.incorrectOptionMessage());
     }
 
     @Override

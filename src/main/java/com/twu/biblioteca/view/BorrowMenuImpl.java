@@ -127,7 +127,7 @@ public class BorrowMenuImpl implements BorrowMenu {
 
     @Override
     public void displayIncorrectInputMessage() {
-        outputStream.print(messages.incorrectInputMessage());
+        outputStream.print(messages.incorrectOptionMessage());
     }
 
     @Override

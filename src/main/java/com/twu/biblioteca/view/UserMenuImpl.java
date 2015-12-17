@@ -126,23 +126,23 @@ public class UserMenuImpl implements UserMenu {
                 customerLoggedIn = false;
                 break;
             default:
-                displayIncorrectInputMessage();
+                displayIncorrectOptionMessage();
                 break;
         }
     }
 
     private void getBookCheckedOutByCustomer() {
-
-        //displayBookCheckedOutByCustomerMessage();
-
-        //String book = input.next();
-        String book = "Ruby 101";
+        Scanner line = new Scanner(System.in);
+        displayBookCheckedOutByCustomerMessage();
+        String book = line.nextLine();
 
         if (libraryController.getBookCheckedOutByCustomer(book) != null) {
-            //displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
-            outputStream.print("\nSuccess\n");
+            displayBookCheckedOutByCustomer(libraryController.getBookCheckedOutByCustomer(book));
             return;
         } else if (libraryController.getBookCheckedOutByCustomer(book) == null) {
+            displayIncorrectOptionMessage();
+            return;
+        } else {
             displayIncorrectInputMessage();
             return;
         }
@@ -166,7 +166,7 @@ public class UserMenuImpl implements UserMenu {
                 librarianLoggedIn = false;
                 break;
             default:
-                displayIncorrectInputMessage();
+                displayIncorrectOptionMessage();
                 break;
         }
     }
@@ -184,13 +184,18 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
+    public void displayIncorrectOptionMessage() {
+        outputStream.print(messages.incorrectOptionMessage());
+    }
+
+    @Override
     public void displayIncorrectInputMessage() {
         outputStream.print(messages.incorrectInputMessage());
     }
 
     @Override
     public void displayInputMismatchExceptionMessage() {
-        displayIncorrectInputMessage();
+        displayIncorrectOptionMessage();
     }
 
 

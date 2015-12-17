@@ -133,7 +133,7 @@ public class MainMenuImpl implements MainMenu {
 
     @Override
     public void displayIncorrectInputMessage() {
-        outputStream.print(messages.incorrectInputMessage());
+        outputStream.print(messages.incorrectOptionMessage());
     }
 
     @Override

@@ -18,6 +18,8 @@ public interface Messages {
 
     String incorrectAvailableBooksMessage();
 
+    String incorrectOptionMessage();
+
     String incorrectInputMessage();
 
     String incorrectBookReturnMessage();

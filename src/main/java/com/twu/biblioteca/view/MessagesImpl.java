@@ -62,8 +62,13 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String incorrectInputMessage() {
+    public String incorrectOptionMessage() {
         return "\nIncorrect option, please try again.\n";
+    }
+
+    @Override
+    public String incorrectInputMessage() {
+        return "\nIncorrect input, please try again.\n";
     }
 
     @Override
