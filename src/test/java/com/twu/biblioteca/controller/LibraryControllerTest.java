@@ -24,10 +24,10 @@ public class LibraryControllerTest {
     private ReturnService returnService;
     private LoginService loginService;
     private LibraryController libraryController;
-
     private User user;
-    private LibraryController libraryControllerMock;
     private BorrowableItem item;
+    private LibraryController libraryControllerMock;
+
     private static final String BOOK_TITLE = "Java 101";
     private static final String MOVIE_TITLE = "The Matrix";
 
@@ -38,8 +38,8 @@ public class LibraryControllerTest {
         returnService = mock(ReturnService.class);
         loginService = mock(LoginService.class);
         libraryController = new LibraryController(library, borrowService, returnService, loginService);
-        item = mock(BorrowableItem.class);
         user = mock(User.class);
+        item = mock(BorrowableItem.class);
         libraryControllerMock = mock(LibraryController.class);
     }
 

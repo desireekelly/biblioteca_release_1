@@ -23,17 +23,9 @@ import static org.junit.Assert.assertEquals;
  */
 public class UtilitiesTest {
 
-    private List<Book> books;
-    private List<Movie> movies;
-    private Map<BorrowableItem, User> itemsCheckedOutByCustomers;
-    private Book book1;
-    private User user1;
-    private Book book2;
-    private User user2;
-
     @Test
     public void testFormatBookList() throws Exception {
-        books = new ArrayList<Book>();
+        List<Book> books = new ArrayList<Book>();
         books.add(new Book("Java 101", "Joe Bloggs", 1990));
         books.add(new Book("PHP 101", "Mary Jane", 2005));
         assertEquals("1               Java 101        Joe Bloggs      1990           \n" +
@@ -43,7 +35,7 @@ public class UtilitiesTest {
 
     @Test
     public void testDisplayFormatMovieList() throws Exception {
-        movies = new ArrayList<Movie>();
+        List<Movie> movies = new ArrayList<Movie>();
         movies.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         movies.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
         assertEquals("1                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
@@ -53,11 +45,11 @@ public class UtilitiesTest {
 
     @Test
     public void testFormatGetItemsCheckedOutByCustomers() throws Exception {
-        itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
-        book1 = new Book("Ruby 101", "Jenny Moore", 2013);
-        user1 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
-        book2 = new Book("Web Development 101", "Mark Green", 2014);
-        user2 = new User("Mary Jane", "maryjane@maryjane.com", "0400 738 939", "123-4571", "3kv93m0c");
+        Map<BorrowableItem, User> itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
+        Book book1 = new Book("Ruby 101", "Jenny Moore", 2013);
+        User user1 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
+        Book book2 = new Book("Web Development 101", "Mark Green", 2014);
+        User user2 = new User("Mary Jane", "maryjane@maryjane.com", "0400 738 939", "123-4571", "3kv93m0c");
         itemsCheckedOutByCustomers.put(book1, user1);
         itemsCheckedOutByCustomers.put(book2, user2);
         assertEquals("Ruby 101 is checked out by user: 123-4570\n" +
