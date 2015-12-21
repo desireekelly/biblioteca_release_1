@@ -129,28 +129,28 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void testCheckoutBook() throws Exception {
+    public void testCheckoutBookReturnsTitle() throws Exception {
         when(libraryControllerMock.checkoutBook(1)).thenReturn(BOOK_TITLE);
         assertEquals(libraryControllerMock.checkoutBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkoutBook(1);
     }
 
     @Test
-    public void testCheckoutMovie() throws Exception {
+    public void testCheckoutMovieReturnsName() throws Exception {
         when(libraryControllerMock.checkoutMovie(1)).thenReturn(MOVIE_TITLE);
         assertEquals(libraryControllerMock.checkoutMovie(1), MOVIE_TITLE);
         verify(libraryControllerMock, times(1)).checkoutMovie(1);
     }
 
     @Test
-    public void testCheckinBook() throws Exception {
+    public void testCheckinBookReturnsTitle() throws Exception {
         when(libraryControllerMock.checkinBook(1)).thenReturn(BOOK_TITLE);
         assertEquals(libraryControllerMock.checkinBook(1), BOOK_TITLE);
         verify(libraryControllerMock, times(1)).checkinBook(1);
     }
 
     @Test
-    public void testCheckinMovie() throws Exception {
+    public void testCheckinMovieReturnsName() throws Exception {
         when(libraryControllerMock.checkinMovie(1)).thenReturn(MOVIE_TITLE);
         assertEquals(libraryControllerMock.checkinMovie(1), MOVIE_TITLE);
         verify(libraryControllerMock, times(1)).checkinMovie(1);
