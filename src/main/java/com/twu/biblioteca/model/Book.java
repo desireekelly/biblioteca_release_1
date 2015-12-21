@@ -6,7 +6,7 @@ package com.twu.biblioteca.model;
  * @author Desiree Kelly
  * @version 1.0
  */
-public class Book {
+public class Book implements BorrowableItem {
 
     private String title;
     private String author;

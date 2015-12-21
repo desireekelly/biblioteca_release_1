@@ -1,6 +1,9 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.*;
+import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.IncorrectLogin;
+import com.twu.biblioteca.exceptions.ItemNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -90,27 +93,13 @@ public class LibraryTest {
 
     @Test(expected = BookNotReturnable.class)
     public void testExceptionThrownWhenBookAlreadyReturned() throws Exception {
-        try {
-            library.returnBook(library.getAvailableBooks().get(0), USER_1);
-        } catch (BookNotReturnable e) {
-            String message = "book is already returned";
-            assertEquals(message, e.getMessage());
-            throw e;
-        }
-        fail("BookNotReturnable Exception not thrown");
+        library.returnBook(library.getAvailableBooks().get(0), USER_1);
     }
 
-    @Test(expected = BookNotBorrowable.class)
+    @Test(expected = ItemNotBorrowable.class)
     public void testExceptionThrownWhenBookBorrowedTwice() throws Exception {
-        try {
-            library.checkoutBook(library.getBookList().get(0), USER_1);
-            library.checkoutBook(library.getBookList().get(0), USER_1);
-        } catch (BookNotBorrowable e) {
-            String message = "book is not available";
-            assertEquals(message, e.getMessage());
-            throw e;
-        }
-        fail("BookNotBorrowable Exception not thrown");
+        library.checkoutBook(library.getBookList().get(0), USER_1);
+        library.checkoutBook(library.getBookList().get(0), USER_1);
     }
 
     @Test
@@ -152,40 +141,19 @@ public class LibraryTest {
         assertTrue(library.getBorrowedMovies().contains(MOVIE_2));
     }
 
-    @Test(expected = MovieNotBorrowable.class)
+    @Test(expected = ItemNotBorrowable.class)
     public void testExceptionThrownWhenMovieBorrowedTwice() throws Exception {
-        try {
-            library.checkoutMovie(library.getMovieList().get(0));
-            library.checkoutMovie(library.getMovieList().get(0));
-        } catch (MovieNotBorrowable e) {
-            String message = "movie is not available";
-            assertEquals(message, e.getMessage());
-            throw e;
-        }
-        fail("MovieNotBorrowable Exception not thrown");
+        library.checkoutMovie(library.getMovieList().get(0));
+        library.checkoutMovie(library.getMovieList().get(0));
     }
 
     @Test(expected = MovieNotReturnable.class)
     public void testExceptionThrownWhenMovieAlreadyReturned() throws Exception {
-        try {
-            library.returnMovie(library.getAvailableMovies().get(0));
-        } catch (MovieNotReturnable e) {
-            String message = "movie is already returned";
-            assertEquals(message, e.getMessage());
-            throw e;
-        }
-        fail("MovieNotReturnable Exception not thrown");
+        library.returnMovie(library.getAvailableMovies().get(0));
     }
 
     @Test(expected = IncorrectLogin.class)
     public void testExceptionThrownWhenIncorrectLogin() throws Exception {
-        try {
-            library.login("jfsl", "fjlk");
-        } catch (IncorrectLogin e) {
-            String message = "Incorrect login details. Please try again.";
-            assertEquals(message, e.getMessage());
-            throw e;
-        }
-        fail("IncorrectLogin Exception not thrown");
+        library.login("jfsl", "fjlk");
     }
 }

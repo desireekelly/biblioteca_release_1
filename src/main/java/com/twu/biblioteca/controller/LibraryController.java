@@ -1,6 +1,9 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.exceptions.*;
+import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.IncorrectLogin;
+import com.twu.biblioteca.exceptions.ItemNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -29,7 +32,7 @@ public class LibraryController {
         this.library = library;
     }
 
-    public boolean borrowBook(Book book, User user) throws BookNotBorrowable {
+    public boolean borrowBook(Book book, User user) throws ItemNotBorrowable {
         return borrowService.borrowBook(book, user);
     }
 
@@ -37,7 +40,7 @@ public class LibraryController {
         return returnService.returnBook(book, user);
     }
 
-    public boolean borrowMovie(Movie movie) throws MovieNotBorrowable{
+    public boolean borrowMovie(Movie movie) throws ItemNotBorrowable {
         return borrowService.borrowMovie(movie);
     }
 
@@ -109,7 +112,7 @@ public class LibraryController {
         return library.getBorrowedMovies().size();
     }
 
-    public String checkoutBook(int option) throws BookNotBorrowable {
+    public String checkoutBook(int option) throws ItemNotBorrowable {
         Book bookToBorrow = library.getAvailableBooks().get(option - 1);
         borrowBook(bookToBorrow, user);
         return bookToBorrow.getTitle().toString();
@@ -121,7 +124,7 @@ public class LibraryController {
         return bookToReturn.getTitle().toString();
     }
 
-    public String checkoutMovie(int option) throws MovieNotBorrowable {
+    public String checkoutMovie(int option) throws ItemNotBorrowable {
         Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
         borrowMovie(movieToBorrow);
         return movieToBorrow.getName().toString();

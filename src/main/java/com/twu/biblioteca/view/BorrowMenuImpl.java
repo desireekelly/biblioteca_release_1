@@ -1,8 +1,7 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.LibraryController;
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
+import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -72,7 +71,7 @@ public class BorrowMenuImpl implements BorrowMenu {
             try {
                 outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 return;
-            } catch (BookNotBorrowable e) {
+            } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
@@ -89,7 +88,7 @@ public class BorrowMenuImpl implements BorrowMenu {
             try {
                 outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
                 return;
-            } catch (MovieNotBorrowable e) {
+            } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {

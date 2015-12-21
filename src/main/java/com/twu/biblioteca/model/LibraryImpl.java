@@ -1,6 +1,9 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.*;
+import com.twu.biblioteca.exceptions.BookNotReturnable;
+import com.twu.biblioteca.exceptions.IncorrectLogin;
+import com.twu.biblioteca.exceptions.ItemNotBorrowable;
+import com.twu.biblioteca.exceptions.MovieNotReturnable;
 
 import java.util.*;
 
@@ -100,9 +103,9 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void checkoutBook(Book book, User user) throws BookNotBorrowable {
+    public void checkoutBook(Book book, User user) throws ItemNotBorrowable {
         if (borrowedBooks.contains(book))
-            throw new BookNotBorrowable("book is not available");
+            throw new ItemNotBorrowable("book is not available");
         borrowedBooks.add(book);
         booksCheckedOutByCustomers.put(book.getTitle(), user.getLibraryNumber());
     }
@@ -143,9 +146,9 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void checkoutMovie(Movie movie) throws MovieNotBorrowable {
+    public void checkoutMovie(Movie movie) throws ItemNotBorrowable {
         if (borrowedMovies.contains(movie))
-            throw new MovieNotBorrowable("movie is not available");
+            throw new ItemNotBorrowable("movie is not available");
         borrowedMovies.add(movie);
     }
 

@@ -6,7 +6,7 @@ package com.twu.biblioteca.model;
  * @author Desiree Kelly
  * @version 2.0
  */
-public class Movie {
+public class Movie implements BorrowableItem {
 
     private String name;
     private int year;

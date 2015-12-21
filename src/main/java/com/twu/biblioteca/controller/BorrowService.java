@@ -1,7 +1,6 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
+import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -21,12 +20,12 @@ public class BorrowService {
         this.library = library;
     }
 
-    public boolean borrowBook(Book book, User user) throws BookNotBorrowable {
+    public boolean borrowBook(Book book, User user) throws ItemNotBorrowable {
         library.checkoutBook(book, user);
         return true;
     }
 
-    public boolean borrowMovie(Movie movie) throws MovieNotBorrowable{
+    public boolean borrowMovie(Movie movie) throws ItemNotBorrowable {
         library.checkoutMovie(movie);
         return true;
     }
