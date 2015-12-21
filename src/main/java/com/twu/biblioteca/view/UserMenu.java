@@ -33,9 +33,9 @@ public interface UserMenu {
 
     void displayUserName(String user);
 
-    void displayIncorrectBooksCheckedOutByCustomersMessage();
+    void displayIncorrectItemsCheckedOutByCustomersMessage();
 
-    void displayBooksCheckedOutByCustomers(String list);
+    void displayItemsCheckedOutByCustomers(String list);
 
     void displayIncorrectAvailableBooksMessage();
 

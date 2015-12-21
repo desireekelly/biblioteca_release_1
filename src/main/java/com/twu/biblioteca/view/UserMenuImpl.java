@@ -158,10 +158,10 @@ public class UserMenuImpl implements UserMenu {
         switch (option) {
             case 1:
                 if (libraryController.itemsCheckedOutByCustomersIsEmpty()) {
-                    displayIncorrectBooksCheckedOutByCustomersMessage();
+                    displayIncorrectItemsCheckedOutByCustomersMessage();
                     break;
                 }
-                displayBooksCheckedOutByCustomers(Utilities.formatGetItemsCheckedOutByCustomers(libraryController.getItemsCheckedOutByCustomers()));
+                displayItemsCheckedOutByCustomers(Utilities.formatGetItemsCheckedOutByCustomers(libraryController.getItemsCheckedOutByCustomers()));
                 break;
             case 2:
                 displayLogoutMessage();
@@ -253,13 +253,13 @@ public class UserMenuImpl implements UserMenu {
     }
 
     @Override
-    public void displayBooksCheckedOutByCustomers(String list) {
-        outputStream.print(messages.booksCheckedOutByCustomersMessage());
+    public void displayItemsCheckedOutByCustomers(String list) {
+        outputStream.print(messages.itemsCheckedOutByCustomersMessage());
         outputStream.print(list);
     }
 
     @Override
-    public void displayIncorrectBooksCheckedOutByCustomersMessage() {
-        outputStream.print(messages.incorrectBooksCheckedOutByCustomersMessage());
+    public void displayIncorrectItemsCheckedOutByCustomersMessage() {
+        outputStream.print(messages.incorrectItemsCheckedOutByCustomersMessage());
     }
 }

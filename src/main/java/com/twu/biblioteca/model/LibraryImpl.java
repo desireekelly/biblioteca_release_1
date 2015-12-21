@@ -24,7 +24,7 @@ public class LibraryImpl implements Library {
         this.createBookList();
         this.createMovieList();
         this.createUsers();
-        this.createBooksCheckedOutByCustomer();
+        this.createItemsCheckedOutByCustomers();
     }
 
     private void createBookList() {
@@ -55,7 +55,7 @@ public class LibraryImpl implements Library {
         librarian.setLibrarian(true);
     }
 
-    private void createBooksCheckedOutByCustomer() {
+    private void createItemsCheckedOutByCustomers() {
         Book book1 = new Book("Ruby 101", "Jenny Moore", 2013);
         Book book2 = new Book("Web Development 101", "Mark Green", 2014);
 

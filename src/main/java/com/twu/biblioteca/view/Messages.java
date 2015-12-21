@@ -57,9 +57,9 @@ public interface Messages {
 
     String libraryNumberMessage();
 
-    String booksCheckedOutByCustomersMessage();
+    String itemsCheckedOutByCustomersMessage();
 
-    String incorrectBooksCheckedOutByCustomersMessage();
+    String incorrectItemsCheckedOutByCustomersMessage();
 
     String passwordMessage();
 
