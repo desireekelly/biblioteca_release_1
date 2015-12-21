@@ -1,8 +1,7 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.LibraryController;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.ItemNotReturnable;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -72,7 +71,7 @@ public class ReturnMenuImpl implements ReturnMenu {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
                 return;
-            } catch (BookNotReturnable e) {
+            } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
@@ -89,7 +88,7 @@ public class ReturnMenuImpl implements ReturnMenu {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
                 return;
-            } catch (MovieNotReturnable e) {
+            } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {

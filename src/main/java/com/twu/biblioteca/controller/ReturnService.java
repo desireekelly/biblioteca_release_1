@@ -1,7 +1,6 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -21,12 +20,12 @@ public class ReturnService {
         this.library = library;
     }
 
-    public boolean returnBook(Book book, User user) throws BookNotReturnable {
+    public boolean returnBook(Book book, User user) throws ItemNotReturnable {
         library.returnBook(book, user);
         return true;
     }
 
-    public boolean returnMovie(Movie movie) throws MovieNotReturnable {
+    public boolean returnMovie(Movie movie) throws ItemNotReturnable {
         library.returnMovie(movie);
         return true;
     }

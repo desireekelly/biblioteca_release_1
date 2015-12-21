@@ -1,9 +1,8 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.exceptions.ItemNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -91,7 +90,7 @@ public class LibraryTest {
         verify(libraryMock, times(1)).returnMovie(movie);
     }
 
-    @Test(expected = BookNotReturnable.class)
+    @Test(expected = ItemNotReturnable.class)
     public void testExceptionThrownWhenBookAlreadyReturned() throws Exception {
         library.returnBook(library.getAvailableBooks().get(0), USER_1);
     }
@@ -147,7 +146,7 @@ public class LibraryTest {
         library.checkoutMovie(library.getMovieList().get(0));
     }
 
-    @Test(expected = MovieNotReturnable.class)
+    @Test(expected = ItemNotReturnable.class)
     public void testExceptionThrownWhenMovieAlreadyReturned() throws Exception {
         library.returnMovie(library.getAvailableMovies().get(0));
     }

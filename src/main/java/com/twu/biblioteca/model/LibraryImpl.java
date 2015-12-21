@@ -1,9 +1,8 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.BookNotReturnable;
 import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.exceptions.ItemNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.ItemNotReturnable;
 
 import java.util.*;
 
@@ -111,9 +110,9 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void returnBook(Book book, User user) throws BookNotReturnable {
+    public void returnBook(Book book, User user) throws ItemNotReturnable {
         if (!borrowedBooks.contains(book))
-            throw new BookNotReturnable("book is already returned");
+            throw new ItemNotReturnable("book is already returned");
         borrowedBooks.remove(book);
         booksCheckedOutByCustomers.remove(book.getTitle());
     }
@@ -153,9 +152,9 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public void returnMovie(Movie movie) throws MovieNotReturnable {
+    public void returnMovie(Movie movie) throws ItemNotReturnable {
         if (!borrowedMovies.contains(movie))
-            throw new MovieNotReturnable("movie is already returned");
+            throw new ItemNotReturnable("movie is already returned");
         borrowedMovies.remove(movie);
     }
 
