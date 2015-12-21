@@ -61,37 +61,9 @@ public class MainMenuImpl implements MainMenu {
     private void callMainMenuOptions(int option) {
         switch (option) {
             case 1:
-                if (libraryController.availableBooksIsEmpty()) {
-                    displayIncorrectAvailableBooksMessage();
-                    break;
-                }
-                displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
-                break;
-            case 2:
                 userMenu.login();
                 break;
-            case 3:
-                if (libraryController.availableMoviesIsEmpty()) {
-                    displayIncorrectAvailableMoviesMessage();
-                    break;
-                }
-                displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
-                break;
-            case 4:
-                if (libraryController.availableMoviesIsEmpty()) {
-                    borrowMenu.displayIncorrectMovieBorrowMessage();
-                    break;
-                }
-                borrowMenu.callMovieBorrowMenu();
-                break;
-            case 5:
-                if (libraryController.borrowedMoviesIsEmpty()) {
-                    returnMenu.displayIncorrectMovieReturnMessage();
-                    break;
-                }
-                returnMenu.callMovieReturnMenu();
-                break;
-            case 6:
+            case 2:
                 displayExitMessage();
                 exit = true;
                 break;
@@ -99,17 +71,6 @@ public class MainMenuImpl implements MainMenu {
                 displayIncorrectOptionMessage();
                 break;
         }
-    }
-
-    @Override
-    public void displayAvailableMovieListing(String movies) {
-        outputStream.print(messages.movieListingMessage());
-        outputStream.print(movies);
-    }
-
-    @Override
-    public void displayIncorrectAvailableMoviesMessage() {
-        outputStream.print(messages.incorrectAvailableMoviesMessage());
     }
 
     @Override
@@ -121,17 +82,6 @@ public class MainMenuImpl implements MainMenu {
     public void displayMainMenu() {
         outputStream.print(messages.mainMenuMessage());
         outputStream.print(messages.optionMessage());
-    }
-
-    @Override
-    public void displayAvailableBookListing(String books) {
-        outputStream.print(messages.bookListingMessage());
-        outputStream.print(books);
-    }
-
-    @Override
-    public void displayIncorrectAvailableBooksMessage() {
-        outputStream.print(messages.incorrectAvailableBooksMessage());
     }
 
     @Override

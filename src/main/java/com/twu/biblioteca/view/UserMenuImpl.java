@@ -101,22 +101,51 @@ public class UserMenuImpl implements UserMenu {
         switch (option) {
             case 1:
                 if (libraryController.availableBooksIsEmpty()) {
+                    displayIncorrectAvailableBooksMessage();
+                    break;
+                }
+                displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
+                break;
+
+            case 2:
+                if (libraryController.availableBooksIsEmpty()) {
                     borrowMenu.displayIncorrectBookBorrowMessage();
                     break;
                 }
                 borrowMenu.callBookBorrowMenu();
                 break;
-            case 2:
+            case 3:
                 if (libraryController.borrowedBooksIsEmpty()) {
                     returnMenu.displayIncorrectBookReturnMessage();
                     break;
                 }
                 returnMenu.callBookReturnMenu();
                 break;
-            case 3:
+            case 4:
+                if (libraryController.availableMoviesIsEmpty()) {
+                    displayIncorrectAvailableMoviesMessage();
+                    break;
+                }
+                displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
+                break;
+            case 5:
+                if (libraryController.availableMoviesIsEmpty()) {
+                    borrowMenu.displayIncorrectMovieBorrowMessage();
+                    break;
+                }
+                borrowMenu.callMovieBorrowMenu();
+                break;
+            case 6:
+                if (libraryController.borrowedMoviesIsEmpty()) {
+                    returnMenu.displayIncorrectMovieReturnMessage();
+                    break;
+                }
+                returnMenu.callMovieReturnMenu();
+                break;
+            case 7:
                 displayCustomerInformation(libraryController.getCustomerInformation());
                 break;
-            case 4:
+            case 8:
                 displayLogoutMessage();
                 customerLoggedIn = false;
                 break;
@@ -155,6 +184,28 @@ public class UserMenuImpl implements UserMenu {
     public void displayLibrarianMenu() {
         outputStream.print(messages.librarianMenuMessage());
         outputStream.print(messages.optionMessage());
+    }
+
+    @Override
+    public void displayIncorrectAvailableBooksMessage() {
+        outputStream.print(messages.incorrectAvailableBooksMessage());
+    }
+
+    @Override
+    public void displayAvailableBookListing(String books) {
+        outputStream.print(messages.bookListingMessage());
+        outputStream.print(books);
+    }
+
+    @Override
+    public void displayIncorrectAvailableMoviesMessage() {
+        outputStream.print(messages.incorrectAvailableMoviesMessage());
+    }
+
+    @Override
+    public void displayAvailableMovieListing(String movies) {
+        outputStream.print(messages.movieListingMessage());
+        outputStream.print(movies);
     }
 
     @Override

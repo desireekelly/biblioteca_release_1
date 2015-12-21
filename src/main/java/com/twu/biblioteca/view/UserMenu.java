@@ -36,4 +36,12 @@ public interface UserMenu {
     void displayIncorrectBooksCheckedOutByCustomersMessage();
 
     void displayBooksCheckedOutByCustomers(String list);
+
+    void displayIncorrectAvailableBooksMessage();
+
+    void displayAvailableBookListing(String books);
+
+    void displayIncorrectAvailableMoviesMessage();
+
+    void displayAvailableMovieListing(String movies);
 }

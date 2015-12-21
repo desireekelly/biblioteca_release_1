@@ -13,8 +13,6 @@ public interface MainMenu {
 
     void displayMainMenu();
 
-    void displayAvailableBookListing(String books);
-
     void displayExitMessage();
 
     void displayIncorrectOptionMessage();
@@ -22,10 +20,4 @@ public interface MainMenu {
     void displayInputMismatchExceptionMessage();
 
     void launch();
-
-    void displayIncorrectAvailableBooksMessage();
-
-    void displayIncorrectAvailableMoviesMessage();
-
-    void displayAvailableMovieListing(String movies);
 }
