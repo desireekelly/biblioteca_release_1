@@ -34,11 +34,9 @@ public class UserMenuImpl implements UserMenu {
         this.returnMenu = returnMenu;
         librarianLoggedIn = false;
         customerLoggedIn = false;
-
     }
 
     private void callCustomerMenu() {
-
         while (customerLoggedIn) {
             displayCustomerMenu();
             try {
@@ -55,7 +53,6 @@ public class UserMenuImpl implements UserMenu {
     }
 
     private void callLibrarianMenu() {
-
         while (librarianLoggedIn) {
             displayLibrarianMenu();
             try {
@@ -88,7 +85,6 @@ public class UserMenuImpl implements UserMenu {
             displayUserName(libraryController.getUserName());
             librarianLoggedIn = true;
             callLibrarianMenu();
-
         } else {
             displayIncorrectLoginMessage();
             return;
@@ -96,7 +92,6 @@ public class UserMenuImpl implements UserMenu {
     }
 
     private void callCustomerMenuOptions(int option) {
-
         switch (option) {
             case 1:
                 if (libraryController.availableBooksIsEmpty()) {
@@ -215,6 +210,5 @@ public class UserMenuImpl implements UserMenu {
     @Override
     public void displayIncorrectBooksCheckedOutByCustomersMessage() {
         outputStream.print(messages.incorrectBooksCheckedOutByCustomersMessage());
-
     }
 }

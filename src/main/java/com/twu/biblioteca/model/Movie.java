@@ -33,7 +33,6 @@ public class Movie {
     }
 
     public String getMovieRating() {
-
         return movieRating;
     }
 
@@ -46,9 +45,7 @@ public class Movie {
         if (!obj.getClass().equals(this.getClass())) {
             return false;
         }
-
         Movie otherMovie = (Movie) obj;
-
         return this.name.equals(otherMovie.name)
                 && this.year == otherMovie.year
                 && this.director.equals(otherMovie.director)

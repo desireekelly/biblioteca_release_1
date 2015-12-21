@@ -18,6 +18,7 @@ import java.util.List;
  * @version 1.0
  */
 public class LibraryController {
+
     private BorrowService borrowService;
     private ReturnService returnService;
     private Library library;
@@ -107,7 +108,7 @@ public class LibraryController {
 
 
     public String checkoutBook(int option) throws BookNotBorrowable {
-            Book bookToBorrow = library.getAvailableBooks().get(option - 1);
+        Book bookToBorrow = library.getAvailableBooks().get(option - 1);
         borrowBook(bookToBorrow, user);
         return bookToBorrow.getTitle().toString();
     }

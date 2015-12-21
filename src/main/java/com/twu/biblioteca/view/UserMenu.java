@@ -8,6 +8,7 @@ package com.twu.biblioteca.view;
  * @version 2.0
  */
 public interface UserMenu {
+
     void login();
 
     void displayCustomerMenu();

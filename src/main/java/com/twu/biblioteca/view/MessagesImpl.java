@@ -44,7 +44,6 @@ public class MessagesImpl implements Messages {
     @Override
     public String booksCheckedOutByCustomersMessage() {
         return "\nBooks checked out by customers:\n\n";
-
     }
 
     @Override

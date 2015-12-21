@@ -13,10 +13,8 @@ public class User {
     private String phoneNumber;
     private String libraryNumber;
     private String password;
-
     private Boolean customer = false;
     private Boolean librarian = false;
-
 
     public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
         this.name = name;

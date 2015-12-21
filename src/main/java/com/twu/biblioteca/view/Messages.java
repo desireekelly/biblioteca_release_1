@@ -8,6 +8,7 @@ package com.twu.biblioteca.view;
  * @version 1.0
  */
 public interface Messages {
+
     String welcomeMessage();
 
     String mainMenuMessage();

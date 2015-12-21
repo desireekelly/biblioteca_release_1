@@ -15,6 +15,7 @@ import java.util.Scanner;
  * @version 1.0
  */
 public class MainMenuImpl implements MainMenu {
+
     private LibraryController libraryController;
     private Scanner input;
     private PrintStream outputStream;
