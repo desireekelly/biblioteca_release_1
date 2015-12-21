@@ -25,8 +25,6 @@ public interface UserMenu {
 
     void displayLoginMessage();
 
-    void displayIncorrectLoginMessage();
-
     void displayCorrectLoginMessage();
 
     void displayLogoutMessage();

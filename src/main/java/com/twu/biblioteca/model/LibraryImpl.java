@@ -1,9 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.*;
 
 import java.util.*;
 
@@ -175,12 +172,12 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public User login(String libraryNumber, String password) {
+    public User login(String libraryNumber, String password) throws IncorrectLogin {
         if (users.containsKey(libraryNumber)) {
             if (users.get(libraryNumber).checkPassword(password)) {
                 return users.get(libraryNumber);
             }
         }
-        return null;
+        throw new IncorrectLogin("Incorrect login details. Please try again.");
     }
 }

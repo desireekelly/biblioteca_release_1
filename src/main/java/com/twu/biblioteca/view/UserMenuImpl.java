@@ -1,6 +1,7 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.controller.LibraryController;
+import com.twu.biblioteca.exceptions.IncorrectLogin;
 
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -75,19 +76,24 @@ public class UserMenuImpl implements UserMenu {
         String libraryNumber = input.next();
         displayPasswordMessage();
         String password = input.next();
-        if (libraryController.login(libraryNumber, password) != null && !libraryController.isLibrarian()) {
-            displayCorrectLoginMessage();
-            displayUserName(libraryController.getUserName());
-            customerLoggedIn = true;
-            callCustomerMenu();
-        } else if (libraryController.login(libraryNumber, password) != null && libraryController.isLibrarian()) {
-            displayCorrectLoginMessage();
-            displayUserName(libraryController.getUserName());
-            librarianLoggedIn = true;
-            callLibrarianMenu();
-        } else {
-            displayIncorrectLoginMessage();
-            return;
+        try {
+            libraryController.login(libraryNumber, password);
+            if (!libraryController.isLibrarian()) {
+                displayCorrectLoginMessage();
+                displayUserName(libraryController.getUserName());
+                customerLoggedIn = true;
+                callCustomerMenu();
+            } else if (libraryController.isLibrarian()) {
+                displayCorrectLoginMessage();
+                displayUserName(libraryController.getUserName());
+                librarianLoggedIn = true;
+                callLibrarianMenu();
+            } else {
+                return;
+            }
+        } catch (IncorrectLogin e) {
+            outputStream.print("\n" + e.getMessage() + "\n");
+            input.nextLine();
         }
     }
 
@@ -174,11 +180,6 @@ public class UserMenuImpl implements UserMenu {
     @Override
     public void displayLoginMessage() {
         outputStream.print(messages.loginMessage());
-    }
-
-    @Override
-    public void displayIncorrectLoginMessage() {
-        outputStream.print(messages.incorrectLoginMessage());
     }
 
     @Override

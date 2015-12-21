@@ -1,5 +1,6 @@
 package com.twu.biblioteca.controller;
 
+import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.User;
 
@@ -17,7 +18,7 @@ public class LoginService {
         this.library = library;
     }
 
-    public User loginUser(String libraryNumber, String password) {
+    public User loginUser(String libraryNumber, String password) throws IncorrectLogin {
         User user = library.login(libraryNumber, password);
         return user;
     }

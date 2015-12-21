@@ -1,9 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
@@ -178,5 +175,17 @@ public class LibraryTest {
             throw e;
         }
         fail("MovieNotReturnable Exception not thrown");
+    }
+
+    @Test(expected = IncorrectLogin.class)
+    public void testExceptionThrownWhenIncorrectLogin() throws Exception {
+        try {
+            library.login("jfsl", "fjlk");
+        } catch (IncorrectLogin e) {
+            String message = "Incorrect login details. Please try again.";
+            assertEquals(message, e.getMessage());
+            throw e;
+        }
+        fail("IncorrectLogin Exception not thrown");
     }
 }

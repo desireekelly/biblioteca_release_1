@@ -73,7 +73,7 @@ public class BorrowMenuImpl implements BorrowMenu {
                 outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 return;
             } catch (BookNotBorrowable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectOptionMessage();
@@ -90,7 +90,7 @@ public class BorrowMenuImpl implements BorrowMenu {
                 outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
                 return;
             } catch (MovieNotBorrowable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectOptionMessage();

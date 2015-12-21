@@ -73,7 +73,7 @@ public class ReturnMenuImpl implements ReturnMenu {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
                 return;
             } catch (BookNotReturnable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectOptionMessage();
@@ -90,7 +90,7 @@ public class ReturnMenuImpl implements ReturnMenu {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
                 return;
             } catch (MovieNotReturnable e) {
-                outputStream.println("\n" + e.getMessage() + "\n");
+                outputStream.print("\n" + e.getMessage() + "\n");
             }
         } else {
             displayIncorrectOptionMessage();

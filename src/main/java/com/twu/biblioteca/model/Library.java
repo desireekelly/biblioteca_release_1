@@ -1,9 +1,6 @@
 package com.twu.biblioteca.model;
 
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.*;
 
 import java.util.List;
 import java.util.Map;
@@ -39,7 +36,7 @@ public interface Library {
 
     Map<String, User> getUsers();
 
-    User login(String libraryNumber, String password);
+    User login(String libraryNumber, String password) throws IncorrectLogin;
 
     String getBooksCheckedOutByCustomersList();
 }

@@ -157,11 +157,6 @@ public class MessagesImpl implements Messages {
     }
 
     @Override
-    public String incorrectLoginMessage() {
-        return "\nIncorrect user login details. Please try again.\n";
-    }
-
-    @Override
     public String correctLoginMessage() {
         return "\nYou have logged in successfully ";
     }

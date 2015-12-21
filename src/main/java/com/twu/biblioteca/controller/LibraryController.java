@@ -1,9 +1,6 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.exceptions.BookNotBorrowable;
-import com.twu.biblioteca.exceptions.BookNotReturnable;
-import com.twu.biblioteca.exceptions.MovieNotBorrowable;
-import com.twu.biblioteca.exceptions.MovieNotReturnable;
+import com.twu.biblioteca.exceptions.*;
 import com.twu.biblioteca.model.Book;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.Movie;
@@ -48,7 +45,7 @@ public class LibraryController {
         return returnService.returnMovie(movie);
     }
 
-    public User loginUser(String libraryNumber, String password) {
+    public User loginUser(String libraryNumber, String password) throws IncorrectLogin {
         return loginService.loginUser(libraryNumber, password);
     }
 
@@ -136,7 +133,7 @@ public class LibraryController {
         return movieToReturn.getName().toString();
     }
 
-    public User login(String libraryNumber, String password) {
+    public User login(String libraryNumber, String password) throws IncorrectLogin {
         user = loginUser(libraryNumber, password);
         return user;
     }
