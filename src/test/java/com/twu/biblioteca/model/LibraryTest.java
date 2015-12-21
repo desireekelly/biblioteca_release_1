@@ -29,8 +29,8 @@ public class LibraryTest {
     private static final Movie MOVIE_1 = new Movie("The Matrix", 1999, "The Wachowski Brothers", "10");
     private static final Movie MOVIE_2 = new Movie("Inception", 2010, "Christopher Nolan", "8");
 
-    private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
-    private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
+    private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "password1");
+    private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "password2");
 
     @Before
     public void setUp() throws Exception {
@@ -65,8 +65,8 @@ public class LibraryTest {
 
     @Test
     public void testLogin() throws Exception {
-        assertTrue(USER_1.equals(library.login("123-4566", "f8kf93jd")));
-        assertTrue(USER_2.equals(library.login("123-4567", "5jgfdkl5")));
+        assertTrue(USER_1.equals(library.login("123-4566", "password1")));
+        assertTrue(USER_2.equals(library.login("123-4567", "password2")));
     }
 
     @Test
