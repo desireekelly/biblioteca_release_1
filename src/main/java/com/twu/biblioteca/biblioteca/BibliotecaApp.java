@@ -2,6 +2,7 @@ package com.twu.biblioteca.biblioteca;
 
 import com.twu.biblioteca.controller.BorrowService;
 import com.twu.biblioteca.controller.LibraryController;
+import com.twu.biblioteca.controller.LoginService;
 import com.twu.biblioteca.controller.ReturnService;
 import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.LibraryImpl;
@@ -19,7 +20,8 @@ class BibliotecaApp {
         Library library = new LibraryImpl();
         BorrowService borrowService = new BorrowService(library);
         ReturnService returnService = new ReturnService(library);
-        LibraryController libraryController = new LibraryController(library, borrowService, returnService);
+        LoginService loginService = new LoginService(library);
+        LibraryController libraryController = new LibraryController(library, borrowService, returnService, loginService);
 
         //Setup UI
         Messages messages = new MessagesImpl();

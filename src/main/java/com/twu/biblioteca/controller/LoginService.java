@@ -1,6 +1,7 @@
 package com.twu.biblioteca.controller;
 
 import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.User;
 
 /**
  * LoginService is responsible for user login to the Library System.
@@ -16,8 +17,8 @@ public class LoginService {
         this.library = library;
     }
 
-    public boolean login(String libraryNumber, String password) {
-        library.login(libraryNumber, password);
-        return true;
+    public User loginUser(String libraryNumber, String password) {
+        User user = library.login(libraryNumber, password);
+        return user;
     }
 }

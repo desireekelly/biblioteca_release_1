@@ -21,12 +21,14 @@ public class LibraryController {
 
     private BorrowService borrowService;
     private ReturnService returnService;
+    private LoginService loginService;
     private Library library;
     private User user;
 
-    public LibraryController(Library library, BorrowService borrowService, ReturnService returnService) {
+    public LibraryController(Library library, BorrowService borrowService, ReturnService returnService, LoginService loginService) {
         this.borrowService = borrowService;
         this.returnService = returnService;
+        this.loginService = loginService;
         this.library = library;
     }
 
@@ -44,6 +46,10 @@ public class LibraryController {
 
     public boolean returnMovie(Movie movie) throws MovieNotReturnable {
         return returnService.returnMovie(movie);
+    }
+
+    public User loginUser(String libraryNumber, String password) {
+        return loginService.loginUser(libraryNumber, password);
     }
 
     public List<Book> getAvailableBooks() {
@@ -131,7 +137,7 @@ public class LibraryController {
     }
 
     public User login(String libraryNumber, String password) {
-        user = library.login(libraryNumber, password);
+        user = loginUser(libraryNumber, password);
         return user;
     }
 

@@ -23,6 +23,7 @@ public class LibraryControllerTest {
     private Library library;
     private BorrowService borrowService;
     private ReturnService returnService;
+    private LoginService loginService;
     private LibraryController libraryController;
     private Book book;
     private Movie movie;
@@ -37,7 +38,8 @@ public class LibraryControllerTest {
         library = mock(Library.class);
         borrowService = mock(BorrowService.class);
         returnService = mock(ReturnService.class);
-        libraryController = new LibraryController(library, borrowService, returnService);
+        loginService = mock(LoginService.class);
+        libraryController = new LibraryController(library, borrowService, returnService, loginService);
         book = mock(Book.class);
         movie = mock(Movie.class);
         user = mock(User.class);
@@ -70,6 +72,13 @@ public class LibraryControllerTest {
         when(returnService.returnMovie(movie)).thenReturn(true);
         assertTrue(libraryController.returnMovie(movie));
         verify(returnService, times(1)).returnMovie(movie);
+    }
+
+    @Test
+    public void libraryShouldDelegateToLoginServiceWhenUserLoginCalled() throws Exception {
+        when(loginService.loginUser("123-4566", "f8kf93jd")).thenReturn(user);
+        assertEquals(libraryController.loginUser("123-4566", "f8kf93jd"), user);
+        verify(loginService, times(1)).loginUser("123-4566", "f8kf93jd");
     }
 
     @Test
