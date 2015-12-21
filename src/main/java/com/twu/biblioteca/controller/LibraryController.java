@@ -148,7 +148,7 @@ public class LibraryController {
         return false;
     }
 
-    public String getBooksCheckedOutByCustomersList() {
+    public List<String> getBooksCheckedOutByCustomersList() {
         return library.getBooksCheckedOutByCustomersList();
     }
 }

@@ -155,13 +155,12 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public String getBooksCheckedOutByCustomersList() {
-        String books = "";
+    public List<String> getBooksCheckedOutByCustomersList() {
+        List<String> results = new ArrayList<String>();
         for (Map.Entry<String, String> entry : itemsCheckedOutByCustomers.entrySet()) {
-
-            books += entry.getKey() + " is checked out by user: " + entry.getValue() + "\n";
+            results.add(entry.getKey() + " is checked out by user: " + entry.getValue());
         }
-        return books;
+        return results;
     }
 
     @Override

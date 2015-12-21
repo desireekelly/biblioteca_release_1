@@ -22,11 +22,13 @@ public class UtilitiesTest {
 
     private List<Book> books;
     private List<Movie> movies;
+    private List<String> booksCheckedOutByCustomers;
 
     @Before
     public void setUp() throws Exception {
         books = new ArrayList<Book>();
         movies = new ArrayList<Movie>();
+        booksCheckedOutByCustomers = new ArrayList<String>();
     }
 
     @Test
@@ -45,5 +47,13 @@ public class UtilitiesTest {
         assertEquals("1                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
                         "2                    Inception                      2010                 Christopher Nolan                   8                   \n",
                 Utilities.formatMovieList(movies).toString());
+    }
+
+    @Test
+    public void testFormatGetBooksCheckedOutByCustomersList() throws Exception {
+        booksCheckedOutByCustomers.add("Ruby 101 is checked out by user: 123-4570");
+        booksCheckedOutByCustomers.add("Web Development 101 is checked out by user: 123-4571");
+        assertEquals("Ruby 101 is checked out by user: 123-4570\n" +
+                "Web Development 101 is checked out by user: 123-4571\n", Utilities.formatGetBooksCheckedOutByCustomersList(booksCheckedOutByCustomers).toString());
     }
 }

@@ -32,7 +32,7 @@ public interface Library {
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
 
-    String getBooksCheckedOutByCustomersList();
+    List<String> getBooksCheckedOutByCustomersList();
 
     void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable;
 

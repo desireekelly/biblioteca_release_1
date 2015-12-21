@@ -60,7 +60,7 @@ public class LibraryTest {
 
     @Test
     public void testGetBooksCheckedOutByCustomersList() throws Exception {
-        assertTrue(library.getBooksCheckedOutByCustomersList().contains("Ruby 101 is checked out by user: 123-4570\n"));
+        assertTrue(library.getBooksCheckedOutByCustomersList().contains("Ruby 101 is checked out by user: 123-4570"));
     }
 
     @Test

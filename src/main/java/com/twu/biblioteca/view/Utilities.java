@@ -26,11 +26,18 @@ public class Utilities {
     public static String formatMovieList(List<Movie> movieList) {
         String formattedMovieList = "";
         int index = 0;
-
         for (Movie movie : movieList) {
             index++;
             formattedMovieList += String.format("%-20d %-30s %-20d %-35s %-20s\n", index, movie.getName(), movie.getYear(), movie.getDirector(), movie.getMovieRating());
         }
         return formattedMovieList;
+    }
+
+    public static String formatGetBooksCheckedOutByCustomersList(List<String> list) {
+        String formattedList = "";
+        for (String book : list) {
+            formattedList += book + "\n";
+        }
+        return formattedList;
     }
 }

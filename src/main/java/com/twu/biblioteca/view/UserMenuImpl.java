@@ -133,7 +133,7 @@ public class UserMenuImpl implements UserMenu {
                     displayIncorrectBooksCheckedOutByCustomersMessage();
                     break;
                 }
-                displayBooksCheckedOutByCustomers(libraryController.getBooksCheckedOutByCustomersList());
+                displayBooksCheckedOutByCustomers(Utilities.formatGetBooksCheckedOutByCustomersList(libraryController.getBooksCheckedOutByCustomersList()));
                 break;
             case 2:
                 displayLogoutMessage();
