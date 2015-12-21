@@ -6,7 +6,6 @@ import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -25,7 +24,7 @@ public class LibraryTest {
     private BorrowableItem item;
     private User user;
     private Map<BorrowableItem, User> itemsCheckedOutByCustomers;
-    private List<User> users;
+    private Map<String, User> users;
     private Library libraryMock;
 
     private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
@@ -43,7 +42,7 @@ public class LibraryTest {
         item = mock(BorrowableItem.class);
         user = mock(User.class);
         itemsCheckedOutByCustomers = mock(Map.class);
-        users = mock(List.class);
+        users = mock(Map.class);
         libraryMock = mock(LibraryImpl.class);
     }
 

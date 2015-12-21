@@ -28,7 +28,7 @@ public interface Library {
 
     List<Movie> getMovieList();
 
-    List<User> getUsers();
+    Map<String, User> getUsers();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
 

@@ -15,7 +15,7 @@ import java.util.*;
  */
 public class LibraryImpl implements Library {
 
-    private List<User> users = new ArrayList<User>();
+    private Map<String, User> users = new HashMap<String, User>();
     private List<BorrowableItem> items = new ArrayList<BorrowableItem>();
     private Set<BorrowableItem> borrowedItems = new HashSet<BorrowableItem>();
     private Map<BorrowableItem, User> itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
@@ -47,10 +47,10 @@ public class LibraryImpl implements Library {
         User customer3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "password3");
         User librarian = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "password4");
 
-        users.add(customer1);
-        users.add(customer2);
-        users.add(customer3);
-        users.add(librarian);
+        users.put(customer1.getLibraryNumber(), customer1);
+        users.put(customer2.getLibraryNumber(), customer2);
+        users.put(customer3.getLibraryNumber(), customer3);
+        users.put(librarian.getLibraryNumber(), librarian);
 
         librarian.setLibrarian(true);
     }
@@ -62,8 +62,8 @@ public class LibraryImpl implements Library {
         User customer1 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
         User customer2 = new User("Mary Jane", "maryjane@maryjane.com", "0400 738 939", "123-4571", "3kv93m0c");
 
-        users.add(customer1);
-        users.add(customer2);
+        users.put(customer1.getLibraryNumber(), customer1);
+        users.put(customer2.getLibraryNumber(), customer2);
 
         borrowedItems.add(book1);
         borrowedItems.add(book2);
@@ -160,17 +160,15 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public List<User> getUsers() {
-        return Collections.unmodifiableList(users);
+    public Map<String, User> getUsers() {
+        return Collections.unmodifiableMap(users);
     }
 
     @Override
     public User login(String libraryNumber, String password) throws IncorrectLogin {
-
-        for (User user : users) {
-            if (users.contains(libraryNumber)) {
-                user.checkPassword(password);
-                return user;
+        if (users.containsKey(libraryNumber)) {
+            if (users.get(libraryNumber).checkPassword(password)) {
+                return users.get(libraryNumber);
             }
         }
         throw new IncorrectLogin("Incorrect login details. Please try again.");
