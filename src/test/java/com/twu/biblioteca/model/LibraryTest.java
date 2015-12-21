@@ -20,6 +20,12 @@ import static org.mockito.Mockito.*;
  */
 public class LibraryTest {
 
+    private Library library;
+    private Book book;
+    private Movie movie;
+    private User user;
+    private Library libraryMock;
+
     private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
     private static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
 
@@ -28,12 +34,6 @@ public class LibraryTest {
 
     private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "f8kf93jd");
     private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "5jgfdkl5");
-
-    private Library library;
-    private Library libraryMock;
-    private Book book;
-    private Movie movie;
-    private User user;
 
     @Before
     public void setUp() throws Exception {
