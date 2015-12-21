@@ -114,7 +114,7 @@ public class LibraryController {
     }
 
     public String checkinBook(int option) throws BookNotReturnable {
-            Book bookToReturn = library.getBorrowedBooks().get(option - 1);
+        Book bookToReturn = library.getBorrowedBooks().get(option - 1);
         returnBook(bookToReturn, user);
         return bookToReturn.getTitle().toString();
     }
@@ -142,10 +142,6 @@ public class LibraryController {
 
     public String getUserName() {
         return user.getName();
-    }
-
-    public boolean isCustomer() {
-        return user.isCustomer();
     }
 
     public boolean isLibrarian() {

@@ -16,7 +16,6 @@ public class UserTest {
     private static final User CUSTOMER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4567", "f8kf93jd");
     private static final User CUSTOMER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4568", "5jgfdkl5");
     private static final User LIBRARIAN_1 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
-    private static final User LIBRARIAN_2 = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "kb94kfm3");
 
     @Test
     public void testGetName() throws Exception {
@@ -64,12 +63,6 @@ public class UserTest {
                 "Name: Joe Bloggs\n" +
                 "Email: joebloggs@joebloggs.com\n" +
                 "Phone Number: 0400 000 000\n", CUSTOMER_1.getCustomerInformation());
-    }
-
-    @Test
-    public void testIsCustomer() throws Exception {
-        CUSTOMER_1.setCustomer(true);
-        assertTrue(CUSTOMER_1.isCustomer());
     }
 
     @Test

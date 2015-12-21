@@ -13,7 +13,6 @@ public class User {
     private String phoneNumber;
     private String libraryNumber;
     private String password;
-    private Boolean customer = false;
     private Boolean librarian = false;
 
     public User(String name, String emailAddress, String phoneNumber, String libraryNumber, String password) {
@@ -49,14 +48,6 @@ public class User {
 
     public String getCustomerInformation() {
         return this.toString();
-    }
-
-    public void setCustomer(boolean customer) {
-        this.customer = customer;
-    }
-
-    public boolean isCustomer() {
-        return customer;
     }
 
     public boolean isLibrarian() {
