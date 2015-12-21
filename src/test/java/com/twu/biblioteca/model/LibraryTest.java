@@ -72,9 +72,9 @@ public class LibraryTest {
 
     @Test
     public void testLogin() throws Exception {
-        when(libraryMock.login("123-4566", "f8kf93jd")).thenReturn(user);
-        assertEquals(libraryMock.login("123-4566", "f8kf93jd"), user);
-        verify(libraryMock, times(1)).login("123-4566", "f8kf93jd");
+        when(libraryMock.login("123-4566", "password1")).thenReturn(USER_1);
+        assertEquals(libraryMock.login("123-4566", "password1"), USER_1);
+        verify(libraryMock, times(1)).login("123-4566", "password1");
     }
 
     @Test
