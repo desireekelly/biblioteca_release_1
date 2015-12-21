@@ -2,12 +2,15 @@ package com.twu.biblioteca.view;
 
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.BorrowableItem;
 import com.twu.biblioteca.model.Movie;
-import org.junit.Before;
+import com.twu.biblioteca.model.User;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,17 +25,15 @@ public class UtilitiesTest {
 
     private List<Book> books;
     private List<Movie> movies;
-    private List<String> booksCheckedOutByCustomers;
-
-    @Before
-    public void setUp() throws Exception {
-        books = new ArrayList<Book>();
-        movies = new ArrayList<Movie>();
-        booksCheckedOutByCustomers = new ArrayList<String>();
-    }
+    private Map<BorrowableItem, User> itemsCheckedOutByCustomers;
+    private Book book1;
+    private User user1;
+    private Book book2;
+    private User user2;
 
     @Test
     public void testFormatBookList() throws Exception {
+        books = new ArrayList<Book>();
         books.add(new Book("Java 101", "Joe Bloggs", 1990));
         books.add(new Book("PHP 101", "Mary Jane", 2005));
         assertEquals("1               Java 101        Joe Bloggs      1990           \n" +
@@ -41,7 +42,8 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testDisplayFormattedMovieList() throws Exception {
+    public void testDisplayFormatMovieList() throws Exception {
+        movies = new ArrayList<Movie>();
         movies.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         movies.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
         assertEquals("1                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
@@ -50,10 +52,15 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testFormatGetBooksCheckedOutByCustomersList() throws Exception {
-        booksCheckedOutByCustomers.add("Ruby 101 is checked out by user: 123-4570");
-        booksCheckedOutByCustomers.add("Web Development 101 is checked out by user: 123-4571");
+    public void testFormatGetItemsCheckedOutByCustomers() throws Exception {
+        itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
+        book1 = new Book("Ruby 101", "Jenny Moore", 2013);
+        user1 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
+        book2 = new Book("Web Development 101", "Mark Green", 2014);
+        user2 = new User("Mary Jane", "maryjane@maryjane.com", "0400 738 939", "123-4571", "3kv93m0c");
+        itemsCheckedOutByCustomers.put(book1, user1);
+        itemsCheckedOutByCustomers.put(book2, user2);
         assertEquals("Ruby 101 is checked out by user: 123-4570\n" +
-                "Web Development 101 is checked out by user: 123-4571\n", Utilities.formatGetBooksCheckedOutByCustomersList(booksCheckedOutByCustomers).toString());
+                "Web Development 101 is checked out by user: 123-4571\n", Utilities.formatGetItemsCheckedOutByCustomers(itemsCheckedOutByCustomers));
     }
 }

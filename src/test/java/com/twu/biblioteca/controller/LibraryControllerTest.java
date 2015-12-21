@@ -149,9 +149,9 @@ public class LibraryControllerTest {
     }
 
     @Test
-    public void testBooksCheckedOutByCustomersListIsEmpty() throws Exception {
-        when(libraryControllerMock.booksCheckedOutByCustomersListIsEmpty()).thenReturn(true);
-        assertTrue(libraryControllerMock.booksCheckedOutByCustomersListIsEmpty());
-        verify(libraryControllerMock, times(1)).booksCheckedOutByCustomersListIsEmpty();
+    public void testItemsCheckedOutByCustomersIsEmpty() throws Exception {
+        when(libraryControllerMock.itemsCheckedOutByCustomersIsEmpty()).thenReturn(true);
+        assertTrue(libraryControllerMock.itemsCheckedOutByCustomersIsEmpty());
+        verify(libraryControllerMock, times(1)).itemsCheckedOutByCustomersIsEmpty();
     }
 }

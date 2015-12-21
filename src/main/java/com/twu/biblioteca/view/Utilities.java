@@ -1,9 +1,12 @@
 package com.twu.biblioteca.view;
 
 import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.BorrowableItem;
 import com.twu.biblioteca.model.Movie;
+import com.twu.biblioteca.model.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Utilities is responsible for formatting a list of books into columns.
@@ -33,11 +36,11 @@ public class Utilities {
         return formattedMovieList;
     }
 
-    public static String formatGetBooksCheckedOutByCustomersList(List<String> list) {
-        String formattedList = "";
-        for (String book : list) {
-            formattedList += book + "\n";
+    public static String formatGetItemsCheckedOutByCustomers(Map<BorrowableItem, User> items) {
+        String formattedItems = "";
+        for (Map.Entry<BorrowableItem, User> entry : items.entrySet()) {
+            formattedItems += entry.getKey().getDescription() + " is checked out by user: " + entry.getValue().getLibraryNumber() + "\n";
         }
-        return formattedList;
+        return formattedItems;
     }
 }

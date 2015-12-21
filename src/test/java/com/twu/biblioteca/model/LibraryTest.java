@@ -6,6 +6,9 @@ import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -21,6 +24,8 @@ public class LibraryTest {
     private Library library;
     private BorrowableItem item;
     private User user;
+    private Map<BorrowableItem, User> itemsCheckedOutByCustomers;
+    private List<User> users;
     private Library libraryMock;
 
     private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
@@ -37,6 +42,8 @@ public class LibraryTest {
         library = new LibraryImpl();
         item = mock(BorrowableItem.class);
         user = mock(User.class);
+        itemsCheckedOutByCustomers = mock(Map.class);
+        users = mock(List.class);
         libraryMock = mock(LibraryImpl.class);
     }
 
@@ -54,19 +61,21 @@ public class LibraryTest {
 
     @Test
     public void testCreateUsers() throws Exception {
-        assertTrue(library.getUsers().containsKey("123-4566"));
-        assertTrue(library.getUsers().containsKey("123-4567"));
+        when(libraryMock.getUsers()).thenReturn(users);
+        assertEquals(libraryMock.getUsers(), users);
     }
 
     @Test
-    public void testGetBooksCheckedOutByCustomersList() throws Exception {
-        assertTrue(library.getBooksCheckedOutByCustomersList().contains("Ruby 101 is checked out by user: 123-4570"));
+    public void testGetItemsCheckedOutByCustomers() throws Exception {
+        when(libraryMock.getItemsCheckedOutByCustomers()).thenReturn(itemsCheckedOutByCustomers);
+        assertEquals(libraryMock.getItemsCheckedOutByCustomers(), itemsCheckedOutByCustomers);
     }
 
     @Test
     public void testLogin() throws Exception {
-        assertTrue(USER_1.equals(library.login("123-4566", "password1")));
-        assertTrue(USER_2.equals(library.login("123-4567", "password2")));
+        when(libraryMock.login("123-4566", "f8kf93jd")).thenReturn(user);
+        assertEquals(libraryMock.login("123-4566", "f8kf93jd"), user);
+        verify(libraryMock, times(1)).login("123-4566", "f8kf93jd");
     }
 
     @Test

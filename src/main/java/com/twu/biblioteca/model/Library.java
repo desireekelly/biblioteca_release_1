@@ -28,11 +28,11 @@ public interface Library {
 
     List<Movie> getMovieList();
 
-    Map<String, User> getUsers();
+    List<User> getUsers();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
 
-    List<String> getBooksCheckedOutByCustomersList();
+    Map<BorrowableItem, User> getItemsCheckedOutByCustomers();
 
     void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable;
 

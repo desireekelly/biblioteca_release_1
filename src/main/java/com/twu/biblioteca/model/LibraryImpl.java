@@ -15,10 +15,10 @@ import java.util.*;
  */
 public class LibraryImpl implements Library {
 
-    private Map<String, User> users = new HashMap<String, User>();
+    private List<User> users = new ArrayList<User>();
     private List<BorrowableItem> items = new ArrayList<BorrowableItem>();
     private Set<BorrowableItem> borrowedItems = new HashSet<BorrowableItem>();
-    private SortedMap<String, String> itemsCheckedOutByCustomers = new TreeMap<String, String>();
+    private Map<BorrowableItem, User> itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
 
     public LibraryImpl() {
         this.createBookList();
@@ -47,10 +47,10 @@ public class LibraryImpl implements Library {
         User customer3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "password3");
         User librarian = new User("Jenny Bloggs", "jennybloggs@jennybloggs.com", "0435 567 040", "123-4569", "password4");
 
-        users.put(customer1.getLibraryNumber(), customer1);
-        users.put(customer2.getLibraryNumber(), customer2);
-        users.put(customer3.getLibraryNumber(), customer3);
-        users.put(librarian.getLibraryNumber(), librarian);
+        users.add(customer1);
+        users.add(customer2);
+        users.add(customer3);
+        users.add(librarian);
 
         librarian.setLibrarian(true);
     }
@@ -62,14 +62,14 @@ public class LibraryImpl implements Library {
         User customer1 = new User("Bob Kent", "bobkent@bobkent.com", "0400 575 838", "123-4570", "4jv03m20");
         User customer2 = new User("Mary Jane", "maryjane@maryjane.com", "0400 738 939", "123-4571", "3kv93m0c");
 
-        users.put(customer1.getLibraryNumber(), customer1);
-        users.put(customer2.getLibraryNumber(), customer2);
+        users.add(customer1);
+        users.add(customer2);
 
         borrowedItems.add(book1);
         borrowedItems.add(book2);
 
-        itemsCheckedOutByCustomers.put(book1.getTitle(), customer1.getLibraryNumber());
-        itemsCheckedOutByCustomers.put(book2.getTitle(), customer2.getLibraryNumber());
+        itemsCheckedOutByCustomers.put(book1, customer1);
+        itemsCheckedOutByCustomers.put(book2, customer2);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class LibraryImpl implements Library {
         if (borrowedItems.contains(item))
             throw new ItemNotBorrowable("item is not available");
         borrowedItems.add(item);
-        itemsCheckedOutByCustomers.put(item.getDescription(), user.getLibraryNumber());
+        itemsCheckedOutByCustomers.put(item, user);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class LibraryImpl implements Library {
         if (!borrowedItems.contains(item))
             throw new ItemNotReturnable("item is already returned");
         borrowedItems.remove(item);
-        itemsCheckedOutByCustomers.remove(item.getDescription());
+        itemsCheckedOutByCustomers.remove(item);
     }
 
     @Override
@@ -155,24 +155,22 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public List<String> getBooksCheckedOutByCustomersList() {
-        List<String> results = new ArrayList<String>();
-        for (Map.Entry<String, String> entry : itemsCheckedOutByCustomers.entrySet()) {
-            results.add(entry.getKey() + " is checked out by user: " + entry.getValue());
-        }
-        return results;
+    public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {
+        return Collections.unmodifiableMap(itemsCheckedOutByCustomers);
     }
 
     @Override
-    public Map<String, User> getUsers() {
-        return Collections.unmodifiableMap(users);
+    public List<User> getUsers() {
+        return Collections.unmodifiableList(users);
     }
 
     @Override
     public User login(String libraryNumber, String password) throws IncorrectLogin {
-        if (users.containsKey(libraryNumber)) {
-            if (users.get(libraryNumber).checkPassword(password)) {
-                return users.get(libraryNumber);
+
+        for (User user : users) {
+            if (users.contains(libraryNumber)) {
+                user.checkPassword(password);
+                return user;
             }
         }
         throw new IncorrectLogin("Incorrect login details. Please try again.");

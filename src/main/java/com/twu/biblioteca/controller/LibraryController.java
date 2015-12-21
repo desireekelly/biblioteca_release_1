@@ -6,6 +6,7 @@ import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import com.twu.biblioteca.model.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * LibraryController is responsible for updating the Library Model.
@@ -141,14 +142,14 @@ public class LibraryController {
         return user.isLibrarian();
     }
 
-    public boolean booksCheckedOutByCustomersListIsEmpty() {
-        if (library.getBooksCheckedOutByCustomersList() == null) {
+    public boolean itemsCheckedOutByCustomersIsEmpty() {
+        if (library.getItemsCheckedOutByCustomers().isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public List<String> getBooksCheckedOutByCustomersList() {
-        return library.getBooksCheckedOutByCustomersList();
+    public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {
+        return library.getItemsCheckedOutByCustomers();
     }
 }

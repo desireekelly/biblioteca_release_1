@@ -158,11 +158,11 @@ public class UserMenuImpl implements UserMenu {
     private void callLibrarianMenuOptions(int option) {
         switch (option) {
             case 1:
-                if (libraryController.booksCheckedOutByCustomersListIsEmpty()) {
+                if (libraryController.itemsCheckedOutByCustomersIsEmpty()) {
                     displayIncorrectBooksCheckedOutByCustomersMessage();
                     break;
                 }
-                displayBooksCheckedOutByCustomers(Utilities.formatGetBooksCheckedOutByCustomersList(libraryController.getBooksCheckedOutByCustomersList()));
+                displayBooksCheckedOutByCustomers(Utilities.formatGetItemsCheckedOutByCustomers(libraryController.getItemsCheckedOutByCustomers()));
                 break;
             case 2:
                 displayLogoutMessage();
