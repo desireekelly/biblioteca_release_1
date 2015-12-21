@@ -106,7 +106,6 @@ public class UserMenuImpl implements UserMenu {
                 }
                 displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
                 break;
-
             case 2:
                 if (libraryController.availableBooksIsEmpty()) {
                     borrowMenu.displayIncorrectBookBorrowMessage();

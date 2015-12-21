@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * Library interface.
- * Library is responsible for holding the available and borrowed books.
+ * Library is responsible for holding the available and borrowed items.
  *
  * @author Desiree Kelly
  * @version 1.0

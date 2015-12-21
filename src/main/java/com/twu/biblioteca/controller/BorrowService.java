@@ -6,7 +6,7 @@ import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.User;
 
 /**
- * BorrowService is responsible for borrowing a book from the Library
+ * BorrowService is responsible for borrowing an item from the Library
  *
  * @author Desiree Kelly
  * @version 1.0

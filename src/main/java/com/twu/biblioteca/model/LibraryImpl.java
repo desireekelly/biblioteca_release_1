@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * Library implementation.
- * Library is responsible for holding the available and borrowed books.
+ * Library is responsible for holding the available and borrowed items.
  *
  * @author Desiree Kelly
  * @version 1.0

@@ -6,7 +6,7 @@ import com.twu.biblioteca.model.Library;
 import com.twu.biblioteca.model.User;
 
 /**
- * ReturnService is responsible for returning a book to the Library
+ * ReturnService is responsible for returning an item to the Library
  *
  * @author Desiree Kelly
  * @version 1.0

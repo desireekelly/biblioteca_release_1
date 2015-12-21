@@ -1,7 +1,10 @@
 package com.twu.biblioteca.exceptions;
 
 /**
- * Created by Desiree on 21/12/2015.
+ * ItemNotReturnable is responsible for handling exceptions for items that are unavailable to return.
+ *
+ * @author Desiree Kelly
+ * @version 2.0
  */
 public class ItemNotReturnable extends Exception {
 
