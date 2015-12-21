@@ -44,4 +44,9 @@ public class Book implements BorrowableItem {
                 && this.author.equals(otherBook.author)
                 && this.yearPublished == otherBook.yearPublished;
     }
+
+    @Override
+    public String getDescription() {
+        return getTitle();
+    }
 }

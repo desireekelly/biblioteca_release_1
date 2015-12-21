@@ -5,7 +5,6 @@ import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 import com.twu.biblioteca.exceptions.ItemNotReturnable;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -20,8 +19,7 @@ import static org.mockito.Mockito.*;
 public class LibraryTest {
 
     private Library library;
-    private Book book;
-    private Movie movie;
+    private BorrowableItem item;
     private User user;
     private Library libraryMock;
 
@@ -37,8 +35,7 @@ public class LibraryTest {
     @Before
     public void setUp() throws Exception {
         library = new LibraryImpl();
-        book = mock(Book.class);
-        movie = mock(Movie.class);
+        item = mock(BorrowableItem.class);
         user = mock(User.class);
         libraryMock = mock(LibraryImpl.class);
     }
@@ -73,82 +70,58 @@ public class LibraryTest {
     }
 
     @Test
-    public void testCheckoutBook() throws Exception {
-        libraryMock.checkoutBook(book, user);
-        verify(libraryMock, times(1)).checkoutBook(book, user);
+    public void testCheckoutItem() throws Exception {
+        libraryMock.checkoutItem(item, user);
+        verify(libraryMock, times(1)).checkoutItem(item, user);
     }
 
     @Test
-    public void testReturnBook() throws Exception {
-        libraryMock.returnBook(book, user);
-        verify(libraryMock, times(1)).returnBook(book, user);
-    }
-
-    @Test
-    public void testReturnMovie() throws Exception {
-        libraryMock.returnMovie(movie);
-        verify(libraryMock, times(1)).returnMovie(movie);
+    public void testReturnItem() throws Exception {
+        libraryMock.returnItem(item, user);
+        verify(libraryMock, times(1)).returnItem(item, user);
     }
 
     @Test(expected = ItemNotReturnable.class)
-    public void testExceptionThrownWhenBookAlreadyReturned() throws Exception {
-        library.returnBook(library.getAvailableBooks().get(0), USER_1);
+    public void testExceptionThrownWhenItemAlreadyReturned() throws Exception {
+        library.returnItem(library.getAvailableBooks().get(0), USER_1);
     }
 
     @Test(expected = ItemNotBorrowable.class)
-    public void testExceptionThrownWhenBookBorrowedTwice() throws Exception {
-        library.checkoutBook(library.getBookList().get(0), USER_1);
-        library.checkoutBook(library.getBookList().get(0), USER_1);
+    public void testExceptionThrownWhenItemBorrowedTwice() throws Exception {
+        library.checkoutItem(library.getBookList().get(0), USER_1);
+        library.checkoutItem(library.getBookList().get(0), USER_1);
     }
 
     @Test
     public void testGetBorrowedBooks() throws Exception {
-        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_1);
         assertTrue(library.getBorrowedBooks().contains(BOOK_1));
-        library.checkoutBook(library.getAvailableBooks().get(0), USER_2);
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_2);
         assertTrue(library.getBorrowedBooks().contains(BOOK_2));
     }
 
     @Test
     public void testGetAvailableBooks() throws Exception {
-        library.checkoutBook(library.getAvailableBooks().get(0), USER_1);
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_1);
         assertFalse(library.getAvailableBooks().contains(BOOK_1));
-        library.checkoutBook(library.getAvailableBooks().get(0), USER_2);
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_2);
         assertFalse(library.getAvailableBooks().contains(BOOK_2));
     }
 
     @Test
-    public void testCheckoutMovie() throws Exception {
-        libraryMock.checkoutMovie(movie);
-        verify(libraryMock).checkoutMovie(Matchers.eq(movie));
-        verify(libraryMock, times(1)).checkoutMovie(movie);
-    }
-
-    @Test
     public void testGetAvailableMovies() throws Exception {
-        library.checkoutMovie(library.getAvailableMovies().get(0));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
         assertFalse(library.getAvailableMovies().contains(MOVIE_1));
-        library.checkoutMovie(library.getAvailableMovies().get(0));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
         assertFalse(library.getAvailableMovies().contains(MOVIE_2));
     }
 
     @Test
     public void testGetBorrowedMovies() throws Exception {
-        library.checkoutMovie(library.getAvailableMovies().get(0));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
         assertTrue(library.getBorrowedMovies().contains(MOVIE_1));
-        library.checkoutMovie(library.getAvailableMovies().get(0));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
         assertTrue(library.getBorrowedMovies().contains(MOVIE_2));
-    }
-
-    @Test(expected = ItemNotBorrowable.class)
-    public void testExceptionThrownWhenMovieBorrowedTwice() throws Exception {
-        library.checkoutMovie(library.getMovieList().get(0));
-        library.checkoutMovie(library.getMovieList().get(0));
-    }
-
-    @Test(expected = ItemNotReturnable.class)
-    public void testExceptionThrownWhenMovieAlreadyReturned() throws Exception {
-        library.returnMovie(library.getAvailableMovies().get(0));
     }
 
     @Test(expected = IncorrectLogin.class)

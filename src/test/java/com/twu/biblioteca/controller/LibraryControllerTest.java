@@ -1,8 +1,7 @@
 package com.twu.biblioteca.controller;
 
-import com.twu.biblioteca.model.Book;
+import com.twu.biblioteca.model.BorrowableItem;
 import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Movie;
 import com.twu.biblioteca.model.User;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,11 +24,10 @@ public class LibraryControllerTest {
     private ReturnService returnService;
     private LoginService loginService;
     private LibraryController libraryController;
-    private Book book;
-    private Movie movie;
+
     private User user;
     private LibraryController libraryControllerMock;
-
+    private BorrowableItem item;
     private static final String BOOK_TITLE = "Java 101";
     private static final String MOVIE_TITLE = "The Matrix";
 
@@ -40,38 +38,23 @@ public class LibraryControllerTest {
         returnService = mock(ReturnService.class);
         loginService = mock(LoginService.class);
         libraryController = new LibraryController(library, borrowService, returnService, loginService);
-        book = mock(Book.class);
-        movie = mock(Movie.class);
+        item = mock(BorrowableItem.class);
         user = mock(User.class);
         libraryControllerMock = mock(LibraryController.class);
     }
 
     @Test
-    public void libraryShouldDelegateToBorrowServiceWhenBookBorrowed() throws Exception {
-        when(borrowService.borrowBook(book, user)).thenReturn(true);
-        assertTrue(libraryController.borrowBook(book, user));
-        verify(borrowService, times(1)).borrowBook(book, user);
+    public void libraryShouldDelegateToBorrowServiceWhenItemBorrowed() throws Exception {
+        when(borrowService.borrowItem(item, user)).thenReturn(true);
+        assertTrue(libraryController.borrowItem(item, user));
+        verify(borrowService, times(1)).borrowItem(item, user);
     }
 
     @Test
-    public void libraryShouldDelegateToReturnServiceWhenBookReturned() throws Exception {
-        when(returnService.returnBook(book, user)).thenReturn(true);
-        assertTrue(libraryController.returnBook(book, user));
-        verify(returnService, times(1)).returnBook(book, user);
-    }
-
-    @Test
-    public void libraryShouldDelegateToBorrowServiceWhenMovieBorrowed() throws Exception {
-        when(borrowService.borrowMovie(movie)).thenReturn(true);
-        assertTrue(libraryController.borrowMovie(movie));
-        verify(borrowService, times(1)).borrowMovie(movie);
-    }
-
-    @Test
-    public void libraryShouldDelegateToReturnServiceWhenMovieReturned() throws Exception {
-        when(returnService.returnMovie(movie)).thenReturn(true);
-        assertTrue(libraryController.returnMovie(movie));
-        verify(returnService, times(1)).returnMovie(movie);
+    public void libraryShouldDelegateToReturnServiceWhenItemReturned() throws Exception {
+        when(returnService.returnItem(item, user)).thenReturn(true);
+        assertTrue(libraryController.returnItem(item, user));
+        verify(returnService, times(1)).returnItem(item, user);
     }
 
     @Test

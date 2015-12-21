@@ -3,10 +3,7 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 import com.twu.biblioteca.exceptions.ItemNotReturnable;
-import com.twu.biblioteca.model.Book;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.Movie;
-import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.model.*;
 
 import java.util.List;
 
@@ -31,20 +28,12 @@ public class LibraryController {
         this.library = library;
     }
 
-    public boolean borrowBook(Book book, User user) throws ItemNotBorrowable {
-        return borrowService.borrowBook(book, user);
+    public boolean borrowItem(BorrowableItem item, User user) throws ItemNotBorrowable {
+        return borrowService.borrowItem(item, user);
     }
 
-    public boolean returnBook(Book book, User user) throws ItemNotReturnable {
-        return returnService.returnBook(book, user);
-    }
-
-    public boolean borrowMovie(Movie movie) throws ItemNotBorrowable {
-        return borrowService.borrowMovie(movie);
-    }
-
-    public boolean returnMovie(Movie movie) throws ItemNotReturnable {
-        return returnService.returnMovie(movie);
+    public boolean returnItem(BorrowableItem item, User user) throws ItemNotReturnable {
+        return returnService.returnItem(item, user);
     }
 
     public User loginUser(String libraryNumber, String password) throws IncorrectLogin {
@@ -113,25 +102,25 @@ public class LibraryController {
 
     public String checkoutBook(int option) throws ItemNotBorrowable {
         Book bookToBorrow = library.getAvailableBooks().get(option - 1);
-        borrowBook(bookToBorrow, user);
+        borrowItem(bookToBorrow, user);
         return bookToBorrow.getTitle().toString();
     }
 
     public String checkinBook(int option) throws ItemNotReturnable {
         Book bookToReturn = library.getBorrowedBooks().get(option - 1);
-        returnBook(bookToReturn, user);
+        returnItem(bookToReturn, user);
         return bookToReturn.getTitle().toString();
     }
 
     public String checkoutMovie(int option) throws ItemNotBorrowable {
         Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
-        borrowMovie(movieToBorrow);
+        borrowItem(movieToBorrow, user);
         return movieToBorrow.getName().toString();
     }
 
     public String checkinMovie(int option) throws ItemNotReturnable {
         Movie movieToReturn = library.getBorrowedMovies().get(option - 1);
-        returnMovie(movieToReturn);
+        returnItem(movieToReturn, user);
         return movieToReturn.getName().toString();
     }
 

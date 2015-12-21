@@ -15,12 +15,10 @@ import java.util.*;
  */
 public class LibraryImpl implements Library {
 
-    private List<Book> books = new ArrayList<Book>();
-    private Set<Book> borrowedBooks = new HashSet<Book>();
-    private List<Movie> movies = new ArrayList<Movie>();
-    private Set<Movie> borrowedMovies = new HashSet<Movie>();
     private Map<String, User> users = new HashMap<String, User>();
-    private SortedMap<String, String> booksCheckedOutByCustomers = new TreeMap<String, String>();
+    private List<BorrowableItem> items = new ArrayList<BorrowableItem>();
+    private Set<BorrowableItem> borrowedItems = new HashSet<BorrowableItem>();
+    private SortedMap<String, String> itemsCheckedOutByCustomers = new TreeMap<String, String>();
 
     public LibraryImpl() {
         this.createBookList();
@@ -30,17 +28,17 @@ public class LibraryImpl implements Library {
     }
 
     private void createBookList() {
-        books.add(new Book("Java 101", "Joe Bloggs", 1990));
-        books.add(new Book("PHP 101", "Mary Jane", 2005));
-        books.add(new Book("C# 101", "John Smith", 2010));
-        books.add(new Book("C++ 101", "Joyce Merry", 2001));
+        items.add(new Book("Java 101", "Joe Bloggs", 1990));
+        items.add(new Book("PHP 101", "Mary Jane", 2005));
+        items.add(new Book("C# 101", "John Smith", 2010));
+        items.add(new Book("C++ 101", "Joyce Merry", 2001));
     }
 
     private void createMovieList() {
-        movies.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
-        movies.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
-        movies.add(new Movie("Divergent", 2014, "Neil Burger", "Unrated"));
-        movies.add(new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
+        items.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
+        items.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
+        items.add(new Movie("Divergent", 2014, "Neil Burger", "Unrated"));
+        items.add(new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
     }
 
     private void createUsers() {
@@ -67,19 +65,19 @@ public class LibraryImpl implements Library {
         users.put(customer1.getLibraryNumber(), customer1);
         users.put(customer2.getLibraryNumber(), customer2);
 
-        borrowedBooks.add(book1);
-        borrowedBooks.add(book2);
+        borrowedItems.add(book1);
+        borrowedItems.add(book2);
 
-        booksCheckedOutByCustomers.put(book1.getTitle(), customer1.getLibraryNumber());
-        booksCheckedOutByCustomers.put(book2.getTitle(), customer2.getLibraryNumber());
+        itemsCheckedOutByCustomers.put(book1.getTitle(), customer1.getLibraryNumber());
+        itemsCheckedOutByCustomers.put(book2.getTitle(), customer2.getLibraryNumber());
     }
 
     @Override
     public List<Book> getAvailableBooks() {
-        List<Book> results = new ArrayList<Book>(books.size());
-        for (Book book : books) {
-            if (!borrowedBooks.contains(book)) {
-                results.add(book);
+        List<Book> results = new ArrayList<Book>();
+        for (BorrowableItem item : items) {
+            if (!borrowedItems.contains(item) && item instanceof Book) {
+                results.add((Book) item);
             }
         }
         return results;
@@ -87,10 +85,10 @@ public class LibraryImpl implements Library {
 
     @Override
     public List<Book> getBorrowedBooks() {
-        List<Book> results = new ArrayList<Book>(books.size());
-        for (Book book : books) {
-            if (borrowedBooks.contains(book)) {
-                results.add(book);
+        List<Book> results = new ArrayList<Book>();
+        for (BorrowableItem item : items) {
+            if (borrowedItems.contains(item) && item instanceof Book) {
+                results.add((Book) item);
             }
         }
         return results;
@@ -98,31 +96,37 @@ public class LibraryImpl implements Library {
 
     @Override
     public List<Book> getBookList() {
-        return Collections.unmodifiableList(books);
+        List<Book> results = new ArrayList<Book>();
+        for (BorrowableItem item : items) {
+            if (item instanceof Book) {
+                results.add((Book) item);
+            }
+        }
+        return results;
     }
 
     @Override
-    public void checkoutBook(Book book, User user) throws ItemNotBorrowable {
-        if (borrowedBooks.contains(book))
-            throw new ItemNotBorrowable("book is not available");
-        borrowedBooks.add(book);
-        booksCheckedOutByCustomers.put(book.getTitle(), user.getLibraryNumber());
+    public void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable {
+        if (borrowedItems.contains(item))
+            throw new ItemNotBorrowable("item is not available");
+        borrowedItems.add(item);
+        itemsCheckedOutByCustomers.put(item.getDescription(), user.getLibraryNumber());
     }
 
     @Override
-    public void returnBook(Book book, User user) throws ItemNotReturnable {
-        if (!borrowedBooks.contains(book))
-            throw new ItemNotReturnable("book is already returned");
-        borrowedBooks.remove(book);
-        booksCheckedOutByCustomers.remove(book.getTitle());
+    public void returnItem(BorrowableItem item, User user) throws ItemNotReturnable {
+        if (!borrowedItems.contains(item))
+            throw new ItemNotReturnable("item is already returned");
+        borrowedItems.remove(item);
+        itemsCheckedOutByCustomers.remove(item.getDescription());
     }
 
     @Override
     public List<Movie> getAvailableMovies() {
-        List<Movie> results = new ArrayList<Movie>(movies.size());
-        for (Movie movie : movies) {
-            if (!borrowedMovies.contains(movie)) {
-                results.add(movie);
+        List<Movie> results = new ArrayList<Movie>();
+        for (BorrowableItem item : items) {
+            if (!borrowedItems.contains(item) && item instanceof Movie) {
+                results.add((Movie) item);
             }
         }
         return results;
@@ -130,10 +134,10 @@ public class LibraryImpl implements Library {
 
     @Override
     public List<Movie> getBorrowedMovies() {
-        List<Movie> results = new ArrayList<Movie>(movies.size());
-        for (Movie movie : movies) {
-            if (borrowedMovies.contains(movie)) {
-                results.add(movie);
+        List<Movie> results = new ArrayList<Movie>();
+        for (BorrowableItem item : items) {
+            if (borrowedItems.contains(item) && item instanceof Movie) {
+                results.add((Movie) item);
             }
         }
         return results;
@@ -141,27 +145,19 @@ public class LibraryImpl implements Library {
 
     @Override
     public List<Movie> getMovieList() {
-        return Collections.unmodifiableList(movies);
-    }
-
-    @Override
-    public void checkoutMovie(Movie movie) throws ItemNotBorrowable {
-        if (borrowedMovies.contains(movie))
-            throw new ItemNotBorrowable("movie is not available");
-        borrowedMovies.add(movie);
-    }
-
-    @Override
-    public void returnMovie(Movie movie) throws ItemNotReturnable {
-        if (!borrowedMovies.contains(movie))
-            throw new ItemNotReturnable("movie is already returned");
-        borrowedMovies.remove(movie);
+        List<Movie> results = new ArrayList<Movie>();
+        for (BorrowableItem item : items) {
+            if (item instanceof Movie) {
+                results.add((Movie) item);
+            }
+        }
+        return results;
     }
 
     @Override
     public String getBooksCheckedOutByCustomersList() {
         String books = "";
-        for (Map.Entry<String, String> entry : booksCheckedOutByCustomers.entrySet()) {
+        for (Map.Entry<String, String> entry : itemsCheckedOutByCustomers.entrySet()) {
 
             books += entry.getKey() + " is checked out by user: " + entry.getValue() + "\n";
         }

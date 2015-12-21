@@ -51,4 +51,9 @@ public class Movie implements BorrowableItem {
                 && this.director.equals(otherMovie.director)
                 && this.movieRating.equals(otherMovie.movieRating);
     }
+
+    @Override
+    public String getDescription() {
+        return getName();
+    }
 }

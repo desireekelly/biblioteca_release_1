@@ -22,23 +22,19 @@ public interface Library {
 
     List<Book> getBookList();
 
-    void checkoutBook(Book book, User user) throws ItemNotBorrowable;
-
-    void returnBook(Book book, User user) throws ItemNotReturnable;
-
     List<Movie> getAvailableMovies();
 
     List<Movie> getBorrowedMovies();
 
     List<Movie> getMovieList();
 
-    void checkoutMovie(Movie movie) throws ItemNotBorrowable;
-
-    void returnMovie(Movie movie) throws ItemNotReturnable;
-
     Map<String, User> getUsers();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
 
     String getBooksCheckedOutByCustomersList();
+
+    void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable;
+
+    void returnItem(BorrowableItem item, User user) throws ItemNotReturnable;
 }
