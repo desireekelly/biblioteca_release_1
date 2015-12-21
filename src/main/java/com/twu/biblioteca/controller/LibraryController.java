@@ -106,7 +106,6 @@ public class LibraryController {
         return library.getBorrowedMovies().size();
     }
 
-
     public String checkoutBook(int option) throws BookNotBorrowable {
         Book bookToBorrow = library.getAvailableBooks().get(option - 1);
         borrowBook(bookToBorrow, user);
