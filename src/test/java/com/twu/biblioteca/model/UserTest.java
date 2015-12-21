@@ -15,7 +15,7 @@ public class UserTest {
 
     private static final User CUSTOMER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4567", "f8kf93jd");
     private static final User CUSTOMER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4568", "5jgfdkl5");
-    private static final User LIBRARIAN_1 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
+    private static final User LIBRARIAN = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "4jg84jf8");
 
     @Test
     public void testGetName() throws Exception {
@@ -67,7 +67,7 @@ public class UserTest {
 
     @Test
     public void testIsLibrarian() throws Exception {
-        LIBRARIAN_1.setLibrarian(true);
-        assertTrue(LIBRARIAN_1.isLibrarian());
+        LIBRARIAN.setLibrarian(true);
+        assertTrue(LIBRARIAN.isLibrarian());
     }
 }
