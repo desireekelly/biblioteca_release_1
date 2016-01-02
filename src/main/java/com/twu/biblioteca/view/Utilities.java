@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Utilities is responsible for formatting a list of books into columns.
+ * Utilities is responsible for formatting the list of books, movies and items checked out by customers.
  *
  * @author Desiree Kelly
  * @version 1.0
