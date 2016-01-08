@@ -64,10 +64,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     private void callBookBorrowMenuOptions(int option) {
-        if (option == 0) {
-            return;
-        }
-        if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
+        if (option <= libraryController.getAvailableBooksSize()) {
             try {
                 outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 return;
@@ -81,10 +78,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     private void callMovieBorrowMenuOptions(int option) {
-        if (option == 0) {
-            return;
-        }
-        if (option > 0 && option <= libraryController.getAvailableMoviesSize()) {
+        if (option <= libraryController.getAvailableMoviesSize()) {
             try {
                 outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
                 return;

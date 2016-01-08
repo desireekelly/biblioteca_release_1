@@ -64,10 +64,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callBookReturnMenuOptions(int option) {
-        if (option == 0) {
-            return;
-        }
-        if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
+        if (option <= libraryController.getBorrowedBooksSize()) {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
                 return;
@@ -81,10 +78,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callMovieReturnMenuOptions(int option) {
-        if (option == 0) {
-            return;
-        }
-        if (option > 0 && option <= libraryController.getBorrowedMoviesSize()) {
+        if (option <= libraryController.getBorrowedMoviesSize()) {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
                 return;
