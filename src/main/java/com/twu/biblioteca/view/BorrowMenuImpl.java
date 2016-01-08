@@ -32,7 +32,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     @Override
     public void callBookBorrowMenu() {
         displayBookBorrowMenu();
-        displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
+        displayAvailableBookListing(Utilities.formatBooks(libraryController.getAvailableItems()));
             try {
                 if (input.hasNextLine()) {
                     callBookBorrowMenuOptions(input.nextInt(10));
@@ -49,7 +49,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     @Override
     public void callMovieBorrowMenu() {
         displayMovieBorrowMenu();
-        displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
+        displayAvailableMovieListing(Utilities.formatMovies(libraryController.getAvailableItems()));
         try {
             if (input.hasNextLine()) {
                 callMovieBorrowMenuOptions(input.nextInt(10));
@@ -66,7 +66,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     private void callBookBorrowMenuOptions(int option) {
         if (option <= libraryController.getAvailableBooksSize()) {
             try {
-                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
+                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(option) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -80,7 +80,7 @@ public class BorrowMenuImpl implements BorrowMenu {
     private void callMovieBorrowMenuOptions(int option) {
         if (option <= libraryController.getAvailableMoviesSize()) {
             try {
-                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
+                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(option) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

@@ -32,7 +32,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     @Override
     public void callBookReturnMenu() {
         displayBookReturnMenu();
-        displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
+        displayBorrowedBookListing(Utilities.formatBooks(libraryController.getBorrowedItems()));
         try {
             if (input.hasNextLine()) {
                 callBookReturnMenuOptions(input.nextInt(10));
@@ -49,7 +49,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     @Override
     public void callMovieReturnMenu() {
         displayMovieReturnMenu();
-        displayBorrowedMovieListing(Utilities.formatMovieList(libraryController.getBorrowedMovies()));
+        displayBorrowedMovieListing(Utilities.formatMovies(libraryController.getBorrowedItems()));
         try {
             if (input.hasNextLine()) {
                 callMovieReturnMenuOptions(input.nextInt(10));
@@ -66,7 +66,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     private void callBookReturnMenuOptions(int option) {
         if (option <= libraryController.getBorrowedBooksSize()) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(option) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -80,7 +80,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     private void callMovieReturnMenuOptions(int option) {
         if (option <= libraryController.getBorrowedMoviesSize()) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(option) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

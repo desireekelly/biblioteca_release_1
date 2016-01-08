@@ -16,6 +16,10 @@ import java.util.Map;
  */
 public interface Library {
 
+    List<BorrowableItem> getBorrowedItems();
+
+    List<BorrowableItem> getAvailableItems();
+
     List<Book> getAvailableBooks();
 
     List<Book> getBorrowedBooks();

@@ -73,6 +73,28 @@ public class LibraryImpl implements Library {
     }
 
     @Override
+    public List<BorrowableItem> getAvailableItems() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (BorrowableItem item : items) {
+            if (!borrowedItems.contains(item)) {
+                results.add(item);
+            }
+        }
+        return results;
+    }
+
+    @Override
+    public List<BorrowableItem> getBorrowedItems() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (BorrowableItem item : items) {
+            if (borrowedItems.contains(item)) {
+                results.add(item);
+            }
+        }
+        return results;
+    }
+
+    @Override
     public List<Book> getAvailableBooks() {
         List<Book> results = new ArrayList<Book>();
         for (BorrowableItem item : items) {

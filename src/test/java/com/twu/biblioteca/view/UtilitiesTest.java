@@ -28,8 +28,8 @@ public class UtilitiesTest {
         List<Book> books = new ArrayList<Book>();
         books.add(new Book("Java 101", "Joe Bloggs", 1990));
         books.add(new Book("PHP 101", "Mary Jane", 2005));
-        assertEquals("1               Java 101        Joe Bloggs      1990           \n" +
-                        "2               PHP 101         Mary Jane       2005           \n",
+        assertEquals("0               Java 101        Joe Bloggs      1990           \n" +
+                        "1               PHP 101         Mary Jane       2005           \n",
                 Utilities.formatBookList(books).toString());
     }
 
@@ -38,8 +38,8 @@ public class UtilitiesTest {
         List<Movie> movies = new ArrayList<Movie>();
         movies.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         movies.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
-        assertEquals("1                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
-                        "2                    Inception                      2010                 Christopher Nolan                   8                   \n",
+        assertEquals("0                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
+                        "1                    Inception                      2010                 Christopher Nolan                   8                   \n",
                 Utilities.formatMovieList(movies).toString());
     }
 

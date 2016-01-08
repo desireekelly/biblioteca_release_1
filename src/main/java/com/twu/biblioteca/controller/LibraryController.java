@@ -41,6 +41,14 @@ public class LibraryController {
         return loginService.loginUser(libraryNumber, password);
     }
 
+    public List<BorrowableItem> getAvailableItems() {
+        return library.getAvailableItems();
+    }
+
+    public List<BorrowableItem> getBorrowedItems() {
+        return library.getBorrowedItems();
+    }
+
     public List<Book> getAvailableBooks() {
         return library.getAvailableBooks();
     }
@@ -101,42 +109,16 @@ public class LibraryController {
         return library.getBorrowedMovies().size();
     }
 
-    /*
     public String checkinItem(int option) throws ItemNotReturnable {
-        BorrowableItem itemToReturn = library.getBorrowedItems().get(option - 1);
+        BorrowableItem itemToReturn = library.getBorrowedItems().get(option);
         returnItem(itemToReturn, user);
         return itemToReturn.getDescription().toString();
     }
 
-    public String checkoutItem(int option) throws ItemNotReturnable {
-        BorrowableItem itemToBorrow = library.getAvailableItems().get(option - 1);
+    public String checkoutItem(int option) throws ItemNotBorrowable {
+        BorrowableItem itemToBorrow = library.getAvailableItems().get(option);
         borrowItem(itemToBorrow, user);
         return itemToBorrow.getDescription().toString();
-    }
-    */
-
-    public String checkoutBook(int option) throws ItemNotBorrowable {
-        Book bookToBorrow = library.getAvailableBooks().get(option);
-        borrowItem(bookToBorrow, user);
-        return bookToBorrow.getTitle().toString();
-    }
-
-    public String checkinBook(int option) throws ItemNotReturnable {
-        Book bookToReturn = library.getBorrowedBooks().get(option);
-        returnItem(bookToReturn, user);
-        return bookToReturn.getTitle().toString();
-    }
-
-    public String checkoutMovie(int option) throws ItemNotBorrowable {
-        Movie movieToBorrow = library.getAvailableMovies().get(option);
-        borrowItem(movieToBorrow, user);
-        return movieToBorrow.getName().toString();
-    }
-
-    public String checkinMovie(int option) throws ItemNotReturnable {
-        Movie movieToReturn = library.getBorrowedMovies().get(option);
-        returnItem(movieToReturn, user);
-        return movieToReturn.getName().toString();
     }
 
     public User login(String libraryNumber, String password) throws IncorrectLogin {

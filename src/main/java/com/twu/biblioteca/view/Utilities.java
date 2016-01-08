@@ -16,29 +16,31 @@ import java.util.Map;
  */
 public class Utilities {
 
-    public static String formatBookList(List<Book> bookList) {
-        String formattedBookList = "";
-        int index = 0;
-        for (Book book : bookList) {
-            index++;
-            formattedBookList += String.format("%-15d %-15s %-15s %-15d\n", bookList.indexOf(book), book.getTitle(), book.getAuthor(), book.getYearPublished());
-        }
-        return formattedBookList;
-    }
-
-    public static String formatMovieList(List<Movie> movieList) {
-        String formattedMovieList = "";
-        for (Movie movie : movieList) {
-            formattedMovieList += String.format("%-20d %-30s %-20d %-35s %-20s\n", movieList.indexOf(movie), movie.getName(), movie.getYear(), movie.getDirector(), movie.getMovieRating());
-        }
-        return formattedMovieList;
-    }
-
     public static String formatGetItemsCheckedOutByCustomers(Map<BorrowableItem, User> items) {
         String formattedItems = "";
         for (Map.Entry<BorrowableItem, User> entry : items.entrySet()) {
             formattedItems += entry.getKey().getDescription() + " is checked out by user: " + entry.getValue().getLibraryNumber() + "\n";
         }
         return formattedItems;
+    }
+
+    public static String formatBooks(List<BorrowableItem> items) {
+        String formattedBooks = "";
+        for (BorrowableItem item : items) {
+            if (item instanceof Book) {
+                formattedBooks += String.format("%-15d %-15s %-15s %-15d\n", items.indexOf(item), item.getDescription(), ((Book) item).getAuthor(), ((Book) item).getYearPublished());
+            }
+        }
+        return formattedBooks;
+    }
+
+    public static String formatMovies(List<BorrowableItem> items) {
+        String formattedMovies = "";
+        for (BorrowableItem item : items) {
+            if (item instanceof Movie) {
+                formattedMovies += String.format("%-20d %-30s %-20d %-35s %-20s\n", items.indexOf(item), item.getDescription(), ((Movie) item).getYear(), ((Movie) item).getDirector(), ((Movie) item).getMovieRating());
+            }
+        }
+        return formattedMovies;
     }
 }
