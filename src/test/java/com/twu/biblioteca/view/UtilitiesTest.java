@@ -32,7 +32,7 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testFormatBookList() throws Exception {
+    public void testFormatBooks() throws Exception {
         items.add(new Book("Java 101", "Joe Bloggs", 1990));
         items.add(new Book("PHP 101", "Mary Jane", 2005));
         assertEquals("0               Java 101        Joe Bloggs      1990           \n" +
@@ -41,7 +41,7 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testDisplayFormatMovieList() throws Exception {
+    public void testDisplayFormatMovies() throws Exception {
         items.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         items.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
         assertEquals("0                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
