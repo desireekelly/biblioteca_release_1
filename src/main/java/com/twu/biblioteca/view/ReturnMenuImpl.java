@@ -64,7 +64,7 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callBookReturnMenuOptions(int option) {
-        if (option <= libraryController.getBorrowedBooksSize()) {
+        if (libraryController.borrowedBooksHasIndex(option)) {
             try {
                 outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(option) + "!\n");
                 return;

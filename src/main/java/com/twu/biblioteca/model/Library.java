@@ -16,6 +16,12 @@ import java.util.Map;
  */
 public interface Library {
 
+    boolean availableBooksHasIndex(int option);
+
+    boolean borrowedBooksHasIndex(int option);
+
+    boolean availableMoviesHasIndex(int option);
+
     List<BorrowableItem> getBorrowedItems();
 
     List<BorrowableItem> getAvailableItems();

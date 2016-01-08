@@ -79,6 +79,18 @@ public class LibraryController {
         return false;
     }
 
+    public boolean availableBooksHasIndex(int option) {
+        return library.availableBooksHasIndex(option);
+    }
+
+    public boolean borrowedBooksHasIndex(int option) {
+        return library.borrowedBooksHasIndex(option);
+    }
+
+    public boolean availableMoviesHasIndex(int option) {
+        return library.availableMoviesHasIndex(option);
+    }
+
     public int getAvailableBooksSize() {
         return library.getAvailableBooks().size();
     }

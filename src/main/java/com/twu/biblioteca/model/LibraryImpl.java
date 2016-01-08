@@ -106,6 +106,46 @@ public class LibraryImpl implements Library {
     }
 
     @Override
+    public boolean borrowedBooksHasIndex(int option) {
+        for (BorrowableItem item : items) {
+            if (borrowedItems.contains(item) && item instanceof Book) {
+                if (option == items.indexOf(item)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean availableBooksHasIndex(int option) {
+        List<Integer> results = new ArrayList<Integer>();
+        for (BorrowableItem item : items) {
+            if ((!borrowedItems.contains(item) && item instanceof Book)) {
+                results.add(items.indexOf(item));
+            }
+        }
+        if (results.contains(option)) ;
+        {
+            return true;
+        }
+    }
+
+    @Override
+    public boolean availableMoviesHasIndex(int option) {
+        List<Integer> results = new ArrayList<Integer>();
+        for (BorrowableItem item : items) {
+            if ((!borrowedItems.contains(item) && item instanceof Movie)) {
+                results.add(items.indexOf(item));
+            }
+        }
+        if (results.contains(option)) ;
+        {
+            return true;
+        }
+    }
+
+    @Override
     public List<Book> getBorrowedBooks() {
         List<Book> results = new ArrayList<Book>();
         for (BorrowableItem item : items) {
