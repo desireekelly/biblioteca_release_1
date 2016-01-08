@@ -101,6 +101,20 @@ public class LibraryController {
         return library.getBorrowedMovies().size();
     }
 
+    /*
+    public String checkinItem(int option) throws ItemNotReturnable {
+        BorrowableItem itemToReturn = library.getBorrowedItems().get(option - 1);
+        returnItem(itemToReturn, user);
+        return itemToReturn.getDescription().toString();
+    }
+
+    public String checkoutItem(int option) throws ItemNotReturnable {
+        BorrowableItem itemToBorrow = library.getAvailableItems().get(option - 1);
+        borrowItem(itemToBorrow, user);
+        return itemToBorrow.getDescription().toString();
+    }
+    */
+
     public String checkoutBook(int option) throws ItemNotBorrowable {
         Book bookToBorrow = library.getAvailableBooks().get(option - 1);
         borrowItem(bookToBorrow, user);
