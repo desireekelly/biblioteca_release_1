@@ -3,7 +3,9 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 import com.twu.biblioteca.exceptions.ItemNotReturnable;
-import com.twu.biblioteca.model.*;
+import com.twu.biblioteca.model.BorrowableItem;
+import com.twu.biblioteca.model.Library;
+import com.twu.biblioteca.model.User;
 
 import java.util.List;
 import java.util.Map;
@@ -47,22 +49,6 @@ public class LibraryController {
 
     public List<BorrowableItem> getBorrowedItems() {
         return library.getBorrowedItems();
-    }
-
-    public List<Book> getAvailableBooks() {
-        return library.getAvailableBooks();
-    }
-
-    public List<Book> getBorrowedBooks() {
-        return library.getBorrowedBooks();
-    }
-
-    public List<Movie> getAvailableMovies(){
-        return library.getAvailableMovies();
-    }
-
-    public List<Movie> getBorrowedMovies(){
-        return library.getBorrowedMovies();
     }
 
     public boolean availableBooksIsEmpty() {
