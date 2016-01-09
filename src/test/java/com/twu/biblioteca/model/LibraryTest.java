@@ -50,8 +50,24 @@ public class LibraryTest {
     }
 
     @Test
-    public void testItemsCheckedOutByCustomersIsEmpty() throws Exception {
-        assertFalse(library.itemsCheckedOutByCustomersIsEmpty());
+    public void testGetBorrowableItem() throws Exception {
+        String description = "Java 101";
+        assertTrue(library.getBorrowableItem(description) != null);
+    }
+
+    @Test
+    public void testGetAvailableItems() throws Exception {
+        assertTrue(library.getAvailableItems().contains(BOOK_1));
+        library.checkoutItem(BOOK_2, USER_2);
+        assertFalse(library.getAvailableItems().contains(BOOK_2));
+    }
+
+    @Test
+    public void testGetBorrowedItems() throws Exception {
+        library.checkoutItem(BOOK_1, USER_1);
+        assertTrue(library.getBorrowedItems().contains(BOOK_1));
+        library.returnItem(BOOK_1, USER_1);
+        assertFalse(library.getBorrowedItems().contains(BOOK_1));
     }
 
     @Test
@@ -89,24 +105,8 @@ public class LibraryTest {
     }
 
     @Test
-    public void testGetBorrowableItem() throws Exception {
-        String description = "Java 101";
-        assertTrue(library.getBorrowableItem(description) != null);
-    }
-
-    @Test
-    public void testGetAvailableItems() throws Exception {
-        assertTrue(library.getAvailableItems().contains(BOOK_1));
-        library.checkoutItem(BOOK_2, USER_2);
-        assertFalse(library.getAvailableItems().contains(BOOK_2));
-    }
-
-    @Test
-    public void testGetBorrowedItems() throws Exception {
-        library.checkoutItem(BOOK_1, USER_1);
-        assertTrue(library.getBorrowedItems().contains(BOOK_1));
-        library.returnItem(BOOK_1, USER_1);
-        assertFalse(library.getBorrowedItems().contains(BOOK_1));
+    public void testItemsCheckedOutByCustomersIsEmpty() throws Exception {
+        assertFalse(library.itemsCheckedOutByCustomersIsEmpty());
     }
 
     @Test
@@ -132,9 +132,9 @@ public class LibraryTest {
         verify(libraryMock, times(1)).returnItem(item, user);
     }
 
-    @Test(expected = ItemNotReturnable.class)
-    public void testExceptionThrownWhenItemAlreadyReturned() throws Exception {
-        library.returnItem(MOVIE_1, USER_1);
+    @Test(expected = IncorrectLogin.class)
+    public void testExceptionThrownWhenIncorrectLogin() throws Exception {
+        library.login("jfsl", "fjlk");
     }
 
     @Test(expected = ItemNotBorrowable.class)
@@ -143,8 +143,8 @@ public class LibraryTest {
         library.checkoutItem(MOVIE_2, USER_2);
     }
 
-    @Test(expected = IncorrectLogin.class)
-    public void testExceptionThrownWhenIncorrectLogin() throws Exception {
-        library.login("jfsl", "fjlk");
+    @Test(expected = ItemNotReturnable.class)
+    public void testExceptionThrownWhenItemAlreadyReturned() throws Exception {
+        library.returnItem(MOVIE_1, USER_1);
     }
 }

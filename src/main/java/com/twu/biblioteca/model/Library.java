@@ -18,9 +18,9 @@ public interface Library {
 
     BorrowableItem getBorrowableItem(String description);
 
-    List<BorrowableItem> getBorrowedItems();
-
     List<BorrowableItem> getAvailableItems();
+
+    List<BorrowableItem> getBorrowedItems();
 
     boolean availableBooksIsEmpty();
 
@@ -32,9 +32,9 @@ public interface Library {
 
     boolean itemsCheckedOutByCustomersIsEmpty();
 
-    User login(String libraryNumber, String password) throws IncorrectLogin;
-
     Map<BorrowableItem, User> getItemsCheckedOutByCustomers();
+
+    User login(String libraryNumber, String password) throws IncorrectLogin;
 
     void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable;
 

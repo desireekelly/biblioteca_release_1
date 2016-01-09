@@ -155,6 +155,29 @@ public class LibraryImpl implements Library {
     }
 
     @Override
+    public boolean itemsCheckedOutByCustomersIsEmpty() {
+        if (itemsCheckedOutByCustomers.isEmpty()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {
+        return Collections.unmodifiableMap(itemsCheckedOutByCustomers);
+    }
+
+    @Override
+    public User login(String libraryNumber, String password) throws IncorrectLogin {
+        if (users.containsKey(libraryNumber)) {
+            if (users.get(libraryNumber).checkPassword(password)) {
+                return users.get(libraryNumber);
+            }
+        }
+        throw new IncorrectLogin("Incorrect login details. Please try again.");
+    }
+
+    @Override
     public void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable {
         if (borrowedItems.containsValue(item))
             throw new ItemNotBorrowable("item is not available");
@@ -168,28 +191,5 @@ public class LibraryImpl implements Library {
             throw new ItemNotReturnable("item is already returned");
         borrowedItems.remove(item.getDescription());
         itemsCheckedOutByCustomers.remove(item);
-    }
-
-    @Override
-    public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {
-        return Collections.unmodifiableMap(itemsCheckedOutByCustomers);
-    }
-
-    @Override
-    public boolean itemsCheckedOutByCustomersIsEmpty() {
-        if (itemsCheckedOutByCustomers.isEmpty()) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public User login(String libraryNumber, String password) throws IncorrectLogin {
-        if (users.containsKey(libraryNumber)) {
-            if (users.get(libraryNumber).checkPassword(password)) {
-                return users.get(libraryNumber);
-            }
-        }
-        throw new IncorrectLogin("Incorrect login details. Please try again.");
     }
 }
