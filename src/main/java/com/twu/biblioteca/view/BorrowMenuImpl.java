@@ -64,9 +64,10 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     private void callBookBorrowMenuOptions(String description) {
-        if (libraryController.getBorrowableItem(description) != null) {
+        String type = "book";
+        if (libraryController.getBorrowableItem(description, type) != null) {
             try {
-                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(description) + "!\n");
+                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(description, type) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -78,9 +79,10 @@ public class BorrowMenuImpl implements BorrowMenu {
     }
 
     private void callMovieBorrowMenuOptions(String description) {
-        if (libraryController.getBorrowableItem(description) != null) {
+        String type = "movie";
+        if (libraryController.getBorrowableItem(description, type) != null) {
             try {
-                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(description) + "!\n");
+                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(description, type) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

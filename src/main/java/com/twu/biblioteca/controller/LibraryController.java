@@ -67,20 +67,20 @@ public class LibraryController {
         return library.borrowedMoviesIsEmpty();
     }
 
-    public String checkinItem(String description) throws ItemNotReturnable {
-        BorrowableItem itemToReturn = library.getBorrowableItem(description);
+    public String checkinItem(String description, String type) throws ItemNotReturnable {
+        BorrowableItem itemToReturn = library.getBorrowableItem(description, type);
         returnItem(itemToReturn, user);
         return itemToReturn.getDescription().toString();
     }
 
-    public String checkoutItem(String description) throws ItemNotBorrowable {
-        BorrowableItem itemToBorrow = library.getBorrowableItem(description);
+    public String checkoutItem(String description, String type) throws ItemNotBorrowable {
+        BorrowableItem itemToBorrow = library.getBorrowableItem(description, type);
         borrowItem(itemToBorrow, user);
         return itemToBorrow.getDescription().toString();
     }
 
-    public BorrowableItem getBorrowableItem(String description) {
-        return library.getBorrowableItem(description);
+    public BorrowableItem getBorrowableItem(String description, String type) {
+        return library.getBorrowableItem(description, type);
     }
 
     public User login(String libraryNumber, String password) throws IncorrectLogin {

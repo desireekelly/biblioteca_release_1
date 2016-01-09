@@ -73,9 +73,32 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public BorrowableItem getBorrowableItem(String description) {
-        if (items.containsKey(description)) {
-            return items.get(description);
+    public BorrowableItem getBorrowableItem(String description, String type) {
+        if (type.equals("book")) {
+            return getBookItem(description);
+        }
+        if (type.equals("movie")) {
+            return getMovieItem(description);
+        }
+        return null;
+    }
+
+    @Override
+    public BorrowableItem getBookItem(String description) {
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (entry.getKey().contains(description) && entry.getValue() instanceof Book) {
+                return items.get(description);
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public BorrowableItem getMovieItem(String description) {
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (entry.getKey().contains(description) && entry.getValue() instanceof Movie) {
+                return items.get(description);
+            }
         }
         return null;
     }

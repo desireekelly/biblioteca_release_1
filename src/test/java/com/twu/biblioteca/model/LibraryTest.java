@@ -50,8 +50,24 @@ public class LibraryTest {
 
     @Test
     public void testGetBorrowableItem() throws Exception {
+        String bookDescription = "Java 101";
+        String movieDescription = "The Matrix";
+        String bookType = "book";
+        String movieType = "movie";
+        assertEquals(library.getBorrowableItem(bookDescription, bookType), BOOK_1);
+        assertEquals(library.getBorrowableItem(movieDescription, movieType), MOVIE_1);
+    }
+
+    @Test
+    public void testGetBookItem() throws Exception {
         String description = "Java 101";
-        assertEquals(library.getBorrowableItem(description), BOOK_1);
+        assertEquals(library.getBookItem(description), BOOK_1);
+    }
+
+    @Test
+    public void testGetMovieItem() throws Exception {
+        String description = "The Matrix";
+        assertEquals(library.getMovieItem(description), MOVIE_1);
     }
 
     @Test

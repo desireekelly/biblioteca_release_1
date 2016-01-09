@@ -64,9 +64,10 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callBookReturnMenuOptions(String description) {
-        if (libraryController.getBorrowableItem(description) != null) {
+        String type = "book";
+        if (libraryController.getBorrowableItem(description, type) != null) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description, type) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -78,9 +79,10 @@ public class ReturnMenuImpl implements ReturnMenu {
     }
 
     private void callMovieReturnMenuOptions(String description) {
-        if (libraryController.getBorrowableItem(description) != null) {
+        String type = "movie";
+        if (libraryController.getBorrowableItem(description, type) != null) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description, type) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
