@@ -36,7 +36,6 @@ public class LibraryTest {
     private static final Movie MOVIE_3 = new Movie("Divergent", 2014, "Neil Burger", "Unrated");
     private static final Movie MOVIE_4 = new Movie("The Bourne Identity", 2002, "Doug Liman", "10");
 
-
     private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "password1");
     private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "password2");
 
