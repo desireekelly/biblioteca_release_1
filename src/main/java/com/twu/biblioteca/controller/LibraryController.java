@@ -101,10 +101,7 @@ public class LibraryController {
     }
 
     public boolean itemsCheckedOutByCustomersIsEmpty() {
-        if (library.getItemsCheckedOutByCustomers().isEmpty()) {
-            return true;
-        }
-        return false;
+        return library.itemsCheckedOutByCustomersIsEmpty();
     }
 
     public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {

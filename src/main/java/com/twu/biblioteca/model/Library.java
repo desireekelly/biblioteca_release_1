@@ -30,16 +30,7 @@ public interface Library {
 
     boolean borrowedMoviesIsEmpty();
 
-    /*
-    List<Book> getBookList();
-
-    List<Movie> getAvailableMovies();
-
-    List<Movie> getBorrowedMovies();
-
-    List<Movie> getMovieList();
-    */
-    Map<String, User> getUsers();
+    boolean itemsCheckedOutByCustomersIsEmpty();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
 

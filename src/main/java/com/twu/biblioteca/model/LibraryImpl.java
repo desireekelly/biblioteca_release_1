@@ -176,8 +176,11 @@ public class LibraryImpl implements Library {
     }
 
     @Override
-    public Map<String, User> getUsers() {
-        return Collections.unmodifiableMap(users);
+    public boolean itemsCheckedOutByCustomersIsEmpty() {
+        if (itemsCheckedOutByCustomers.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

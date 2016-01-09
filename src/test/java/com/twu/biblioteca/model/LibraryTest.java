@@ -50,6 +50,11 @@ public class LibraryTest {
     }
 
     @Test
+    public void testItemsCheckedOutByCustomersIsEmpty() throws Exception {
+        assertFalse(library.itemsCheckedOutByCustomersIsEmpty());
+    }
+
+    @Test
     public void testAvailableBooksIsEmpty() throws Exception {
         assertFalse(library.availableBooksIsEmpty());
         library.checkoutItem(BOOK_1, USER_1);
