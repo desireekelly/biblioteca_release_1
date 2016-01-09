@@ -52,71 +52,35 @@ public class LibraryController {
     }
 
     public boolean availableBooksIsEmpty() {
-        if (library.getAvailableBooks().isEmpty()) {
-            return true;
-        }
-        return false;
+        return library.availableBooksIsEmpty();
     }
 
     public boolean borrowedBooksIsEmpty() {
-        if (library.getBorrowedBooks().isEmpty()) {
-            return true;
-        }
-        return false;
+        return library.borrowedBooksIsEmpty();
     }
 
     public boolean availableMoviesIsEmpty() {
-        if (library.getAvailableMovies().isEmpty()) {
-            return true;
-        }
-        return false;
+        return library.availableMoviesIsEmpty();
     }
 
     public boolean borrowedMoviesIsEmpty() {
-        if (library.getBorrowedMovies().isEmpty()) {
-            return true;
-        }
-        return false;
+        return library.borrowedMoviesIsEmpty();
     }
 
-    public boolean availableBooksHasIndex(int option) {
-        return library.availableBooksHasIndex(option);
-    }
-
-    public boolean borrowedBooksHasIndex(int option) {
-        return library.borrowedBooksHasIndex(option);
-    }
-
-    public boolean availableMoviesHasIndex(int option) {
-        return library.availableMoviesHasIndex(option);
-    }
-
-    public int getAvailableBooksSize() {
-        return library.getAvailableBooks().size();
-    }
-
-    public int getBorrowedBooksSize() {
-        return library.getBorrowedBooks().size();
-    }
-
-    public int getAvailableMoviesSize() {
-        return library.getAvailableMovies().size();
-    }
-
-    public int getBorrowedMoviesSize() {
-        return library.getBorrowedMovies().size();
-    }
-
-    public String checkinItem(int option) throws ItemNotReturnable {
-        BorrowableItem itemToReturn = library.getBorrowedItems().get(option);
+    public String checkinItem(String description) throws ItemNotReturnable {
+        BorrowableItem itemToReturn = library.getBorrowableItem(description);
         returnItem(itemToReturn, user);
         return itemToReturn.getDescription().toString();
     }
 
-    public String checkoutItem(int option) throws ItemNotBorrowable {
-        BorrowableItem itemToBorrow = library.getAvailableItems().get(option);
+    public String checkoutItem(String description) throws ItemNotBorrowable {
+        BorrowableItem itemToBorrow = library.getBorrowableItem(description);
         borrowItem(itemToBorrow, user);
         return itemToBorrow.getDescription().toString();
+    }
+
+    public BorrowableItem getBorrowableItem(String description) {
+        return library.getBorrowableItem(description);
     }
 
     public User login(String libraryNumber, String password) throws IncorrectLogin {

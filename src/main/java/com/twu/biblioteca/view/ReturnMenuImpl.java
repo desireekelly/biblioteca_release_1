@@ -35,7 +35,7 @@ public class ReturnMenuImpl implements ReturnMenu {
         displayBorrowedBookListing(Utilities.formatBooks(libraryController.getBorrowedItems()));
         try {
             if (input.hasNextLine()) {
-                callBookReturnMenuOptions(input.nextInt(10));
+                callBookReturnMenuOptions(input.nextLine());
             } else {
                 return;
             }
@@ -52,7 +52,7 @@ public class ReturnMenuImpl implements ReturnMenu {
         displayBorrowedMovieListing(Utilities.formatMovies(libraryController.getBorrowedItems()));
         try {
             if (input.hasNextLine()) {
-                callMovieReturnMenuOptions(input.nextInt(10));
+                callMovieReturnMenuOptions(input.nextLine());
             } else {
                 return;
             }
@@ -63,10 +63,10 @@ public class ReturnMenuImpl implements ReturnMenu {
         }
     }
 
-    private void callBookReturnMenuOptions(int option) {
-        if (libraryController.borrowedBooksHasIndex(option)) {
+    private void callBookReturnMenuOptions(String description) {
+        if (libraryController.getBorrowableItem(description) != null) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(option) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -77,10 +77,10 @@ public class ReturnMenuImpl implements ReturnMenu {
         }
     }
 
-    private void callMovieReturnMenuOptions(int option) {
-        if (option <= libraryController.getBorrowedMoviesSize()) {
+    private void callMovieReturnMenuOptions(String description) {
+        if (libraryController.getBorrowableItem(description) != null) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(option) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

@@ -16,32 +16,32 @@ import java.util.*;
 public class LibraryImpl implements Library {
 
     private Map<String, User> users = new HashMap<String, User>();
-    private List<BorrowableItem> items = new ArrayList<BorrowableItem>();
-    private Set<BorrowableItem> borrowedItems = new HashSet<BorrowableItem>();
+    private Map<String, BorrowableItem> items = new HashMap<String, BorrowableItem>();
+    private Map<String, BorrowableItem> borrowedItems = new HashMap<String, BorrowableItem>();
     private Map<BorrowableItem, User> itemsCheckedOutByCustomers = new HashMap<BorrowableItem, User>();
 
     public LibraryImpl() {
-        this.createBookList();
-        this.createMovieList();
-        this.createUsers();
-        this.createItemsCheckedOutByCustomers();
+        this.addBookItems();
+        this.addMovieItems();
+        this.addUsers();
+        this.addItemsCheckedOutByCustomers();
     }
 
-    private void createBookList() {
-        items.add(new Book("Java 101", "Joe Bloggs", 1990));
-        items.add(new Book("PHP 101", "Mary Jane", 2005));
-        items.add(new Book("C# 101", "John Smith", 2010));
-        items.add(new Book("C++ 101", "Joyce Merry", 2001));
+    private void addBookItems() {
+        items.put("Java 101", new Book("Java 101", "Joe Bloggs", 1990));
+        items.put("PHP 101", new Book("PHP 101", "Mary Jane", 2005));
+        items.put("C# 101", new Book("C# 101", "John Smith", 2010));
+        items.put("C++ 101", new Book("C++ 101", "Joyce Merry", 2001));
     }
 
-    private void createMovieList() {
-        items.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
-        items.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
-        items.add(new Movie("Divergent", 2014, "Neil Burger", "Unrated"));
-        items.add(new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
+    private void addMovieItems() {
+        items.put("The Matrix", new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
+        items.put("Inception", new Movie("Inception", 2010, "Christopher Nolan", "8"));
+        items.put("Divergent", new Movie("Divergent", 2014, "Neil Burger", "Unrated"));
+        items.put("The Bourne Identity", new Movie("The Bourne Identity", 2002, "Doug Liman", "10"));
     }
 
-    private void createUsers() {
+    private void addUsers() {
         User customer1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "password1");
         User customer2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "password2");
         User customer3 = new User("Bob Smith", "bobsmith@bobsmith.com", "0412 454 565", "123-4568", "password3");
@@ -55,7 +55,7 @@ public class LibraryImpl implements Library {
         librarian.setLibrarian(true);
     }
 
-    private void createItemsCheckedOutByCustomers() {
+    private void addItemsCheckedOutByCustomers() {
         Book book1 = new Book("Ruby 101", "Jenny Moore", 2013);
         Book book2 = new Book("Web Development 101", "Mark Green", 2014);
 
@@ -65,20 +65,27 @@ public class LibraryImpl implements Library {
         users.put(customer1.getLibraryNumber(), customer1);
         users.put(customer2.getLibraryNumber(), customer2);
 
-        borrowedItems.add(book1);
-        borrowedItems.add(book2);
+        borrowedItems.put(book1.getTitle(), book1);
+        borrowedItems.put(book2.getTitle(), book2);
 
         itemsCheckedOutByCustomers.put(book1, customer1);
         itemsCheckedOutByCustomers.put(book2, customer2);
     }
 
     @Override
+    public BorrowableItem getBorrowableItem(String description) {
+        if (items.containsKey(description)) {
+            return items.get(description);
+        }
+        return null;
+    }
+
+    @Override
     public List<BorrowableItem> getAvailableItems() {
         List<BorrowableItem> results = new ArrayList<BorrowableItem>();
-        for (BorrowableItem item : items) {
-            if (!borrowedItems.contains(item)) {
-                results.add(item);
-            }
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (!borrowedItems.containsKey(entry.getKey()))
+                results.add(entry.getValue());
         }
         return results;
     }
@@ -86,134 +93,81 @@ public class LibraryImpl implements Library {
     @Override
     public List<BorrowableItem> getBorrowedItems() {
         List<BorrowableItem> results = new ArrayList<BorrowableItem>();
-        for (BorrowableItem item : items) {
-            if (borrowedItems.contains(item)) {
-                results.add(item);
-            }
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (borrowedItems.containsKey(entry.getKey()))
+                results.add(entry.getValue());
         }
         return results;
     }
 
     @Override
-    public List<Book> getAvailableBooks() {
-        List<Book> results = new ArrayList<Book>();
-        for (BorrowableItem item : items) {
-            if (!borrowedItems.contains(item) && item instanceof Book) {
-                results.add((Book) item);
-            }
+    public boolean availableBooksIsEmpty() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (!borrowedItems.containsKey(entry.getKey()) && entry.getValue() instanceof Book)
+                results.add(entry.getValue());
         }
-        return results;
+        if (results.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
+
     @Override
-    public boolean borrowedBooksHasIndex(int option) {
-        for (BorrowableItem item : items) {
-            if (borrowedItems.contains(item) && item instanceof Book) {
-                if (option == items.indexOf(item)) {
-                    return true;
-                }
-            }
+    public boolean borrowedBooksIsEmpty() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (borrowedItems.containsKey(entry.getKey()) && entry.getValue() instanceof Book)
+                results.add(entry.getValue());
+        }
+        if (results.isEmpty()) {
+            return true;
         }
         return false;
     }
 
     @Override
-    public boolean availableBooksHasIndex(int option) {
-        List<Integer> results = new ArrayList<Integer>();
-        for (BorrowableItem item : items) {
-            if ((!borrowedItems.contains(item) && item instanceof Book)) {
-                results.add(items.indexOf(item));
-            }
+    public boolean availableMoviesIsEmpty() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (!borrowedItems.containsKey(entry.getKey()) && entry.getValue() instanceof Movie)
+                results.add(entry.getValue());
         }
-        if (results.contains(option)) ;
-        {
+        if (results.isEmpty()) {
             return true;
         }
+        return false;
     }
 
+
     @Override
-    public boolean availableMoviesHasIndex(int option) {
-        List<Integer> results = new ArrayList<Integer>();
-        for (BorrowableItem item : items) {
-            if ((!borrowedItems.contains(item) && item instanceof Movie)) {
-                results.add(items.indexOf(item));
-            }
+    public boolean borrowedMoviesIsEmpty() {
+        List<BorrowableItem> results = new ArrayList<BorrowableItem>();
+        for (Map.Entry<String, BorrowableItem> entry : items.entrySet()) {
+            if (borrowedItems.containsKey(entry.getKey()) && entry.getValue() instanceof Movie)
+                results.add(entry.getValue());
         }
-        if (results.contains(option)) ;
-        {
+        if (results.isEmpty()) {
             return true;
         }
-    }
-
-    @Override
-    public List<Book> getBorrowedBooks() {
-        List<Book> results = new ArrayList<Book>();
-        for (BorrowableItem item : items) {
-            if (borrowedItems.contains(item) && item instanceof Book) {
-                results.add((Book) item);
-            }
-        }
-        return results;
-    }
-
-    @Override
-    public List<Book> getBookList() {
-        List<Book> results = new ArrayList<Book>();
-        for (BorrowableItem item : items) {
-            if (item instanceof Book) {
-                results.add((Book) item);
-            }
-        }
-        return results;
+        return false;
     }
 
     @Override
     public void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable {
-        if (borrowedItems.contains(item))
+        if (borrowedItems.containsValue(item))
             throw new ItemNotBorrowable("item is not available");
-        borrowedItems.add(item);
+        borrowedItems.put(item.getDescription(), item);
         itemsCheckedOutByCustomers.put(item, user);
     }
 
     @Override
     public void returnItem(BorrowableItem item, User user) throws ItemNotReturnable {
-        if (!borrowedItems.contains(item))
+        if (!borrowedItems.containsValue(item))
             throw new ItemNotReturnable("item is already returned");
-        borrowedItems.remove(item);
+        borrowedItems.remove(item.getDescription());
         itemsCheckedOutByCustomers.remove(item);
-    }
-
-    @Override
-    public List<Movie> getAvailableMovies() {
-        List<Movie> results = new ArrayList<Movie>();
-        for (BorrowableItem item : items) {
-            if (!borrowedItems.contains(item) && item instanceof Movie) {
-                results.add((Movie) item);
-            }
-        }
-        return results;
-    }
-
-    @Override
-    public List<Movie> getBorrowedMovies() {
-        List<Movie> results = new ArrayList<Movie>();
-        for (BorrowableItem item : items) {
-            if (borrowedItems.contains(item) && item instanceof Movie) {
-                results.add((Movie) item);
-            }
-        }
-        return results;
-    }
-
-    @Override
-    public List<Movie> getMovieList() {
-        List<Movie> results = new ArrayList<Movie>();
-        for (BorrowableItem item : items) {
-            if (item instanceof Movie) {
-                results.add((Movie) item);
-            }
-        }
-        return results;
     }
 
     @Override

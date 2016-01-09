@@ -26,9 +26,11 @@ public class Utilities {
 
     public static String formatBooks(List<BorrowableItem> items) {
         String formattedBooks = "";
+        int index = 0;
         for (BorrowableItem item : items) {
             if (item instanceof Book) {
-                formattedBooks += String.format("%-15d %-15s %-15s %-15d\n", items.indexOf(item), ((Book) item).getTitle(), ((Book) item).getAuthor(), ((Book) item).getYearPublished());
+                index++;
+                formattedBooks += String.format("%-15d %-15s %-15s %-15d\n", index, ((Book) item).getTitle(), ((Book) item).getAuthor(), ((Book) item).getYearPublished());
             }
         }
         return formattedBooks;
@@ -36,9 +38,11 @@ public class Utilities {
 
     public static String formatMovies(List<BorrowableItem> items) {
         String formattedMovies = "";
+        int index = 0;
         for (BorrowableItem item : items) {
             if (item instanceof Movie) {
-                formattedMovies += String.format("%-20d %-30s %-20d %-35s %-20s\n", items.indexOf(item), ((Movie) item).getName(), ((Movie) item).getYear(), ((Movie) item).getDirector(), ((Movie) item).getMovieRating());
+                index++;
+                formattedMovies += String.format("%-20d %-30s %-20d %-35s %-20s\n", index, ((Movie) item).getName(), ((Movie) item).getYear(), ((Movie) item).getDirector(), ((Movie) item).getMovieRating());
             }
         }
         return formattedMovies;

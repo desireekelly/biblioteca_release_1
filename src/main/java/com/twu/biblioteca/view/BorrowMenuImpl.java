@@ -35,7 +35,7 @@ public class BorrowMenuImpl implements BorrowMenu {
         displayAvailableBookListing(Utilities.formatBooks(libraryController.getAvailableItems()));
             try {
                 if (input.hasNextLine()) {
-                    callBookBorrowMenuOptions(input.nextInt(10));
+                    callBookBorrowMenuOptions(input.nextLine());
                 } else {
                     return;
                 }
@@ -52,7 +52,7 @@ public class BorrowMenuImpl implements BorrowMenu {
         displayAvailableMovieListing(Utilities.formatMovies(libraryController.getAvailableItems()));
         try {
             if (input.hasNextLine()) {
-                callMovieBorrowMenuOptions(input.nextInt(10));
+                callMovieBorrowMenuOptions(input.nextLine());
             } else {
                 return;
             }
@@ -63,14 +63,10 @@ public class BorrowMenuImpl implements BorrowMenu {
         }
     }
 
-    private void callBookBorrowMenuOptions(int option) {
-        if (option < 0) {
-            displayIncorrectOptionMessage();
-            return;
-        }
-        if (libraryController.availableBooksHasIndex(option) && option <= libraryController.getAvailableBooksSize() - 1) {
+    private void callBookBorrowMenuOptions(String description) {
+        if (libraryController.getBorrowableItem(description) != null) {
             try {
-                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(option) + "!\n");
+                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(description) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -81,14 +77,10 @@ public class BorrowMenuImpl implements BorrowMenu {
         }
     }
 
-    private void callMovieBorrowMenuOptions(int option) {
-        if (option < 0) {
-            displayIncorrectOptionMessage();
-            return;
-        }
-        if (libraryController.availableMoviesHasIndex(option) && option <= libraryController.getAvailableMoviesSize()) {
+    private void callMovieBorrowMenuOptions(String description) {
+        if (libraryController.getBorrowableItem(description) != null) {
             try {
-                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(option) + "!\n");
+                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(description) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

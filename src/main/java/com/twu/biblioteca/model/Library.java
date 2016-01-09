@@ -16,20 +16,21 @@ import java.util.Map;
  */
 public interface Library {
 
-    boolean availableBooksHasIndex(int option);
-
-    boolean borrowedBooksHasIndex(int option);
-
-    boolean availableMoviesHasIndex(int option);
+    BorrowableItem getBorrowableItem(String description);
 
     List<BorrowableItem> getBorrowedItems();
 
     List<BorrowableItem> getAvailableItems();
 
-    List<Book> getAvailableBooks();
+    boolean availableBooksIsEmpty();
 
-    List<Book> getBorrowedBooks();
+    boolean borrowedBooksIsEmpty();
 
+    boolean availableMoviesIsEmpty();
+
+    boolean borrowedMoviesIsEmpty();
+
+    /*
     List<Book> getBookList();
 
     List<Movie> getAvailableMovies();
@@ -37,7 +38,7 @@ public interface Library {
     List<Movie> getBorrowedMovies();
 
     List<Movie> getMovieList();
-
+    */
     Map<String, User> getUsers();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;

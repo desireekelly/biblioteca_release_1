@@ -35,8 +35,8 @@ public class UtilitiesTest {
     public void testFormatBooks() throws Exception {
         items.add(new Book("Java 101", "Joe Bloggs", 1990));
         items.add(new Book("PHP 101", "Mary Jane", 2005));
-        assertEquals("0               Java 101        Joe Bloggs      1990           \n" +
-                        "1               PHP 101         Mary Jane       2005           \n",
+        assertEquals("1               Java 101        Joe Bloggs      1990           \n" +
+                        "2               PHP 101         Mary Jane       2005           \n",
                 Utilities.formatBooks(items).toString());
     }
 
@@ -44,8 +44,8 @@ public class UtilitiesTest {
     public void testDisplayFormatMovies() throws Exception {
         items.add(new Movie("The Matrix", 1999, "The Wachowski Brothers", "10"));
         items.add(new Movie("Inception", 2010, "Christopher Nolan", "8"));
-        assertEquals("0                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
-                        "1                    Inception                      2010                 Christopher Nolan                   8                   \n",
+        assertEquals("1                    The Matrix                     1999                 The Wachowski Brothers              10                  \n" +
+                        "2                    Inception                      2010                 Christopher Nolan                   8                   \n",
                 Utilities.formatMovies(items).toString());
     }
 
