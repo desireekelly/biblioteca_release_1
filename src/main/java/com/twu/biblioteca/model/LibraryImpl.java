@@ -113,7 +113,6 @@ public class LibraryImpl implements Library {
         return false;
     }
 
-
     @Override
     public boolean borrowedBooksIsEmpty() {
         List<BorrowableItem> results = new ArrayList<BorrowableItem>();
@@ -139,7 +138,6 @@ public class LibraryImpl implements Library {
         }
         return false;
     }
-
 
     @Override
     public boolean borrowedMoviesIsEmpty() {
