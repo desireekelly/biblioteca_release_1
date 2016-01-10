@@ -32,10 +32,10 @@ public class ReturnMenuImpl implements ReturnMenu {
     @Override
     public void callBookReturnMenu() {
         displayBookReturnMenu();
-        displayBorrowedBookListing(Utilities.formatBooks(libraryController.getBorrowedItems()));
+        displayBorrowedBookListing(Utilities.formatBookList(libraryController.getBorrowedBooks()));
         try {
             if (input.hasNextLine()) {
-                callBookReturnMenuOptions(input.nextLine());
+                callBookReturnMenuOptions(input.nextInt(10));
             } else {
                 return;
             }
@@ -49,10 +49,10 @@ public class ReturnMenuImpl implements ReturnMenu {
     @Override
     public void callMovieReturnMenu() {
         displayMovieReturnMenu();
-        displayBorrowedMovieListing(Utilities.formatMovies(libraryController.getBorrowedItems()));
+        displayBorrowedMovieListing(Utilities.formatMovieList(libraryController.getBorrowedMovies()));
         try {
             if (input.hasNextLine()) {
-                callMovieReturnMenuOptions(input.nextLine());
+                callMovieReturnMenuOptions(input.nextInt(10));
             } else {
                 return;
             }
@@ -63,11 +63,13 @@ public class ReturnMenuImpl implements ReturnMenu {
         }
     }
 
-    private void callBookReturnMenuOptions(String description) {
-        String type = "book";
-        if (libraryController.getBorrowableItem(description, type) != null) {
+    private void callBookReturnMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getBorrowedBooksSize()) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description, type) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinBook(option) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -78,11 +80,13 @@ public class ReturnMenuImpl implements ReturnMenu {
         }
     }
 
-    private void callMovieReturnMenuOptions(String description) {
-        String type = "movie";
-        if (libraryController.getBorrowableItem(description, type) != null) {
+    private void callMovieReturnMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getBorrowedMoviesSize()) {
             try {
-                outputStream.print(getReturnThankYouMessage() + libraryController.checkinItem(description, type) + "!\n");
+                outputStream.print(getReturnThankYouMessage() + libraryController.checkinMovie(option) + "!\n");
                 return;
             } catch (ItemNotReturnable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

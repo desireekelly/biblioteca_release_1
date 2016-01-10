@@ -32,10 +32,10 @@ public class BorrowMenuImpl implements BorrowMenu {
     @Override
     public void callBookBorrowMenu() {
         displayBookBorrowMenu();
-        displayAvailableBookListing(Utilities.formatBooks(libraryController.getAvailableItems()));
+        displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
             try {
                 if (input.hasNextLine()) {
-                    callBookBorrowMenuOptions(input.nextLine());
+                    callBookBorrowMenuOptions(input.nextInt(10));
                 } else {
                     return;
                 }
@@ -49,10 +49,10 @@ public class BorrowMenuImpl implements BorrowMenu {
     @Override
     public void callMovieBorrowMenu() {
         displayMovieBorrowMenu();
-        displayAvailableMovieListing(Utilities.formatMovies(libraryController.getAvailableItems()));
+        displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
         try {
             if (input.hasNextLine()) {
-                callMovieBorrowMenuOptions(input.nextLine());
+                callMovieBorrowMenuOptions(input.nextInt(10));
             } else {
                 return;
             }
@@ -63,11 +63,13 @@ public class BorrowMenuImpl implements BorrowMenu {
         }
     }
 
-    private void callBookBorrowMenuOptions(String description) {
-        String type = "book";
-        if (libraryController.getBorrowableItem(description, type) != null) {
+    private void callBookBorrowMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getAvailableBooksSize()) {
             try {
-                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutItem(description, type) + "!\n");
+                outputStream.print(getBookBorrowThankYouMessage() + libraryController.checkoutBook(option) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");
@@ -78,11 +80,13 @@ public class BorrowMenuImpl implements BorrowMenu {
         }
     }
 
-    private void callMovieBorrowMenuOptions(String description) {
-        String type = "movie";
-        if (libraryController.getBorrowableItem(description, type) != null) {
+    private void callMovieBorrowMenuOptions(int option) {
+        if (option == 0) {
+            return;
+        }
+        if (option > 0 && option <= libraryController.getAvailableMoviesSize()) {
             try {
-                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutItem(description, type) + "!\n");
+                outputStream.print(getMovieBorrowThankYouMessage() + libraryController.checkoutMovie(option) + "!\n");
                 return;
             } catch (ItemNotBorrowable e) {
                 outputStream.print("\n" + e.getMessage() + "\n");

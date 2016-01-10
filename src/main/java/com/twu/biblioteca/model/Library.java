@@ -16,29 +16,23 @@ import java.util.Map;
  */
 public interface Library {
 
-    BorrowableItem getBorrowableItem(String description, String type);
+    List<Book> getAvailableBooks();
 
-    BorrowableItem getBookItem(String description);
+    List<Book> getBorrowedBooks();
 
-    BorrowableItem getMovieItem(String description);
+    List<Book> getBookList();
 
-    List<BorrowableItem> getAvailableItems();
+    List<Movie> getAvailableMovies();
 
-    List<BorrowableItem> getBorrowedItems();
+    List<Movie> getBorrowedMovies();
 
-    boolean availableBooksIsEmpty();
+    List<Movie> getMovieList();
 
-    boolean borrowedBooksIsEmpty();
-
-    boolean availableMoviesIsEmpty();
-
-    boolean borrowedMoviesIsEmpty();
-
-    boolean itemsCheckedOutByCustomersIsEmpty();
-
-    Map<BorrowableItem, User> getItemsCheckedOutByCustomers();
+    Map<String, User> getUsers();
 
     User login(String libraryNumber, String password) throws IncorrectLogin;
+
+    Map<BorrowableItem, User> getItemsCheckedOutByCustomers();
 
     void checkoutItem(BorrowableItem item, User user) throws ItemNotBorrowable;
 

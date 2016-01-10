@@ -24,17 +24,14 @@ public class LibraryTest {
     private BorrowableItem item;
     private User user;
     private Map<BorrowableItem, User> itemsCheckedOutByCustomers;
+    private Map<String, User> users;
     private Library libraryMock;
 
     private static final Book BOOK_1 = new Book("Java 101", "Joe Bloggs", 1990);
     private static final Book BOOK_2 = new Book("PHP 101", "Mary Jane", 2005);
-    private static final Book BOOK_3 = new Book("C# 101", "John Smith", 2010);
-    private static final Book BOOK_4 = new Book("C++ 101", "Joyce Merry", 2001);
 
     private static final Movie MOVIE_1 = new Movie("The Matrix", 1999, "The Wachowski Brothers", "10");
     private static final Movie MOVIE_2 = new Movie("Inception", 2010, "Christopher Nolan", "8");
-    private static final Movie MOVIE_3 = new Movie("Divergent", 2014, "Neil Burger", "Unrated");
-    private static final Movie MOVIE_4 = new Movie("The Bourne Identity", 2002, "Doug Liman", "10");
 
     private static final User USER_1 = new User("Joe Bloggs", "joebloggs@joebloggs.com", "0400 000 000", "123-4566", "password1");
     private static final User USER_2 = new User("Jane Smith", "janesmith@janesmith.com", "0400 123 888", "123-4567", "password2");
@@ -45,83 +42,26 @@ public class LibraryTest {
         item = mock(BorrowableItem.class);
         user = mock(User.class);
         itemsCheckedOutByCustomers = mock(Map.class);
+        users = mock(Map.class);
         libraryMock = mock(LibraryImpl.class);
     }
 
     @Test
-    public void testGetBorrowableItem() throws Exception {
-        String bookDescription = "Java 101";
-        String movieDescription = "The Matrix";
-        String bookType = "book";
-        String movieType = "movie";
-        assertEquals(library.getBorrowableItem(bookDescription, bookType), BOOK_1);
-        assertEquals(library.getBorrowableItem(movieDescription, movieType), MOVIE_1);
+    public void testCreateBookList() throws Exception {
+        assertEquals(BOOK_1, library.getBookList().get(0));
+        assertEquals(BOOK_2, library.getBookList().get(1));
     }
 
     @Test
-    public void testGetBookItem() throws Exception {
-        String description = "Java 101";
-        assertEquals(library.getBookItem(description), BOOK_1);
+    public void testCreateMovieList() throws Exception {
+        assertEquals(MOVIE_1, library.getMovieList().get(0));
+        assertEquals(MOVIE_2, library.getMovieList().get(1));
     }
 
     @Test
-    public void testGetMovieItem() throws Exception {
-        String description = "The Matrix";
-        assertEquals(library.getMovieItem(description), MOVIE_1);
-    }
-
-    @Test
-    public void testGetAvailableItems() throws Exception {
-        assertTrue(library.getAvailableItems().contains(BOOK_2));
-        library.checkoutItem(BOOK_2, USER_2);
-        assertFalse(library.getAvailableItems().contains(BOOK_2));
-    }
-
-    @Test
-    public void testGetBorrowedItems() throws Exception {
-        library.checkoutItem(BOOK_1, USER_1);
-        assertTrue(library.getBorrowedItems().contains(BOOK_1));
-        library.returnItem(BOOK_1, USER_1);
-        assertFalse(library.getBorrowedItems().contains(BOOK_1));
-    }
-
-    @Test
-    public void testAvailableBooksIsEmpty() throws Exception {
-        assertFalse(library.availableBooksIsEmpty());
-        library.checkoutItem(BOOK_1, USER_1);
-        library.checkoutItem(BOOK_2, USER_2);
-        library.checkoutItem(BOOK_3, USER_1);
-        library.checkoutItem(BOOK_4, USER_2);
-        assertTrue(library.availableBooksIsEmpty());
-    }
-
-    @Test
-    public void testBorrowedBooksIsEmpty() throws Exception {
-        assertTrue(library.borrowedBooksIsEmpty());
-        library.checkoutItem(BOOK_1, USER_1);
-        assertFalse(library.borrowedBooksIsEmpty());
-    }
-
-    @Test
-    public void testAvailableMoviesIsEmpty() throws Exception {
-        assertFalse(library.availableMoviesIsEmpty());
-        library.checkoutItem(MOVIE_1, USER_1);
-        library.checkoutItem(MOVIE_2, USER_2);
-        library.checkoutItem(MOVIE_3, USER_1);
-        library.checkoutItem(MOVIE_4, USER_2);
-        assertTrue(library.availableMoviesIsEmpty());
-    }
-
-    @Test
-    public void testBorrowedMoviesIsEmpty() throws Exception {
-        assertTrue(library.borrowedMoviesIsEmpty());
-        library.checkoutItem(MOVIE_1, USER_1);
-        assertFalse(library.borrowedMoviesIsEmpty());
-    }
-
-    @Test
-    public void testItemsCheckedOutByCustomersIsEmpty() throws Exception {
-        assertFalse(library.itemsCheckedOutByCustomersIsEmpty());
+    public void testCreateUsers() throws Exception {
+        when(libraryMock.getUsers()).thenReturn(users);
+        assertEquals(libraryMock.getUsers(), users);
     }
 
     @Test
@@ -147,19 +87,51 @@ public class LibraryTest {
         verify(libraryMock, times(1)).returnItem(item, user);
     }
 
-    @Test(expected = IncorrectLogin.class)
-    public void testExceptionThrownWhenIncorrectLogin() throws Exception {
-        library.login("jfsl", "fjlk");
+    @Test(expected = ItemNotReturnable.class)
+    public void testExceptionThrownWhenItemAlreadyReturned() throws Exception {
+        library.returnItem(library.getAvailableBooks().get(0), USER_1);
     }
 
     @Test(expected = ItemNotBorrowable.class)
     public void testExceptionThrownWhenItemBorrowedTwice() throws Exception {
-        library.checkoutItem(MOVIE_2, USER_2);
-        library.checkoutItem(MOVIE_2, USER_2);
+        library.checkoutItem(library.getBookList().get(0), USER_1);
+        library.checkoutItem(library.getBookList().get(0), USER_1);
     }
 
-    @Test(expected = ItemNotReturnable.class)
-    public void testExceptionThrownWhenItemAlreadyReturned() throws Exception {
-        library.returnItem(MOVIE_1, USER_1);
+    @Test
+    public void testGetBorrowedBooks() throws Exception {
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_1);
+        assertTrue(library.getBorrowedBooks().contains(BOOK_1));
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_2);
+        assertTrue(library.getBorrowedBooks().contains(BOOK_2));
+    }
+
+    @Test
+    public void testGetAvailableBooks() throws Exception {
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_1);
+        assertFalse(library.getAvailableBooks().contains(BOOK_1));
+        library.checkoutItem(library.getAvailableBooks().get(0), USER_2);
+        assertFalse(library.getAvailableBooks().contains(BOOK_2));
+    }
+
+    @Test
+    public void testGetAvailableMovies() throws Exception {
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
+        assertFalse(library.getAvailableMovies().contains(MOVIE_1));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
+        assertFalse(library.getAvailableMovies().contains(MOVIE_2));
+    }
+
+    @Test
+    public void testGetBorrowedMovies() throws Exception {
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
+        assertTrue(library.getBorrowedMovies().contains(MOVIE_1));
+        library.checkoutItem(library.getAvailableMovies().get(0), USER_1);
+        assertTrue(library.getBorrowedMovies().contains(MOVIE_2));
+    }
+
+    @Test(expected = IncorrectLogin.class)
+    public void testExceptionThrownWhenIncorrectLogin() throws Exception {
+        library.login("jfsl", "fjlk");
     }
 }

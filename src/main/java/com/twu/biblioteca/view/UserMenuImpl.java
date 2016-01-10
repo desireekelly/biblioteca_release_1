@@ -104,7 +104,7 @@ public class UserMenuImpl implements UserMenu {
                     displayIncorrectAvailableBooksMessage();
                     break;
                 }
-                displayAvailableBookListing(Utilities.formatBooks(libraryController.getAvailableItems()));
+                displayAvailableBookListing(Utilities.formatBookList(libraryController.getAvailableBooks()));
                 break;
             case 2:
                 if (libraryController.availableBooksIsEmpty()) {
@@ -125,7 +125,7 @@ public class UserMenuImpl implements UserMenu {
                     displayIncorrectAvailableMoviesMessage();
                     break;
                 }
-                displayAvailableMovieListing(Utilities.formatMovies(libraryController.getAvailableItems()));
+                displayAvailableMovieListing(Utilities.formatMovieList(libraryController.getAvailableMovies()));
                 break;
             case 5:
                 if (libraryController.availableMoviesIsEmpty()) {

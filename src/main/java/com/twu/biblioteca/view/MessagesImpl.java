@@ -93,7 +93,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String bookBorrowMessage() {
-        return "\nSelect a book to borrow by entering the title:";
+        return "\nSelect a book to borrow by entering the ID number or enter 0 to go back to the main menu:";
     }
 
     @Override
@@ -103,7 +103,7 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String bookReturnMessage() {
-        return "\nSelect a book to return by entering the title:";
+        return "\nSelect a book to return by entering the ID number or enter 0 to go back to the main menu:";
     }
 
     @Override
@@ -128,12 +128,12 @@ public class MessagesImpl implements Messages {
 
     @Override
     public String movieBorrowMessage(){
-        return "\nSelect a movie to borrow by entering the title:\n";
+        return "\nSelect a movie to borrow by entering the ID number or enter 0 to go back to the main menu:\n";
     }
 
     @Override
     public String movieReturnMessage() {
-        return "\nSelect a movie to return by entering the title:\n";
+        return "\nSelect a movie to return by entering the ID number or enter 0 to go back to the main menu:\n";
     }
 
     @Override

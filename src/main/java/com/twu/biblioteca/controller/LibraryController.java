@@ -3,9 +3,7 @@ package com.twu.biblioteca.controller;
 import com.twu.biblioteca.exceptions.IncorrectLogin;
 import com.twu.biblioteca.exceptions.ItemNotBorrowable;
 import com.twu.biblioteca.exceptions.ItemNotReturnable;
-import com.twu.biblioteca.model.BorrowableItem;
-import com.twu.biblioteca.model.Library;
-import com.twu.biblioteca.model.User;
+import com.twu.biblioteca.model.*;
 
 import java.util.List;
 import java.util.Map;
@@ -43,44 +41,88 @@ public class LibraryController {
         return loginService.loginUser(libraryNumber, password);
     }
 
-    public List<BorrowableItem> getAvailableItems() {
-        return library.getAvailableItems();
+    public List<Book> getAvailableBooks() {
+        return library.getAvailableBooks();
     }
 
-    public List<BorrowableItem> getBorrowedItems() {
-        return library.getBorrowedItems();
+    public List<Book> getBorrowedBooks() {
+        return library.getBorrowedBooks();
+    }
+
+    public List<Movie> getAvailableMovies(){
+        return library.getAvailableMovies();
+    }
+
+    public List<Movie> getBorrowedMovies(){
+        return library.getBorrowedMovies();
     }
 
     public boolean availableBooksIsEmpty() {
-        return library.availableBooksIsEmpty();
+        if (library.getAvailableBooks().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public boolean borrowedBooksIsEmpty() {
-        return library.borrowedBooksIsEmpty();
+        if (library.getBorrowedBooks().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public boolean availableMoviesIsEmpty() {
-        return library.availableMoviesIsEmpty();
+        if (library.getAvailableMovies().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public boolean borrowedMoviesIsEmpty() {
-        return library.borrowedMoviesIsEmpty();
+        if (library.getBorrowedMovies().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
-    public String checkinItem(String description, String type) throws ItemNotReturnable {
-        BorrowableItem itemToReturn = library.getBorrowableItem(description, type);
-        returnItem(itemToReturn, user);
-        return itemToReturn.getDescription().toString();
+    public int getAvailableBooksSize() {
+        return library.getAvailableBooks().size();
     }
 
-    public String checkoutItem(String description, String type) throws ItemNotBorrowable {
-        BorrowableItem itemToBorrow = library.getBorrowableItem(description, type);
-        borrowItem(itemToBorrow, user);
-        return itemToBorrow.getDescription().toString();
+    public int getBorrowedBooksSize() {
+        return library.getBorrowedBooks().size();
     }
 
-    public BorrowableItem getBorrowableItem(String description, String type) {
-        return library.getBorrowableItem(description, type);
+    public int getAvailableMoviesSize() {
+        return library.getAvailableMovies().size();
+    }
+
+    public int getBorrowedMoviesSize() {
+        return library.getBorrowedMovies().size();
+    }
+
+    public String checkoutBook(int option) throws ItemNotBorrowable {
+        Book bookToBorrow = library.getAvailableBooks().get(option - 1);
+        borrowItem(bookToBorrow, user);
+        return bookToBorrow.getTitle().toString();
+    }
+
+    public String checkinBook(int option) throws ItemNotReturnable {
+        Book bookToReturn = library.getBorrowedBooks().get(option - 1);
+        returnItem(bookToReturn, user);
+        return bookToReturn.getTitle().toString();
+    }
+
+    public String checkoutMovie(int option) throws ItemNotBorrowable {
+        Movie movieToBorrow = library.getAvailableMovies().get(option - 1);
+        borrowItem(movieToBorrow, user);
+        return movieToBorrow.getName().toString();
+    }
+
+    public String checkinMovie(int option) throws ItemNotReturnable {
+        Movie movieToReturn = library.getBorrowedMovies().get(option - 1);
+        returnItem(movieToReturn, user);
+        return movieToReturn.getName().toString();
     }
 
     public User login(String libraryNumber, String password) throws IncorrectLogin {
@@ -101,7 +143,10 @@ public class LibraryController {
     }
 
     public boolean itemsCheckedOutByCustomersIsEmpty() {
-        return library.itemsCheckedOutByCustomersIsEmpty();
+        if (library.getItemsCheckedOutByCustomers().isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     public Map<BorrowableItem, User> getItemsCheckedOutByCustomers() {
